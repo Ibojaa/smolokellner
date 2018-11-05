@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="268" id="KGk-i7-Jjw" customClass="KellnerCell" customModule="SMOLO_" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="268"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="267.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Azj-Gl-Ql8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="192"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tableView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GW4-bG-QC8" customClass="L_HN_16_W" customModule="SMOLO_" customModuleProvider="target">
+                        <rect key="frame" x="262" y="200" width="38" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gesamtpreis: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3Q-v2-bmx" customClass="L_HN_16_W" customModule="SMOLO_" customModuleProvider="target">
+                        <rect key="frame" x="16" y="200" width="106" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€€€" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UL7-VM-FG5" customClass="L_HN_16_W" customModule="SMOLO_" customModuleProvider="target">
+                        <rect key="frame" x="130" y="200" width="32" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgf-tB-aWw" customClass="B_HN_20_G" customModule="SMOLO_" customModuleProvider="target">
+                        <rect key="frame" x="16" y="229" width="288" height="30"/>
+                        <state key="normal" title="annehmen"/>
+                        <connections>
+                            <action selector="annehmenTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jFa-V9-AqW"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="GW4-bG-QC8" secondAttribute="trailing" constant="4" id="1bK-rD-Mf5"/>
+                    <constraint firstItem="Azj-Gl-Ql8" firstAttribute="centerX" secondItem="kgf-tB-aWw" secondAttribute="centerX" id="4LO-iI-Pyo"/>
+                    <constraint firstItem="H3Q-v2-bmx" firstAttribute="baseline" secondItem="UL7-VM-FG5" secondAttribute="baseline" id="G34-l7-l2J"/>
+                    <constraint firstItem="Azj-Gl-Ql8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NqH-ok-rjE"/>
+                    <constraint firstItem="kgf-tB-aWw" firstAttribute="top" secondItem="H3Q-v2-bmx" secondAttribute="bottom" constant="8" symbolic="YES" id="PQS-IJ-LQN"/>
+                    <constraint firstItem="H3Q-v2-bmx" firstAttribute="leading" secondItem="kgf-tB-aWw" secondAttribute="leading" id="RMU-9H-BmK"/>
+                    <constraint firstItem="H3Q-v2-bmx" firstAttribute="top" secondItem="Azj-Gl-Ql8" secondAttribute="bottom" constant="8" symbolic="YES" id="W2M-Np-Fe4"/>
+                    <constraint firstItem="Azj-Gl-Ql8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="X8g-QQ-zfB"/>
+                    <constraint firstAttribute="trailing" secondItem="Azj-Gl-Ql8" secondAttribute="trailing" id="YsB-Lv-Ana"/>
+                    <constraint firstItem="H3Q-v2-bmx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ZVY-kz-JHq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="kgf-tB-aWw" secondAttribute="bottom" constant="-2" id="gbJ-Yy-1J2"/>
+                    <constraint firstItem="UL7-VM-FG5" firstAttribute="leading" secondItem="H3Q-v2-bmx" secondAttribute="trailing" constant="8" symbolic="YES" id="ngS-ty-ZNM"/>
+                    <constraint firstItem="UL7-VM-FG5" firstAttribute="baseline" secondItem="GW4-bG-QC8" secondAttribute="baseline" id="z8V-5l-RTO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="KellnerCelleTV" destination="Azj-Gl-Ql8" id="ub1-NQ-jAX"/>
+                <outlet property="annehmen" destination="kgf-tB-aWw" id="48Q-t0-eWM"/>
+                <outlet property="gesamtPreisLbl" destination="UL7-VM-FG5" id="SGz-QH-Gbb"/>
+                <outlet property="gesamtPreisText" destination="H3Q-v2-bmx" id="0Pa-lJ-hhY"/>
+                <outlet property="timeLbl" destination="GW4-bG-QC8" id="vpC-bf-x6n"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="250.07496251874065"/>
+        </tableViewCell>
+    </objects>
+</document>
