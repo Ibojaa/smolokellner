@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class LoginVC: UIViewController, UITextFieldDelegate {
 
     
     // VARS
@@ -102,9 +102,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let KABCV = KTBC.viewControllers![2] as! KellnerAlleBestellungenVC
             KABCV.KellnerID = (Auth.auth().currentUser?.uid)!
             KABCV.Barname = barname
-            let PVVC = KTBC.viewControllers![3] as! ProdukteVC
-            PVVC.KellnerID = (Auth.auth().currentUser?.uid)!
-            PVVC.Barname = barname
+            let EVC = KTBC.viewControllers![3] as! EinstellungenVC
+            EVC.KellnerID = (Auth.auth().currentUser?.uid)!
+            EVC.Barname = barname
+            
+//            let PVVC = KTBC.viewControllers![3] as! ProdukteVC
+//            PVVC.KellnerID = (Auth.auth().currentUser?.uid)!
+//            PVVC.Barname = barname
         }
     }
     

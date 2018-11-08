@@ -17,6 +17,4 @@ class B_HN_40_G: UIButton {
         self.titleLabel?.textAlignment = NSTextAlignment.center
         self.backgroundColor = UIColor(red: 70/255, green: 188/255, blue: 0, alpha: 0.58)
     }
-
-
 }

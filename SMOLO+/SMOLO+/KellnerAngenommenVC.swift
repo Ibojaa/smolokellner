@@ -162,7 +162,6 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
                                                     self.extrasString.append(extraInfo.itemName!)
                                                     var newPreis = self.BestellungenItemsExtrasPreise[BestellungID]
                                                     self.extrasPreis.append(extraInfo.itemPreis!)
-                                                    print(newExtras, "AAAAA")
                                                     print(BestellungID, self.BestellungKategorien,  "BBB")
                                                     
                                                     
@@ -418,7 +417,6 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
                                                 if let dictionary = extra.value as? [String: AnyObject]{
                                                     let extraInfo = BestellungInfos(dictionary: dictionary)
                                                     var newExtras = self.BestellungenItemsExtrasNamen[BestellungID]
-                                                    print(newExtras, 2345)
                                                     print(self.BestellungKategorien)
                                                     print(BestellungID)
                                                     
@@ -695,18 +693,18 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
         var ItemsPreis = 0.0
         var ExtraPreis = 0.0
         
-        for itemsPreise in  Bestellungen[indexPath.section].preis {
-            var mengen = Bestellungen[indexPath.section].menge
-            
-            for itemPreise in itemsPreise {
-                
-                for preis in itemPreise {
-                    ItemsPreis = ItemsPreis + preis
-                }
-                
-            }
-        }
-        
+//        for itemsPreise in  Bestellungen[indexPath.section].preis {
+//            var mengen = Bestellungen[indexPath.section].menge
+//            
+//            for itemPreise in itemsPreise {
+//                
+//                for preis in itemPreise {
+//                    ItemsPreis = ItemsPreis + preis
+//                }
+//                
+//            }
+//        }
+//        
         for extrasPreise in Bestellungen[indexPath.section].extrasPreis {
             for extrasPreis in extrasPreise {
                 for extraPreis in extrasPreis {

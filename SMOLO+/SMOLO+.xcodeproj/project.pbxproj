@@ -27,6 +27,8 @@
 		387A381A2178C1D800F9FB81 /* KellnerCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A38182178C1D800F9FB81 /* KellnerCell3.xib */; };
 		387A381D2178C2B800F9FB81 /* KellnerExtrasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */; };
 		387A381E2178C2B800F9FB81 /* KellnerExtrasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */; };
+		38B9485B21943DCF00BA8E7E /* B_HN_20_R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */; };
+		38B9485D2194401300BA8E7E /* EinstellungenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9485C2194401300BA8E7E /* EinstellungenVC.swift */; };
 		38CE33252178CCC600DBE708 /* L_HN_36_W.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE33242178CCC600DBE708 /* L_HN_36_W.swift */; };
 		38CE33272178CD5700DBE708 /* B_HN_40_G.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE33262178CD5700DBE708 /* B_HN_40_G.swift */; };
 		38CE332A2178E02100DBE708 /* L_HN_20_W.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE33292178E02100DBE708 /* L_HN_20_W.swift */; };
@@ -41,7 +43,7 @@
 		7796451B185D5E5DA59F4B41 /* Pods_SMOLO_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8092DFD4E900B544C95E8F4E /* Pods_SMOLO_Tests.framework */; };
 		E0CA75F6CD0B497C5F2DF0BF /* Pods_SMOLO_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2564E725D34DF77B656D40 /* Pods_SMOLO_.framework */; };
 		FD7DDC10214BEFA2008CDE12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC0F214BEFA2008CDE12 /* AppDelegate.swift */; };
-		FD7DDC12214BEFA2008CDE12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC11214BEFA2008CDE12 /* ViewController.swift */; };
+		FD7DDC12214BEFA2008CDE12 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */; };
 		FD7DDC15214BEFA2008CDE12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC13214BEFA2008CDE12 /* Main.storyboard */; };
 		FD7DDC17214BEFA5008CDE12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC16214BEFA5008CDE12 /* Assets.xcassets */; };
 		FD7DDC1A214BEFA5008CDE12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC18214BEFA5008CDE12 /* LaunchScreen.storyboard */; };
@@ -89,6 +91,8 @@
 		387A38182178C1D800F9FB81 /* KellnerCell3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerCell3.xib; sourceTree = "<group>"; };
 		387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerExtrasCell.swift; sourceTree = "<group>"; };
 		387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerExtrasCell.xib; sourceTree = "<group>"; };
+		38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_HN_20_R.swift; sourceTree = "<group>"; };
+		38B9485C2194401300BA8E7E /* EinstellungenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenVC.swift; sourceTree = "<group>"; };
 		38CE33242178CCC600DBE708 /* L_HN_36_W.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L_HN_36_W.swift; sourceTree = "<group>"; };
 		38CE33262178CD5700DBE708 /* B_HN_40_G.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_HN_40_G.swift; sourceTree = "<group>"; };
 		38CE33292178E02100DBE708 /* L_HN_20_W.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L_HN_20_W.swift; sourceTree = "<group>"; };
@@ -109,7 +113,7 @@
 		F8894C7681264C21D7ED39AD /* Pods-SMOLO+Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+Tests/Pods-SMOLO+Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FD7DDC0C214BEFA2008CDE12 /* SMOLO+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SMOLO+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD7DDC0F214BEFA2008CDE12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FD7DDC11214BEFA2008CDE12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		FD7DDC14214BEFA2008CDE12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FD7DDC16214BEFA5008CDE12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD7DDC19214BEFA5008CDE12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 				38CE332E2178E08700DBE708 /* B_HN_20_G.swift */,
 				38CE33292178E02100DBE708 /* L_HN_20_W.swift */,
 				38CE332C2178E03D00DBE708 /* L_HN_16_W.swift */,
+				38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -252,7 +257,8 @@
 				3877686D2173ADEF0070F988 /* KellnerVC.swift */,
 				385FFA4F2188C3140052823A /* KellnerAlleBestellungenVC.swift */,
 				385FFA512188C3500052823A /* ProdukteVC.swift */,
-				FD7DDC11214BEFA2008CDE12 /* ViewController.swift */,
+				FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */,
+				38B9485C2194401300BA8E7E /* EinstellungenVC.swift */,
 				385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */,
 				387768702173AF070070F988 /* KellnerTBC.swift */,
 				FD7DDC13214BEFA2008CDE12 /* Main.storyboard */,
@@ -513,6 +519,7 @@
 				38D2AC112190A93200B60430 /* ExpandTVSection2.swift in Sources */,
 				38CE33252178CCC600DBE708 /* L_HN_36_W.swift in Sources */,
 				38D2AC142190A97C00B60430 /* produktCell.swift in Sources */,
+				38B9485D2194401300BA8E7E /* EinstellungenVC.swift in Sources */,
 				385FFA522188C3500052823A /* ProdukteVC.swift in Sources */,
 				385FFA4E2188C1680052823A /* KellnerAngenommenVC.swift in Sources */,
 				387768732173B3470070F988 /* ExpandableHeaderViewDelegate.swift in Sources */,
@@ -526,8 +533,9 @@
 				38CE33272178CD5700DBE708 /* B_HN_40_G.swift in Sources */,
 				38D2AC182190AA4700B60430 /* produktCell2.swift in Sources */,
 				38D2AC1B2190AADB00B60430 /* SpeisekarteInformation.swift in Sources */,
+				38B9485B21943DCF00BA8E7E /* B_HN_20_R.swift in Sources */,
 				387A381D2178C2B800F9FB81 /* KellnerExtrasCell.swift in Sources */,
-				FD7DDC12214BEFA2008CDE12 /* ViewController.swift in Sources */,
+				FD7DDC12214BEFA2008CDE12 /* LoginVC.swift in Sources */,
 				38CE332F2178E08700DBE708 /* B_HN_20_G.swift in Sources */,
 				387A38132178C0F500F9FB81 /* KellnerCell2.swift in Sources */,
 				3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */,

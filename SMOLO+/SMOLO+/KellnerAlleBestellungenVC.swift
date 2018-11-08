@@ -160,7 +160,6 @@ class KellnerAlleBestellungenVC: UIViewController, UITableViewDelegate, UITableV
                                                     self.extrasString.append(extraInfo.itemName!)
                                                     var newPreis = self.BestellungenItemsExtrasPreise[BestellungID]
                                                     self.extrasPreis.append(extraInfo.itemPreis!)
-                                                    print(newExtras, "AAAAA")
                                                     print(BestellungID, self.BestellungKategorien,  "BBB")
                                                     
                                                     
@@ -416,7 +415,6 @@ class KellnerAlleBestellungenVC: UIViewController, UITableViewDelegate, UITableV
                                                 if let dictionary = extra.value as? [String: AnyObject]{
                                                     let extraInfo = BestellungInfos(dictionary: dictionary)
                                                     var newExtras = self.BestellungenItemsExtrasNamen[BestellungID]
-                                                    print(newExtras, 2345)
                                                     print(self.BestellungKategorien)
                                                     print(BestellungID)
                                                     
