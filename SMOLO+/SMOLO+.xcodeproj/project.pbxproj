@@ -1,0 +1,878 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C83E09151A8D899B0010D11 /* Pods_SMOLO_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A699007BA13C84B097901D /* Pods_SMOLO_UITests.framework */; };
+		385FFA4E2188C1680052823A /* KellnerAngenommenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */; };
+		385FFA502188C3140052823A /* KellnerAlleBestellungenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385FFA4F2188C3140052823A /* KellnerAlleBestellungenVC.swift */; };
+		385FFA522188C3500052823A /* ProdukteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385FFA512188C3500052823A /* ProdukteVC.swift */; };
+		3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877686B2173AC5C0070F988 /* KellnerInfos.swift */; };
+		3877686E2173ADEF0070F988 /* KellnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877686D2173ADEF0070F988 /* KellnerVC.swift */; };
+		387768712173AF070070F988 /* KellnerTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768702173AF070070F988 /* KellnerTBC.swift */; };
+		387768732173B3470070F988 /* ExpandableHeaderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768722173B3470070F988 /* ExpandableHeaderViewDelegate.swift */; };
+		387768752173B3D60070F988 /* KellnerTVSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768742173B3D60070F988 /* KellnerTVSection.swift */; };
+		387768772173B5B10070F988 /* BestellungInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768762173B5B10070F988 /* BestellungInfos.swift */; };
+		3877687B2173B94E0070F988 /* KellnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768792173B94D0070F988 /* KellnerCell.swift */; };
+		3877687C2173B94E0070F988 /* KellnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3877687A2173B94E0070F988 /* KellnerCell.xib */; };
+		387A38102178BDAF00F9FB81 /* ExpandleHeaderView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A380F2178BDAF00F9FB81 /* ExpandleHeaderView2.swift */; };
+		387A38132178C0F500F9FB81 /* KellnerCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A38112178C0F500F9FB81 /* KellnerCell2.swift */; };
+		387A38142178C0F500F9FB81 /* KellnerCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A38122178C0F500F9FB81 /* KellnerCell2.xib */; };
+		387A38162178C18F00F9FB81 /* ExpandleHeaderView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A38152178C18F00F9FB81 /* ExpandleHeaderView3.swift */; };
+		387A38192178C1D800F9FB81 /* KellnerCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A38172178C1D800F9FB81 /* KellnerCell3.swift */; };
+		387A381A2178C1D800F9FB81 /* KellnerCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A38182178C1D800F9FB81 /* KellnerCell3.xib */; };
+		387A381D2178C2B800F9FB81 /* KellnerExtrasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */; };
+		387A381E2178C2B800F9FB81 /* KellnerExtrasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */; };
+		38B9485B21943DCF00BA8E7E /* B_HN_20_R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */; };
+		38B9485D2194401300BA8E7E /* EinstellungenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9485C2194401300BA8E7E /* EinstellungenVC.swift */; };
+		38CE33252178CCC600DBE708 /* L_HN_36_W.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE33242178CCC600DBE708 /* L_HN_36_W.swift */; };
+		38CE33272178CD5700DBE708 /* B_HN_40_G.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE33262178CD5700DBE708 /* B_HN_40_G.swift */; };
+		38CE332A2178E02100DBE708 /* L_HN_20_W.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE33292178E02100DBE708 /* L_HN_20_W.swift */; };
+		38CE332D2178E03D00DBE708 /* L_HN_16_W.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE332C2178E03D00DBE708 /* L_HN_16_W.swift */; };
+		38CE332F2178E08700DBE708 /* B_HN_20_G.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE332E2178E08700DBE708 /* B_HN_20_G.swift */; };
+		38D2AC112190A93200B60430 /* ExpandTVSection2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2AC102190A93200B60430 /* ExpandTVSection2.swift */; };
+		38D2AC142190A97C00B60430 /* produktCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2AC122190A97C00B60430 /* produktCell.swift */; };
+		38D2AC152190A97C00B60430 /* produktCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2AC132190A97C00B60430 /* produktCell.xib */; };
+		38D2AC182190AA4700B60430 /* produktCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2AC162190AA4700B60430 /* produktCell2.swift */; };
+		38D2AC192190AA4700B60430 /* produktCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2AC172190AA4700B60430 /* produktCell2.xib */; };
+		38D2AC1B2190AADB00B60430 /* SpeisekarteInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2AC1A2190AADB00B60430 /* SpeisekarteInformation.swift */; };
+		7796451B185D5E5DA59F4B41 /* Pods_SMOLO_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8092DFD4E900B544C95E8F4E /* Pods_SMOLO_Tests.framework */; };
+		E0CA75F6CD0B497C5F2DF0BF /* Pods_SMOLO_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2564E725D34DF77B656D40 /* Pods_SMOLO_.framework */; };
+		FD7DDC10214BEFA2008CDE12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC0F214BEFA2008CDE12 /* AppDelegate.swift */; };
+		FD7DDC12214BEFA2008CDE12 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */; };
+		FD7DDC15214BEFA2008CDE12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC13214BEFA2008CDE12 /* Main.storyboard */; };
+		FD7DDC17214BEFA5008CDE12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC16214BEFA5008CDE12 /* Assets.xcassets */; };
+		FD7DDC1A214BEFA5008CDE12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC18214BEFA5008CDE12 /* LaunchScreen.storyboard */; };
+		FD7DDC25214BEFA5008CDE12 /* SMOLO_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC24214BEFA5008CDE12 /* SMOLO_Tests.swift */; };
+		FD7DDC30214BEFA5008CDE12 /* SMOLO_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC2F214BEFA5008CDE12 /* SMOLO_UITests.swift */; };
+		FD7DDC3E214BF03C008CDE12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC3D214BF03C008CDE12 /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FD7DDC21214BEFA5008CDE12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD7DDC04214BEFA2008CDE12 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD7DDC0B214BEFA2008CDE12;
+			remoteInfo = "SMOLO+";
+		};
+		FD7DDC2C214BEFA5008CDE12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD7DDC04214BEFA2008CDE12 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD7DDC0B214BEFA2008CDE12;
+			remoteInfo = "SMOLO+";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0679D6B618068BC034BAB1E6 /* Pods-SMOLO+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+/Pods-SMOLO+.debug.xcconfig"; sourceTree = "<group>"; };
+		3155B7CC9331CFFB446C71E0 /* Pods-SMOLO+Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+Tests/Pods-SMOLO+Tests.release.xcconfig"; sourceTree = "<group>"; };
+		385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerAngenommenVC.swift; sourceTree = "<group>"; };
+		385FFA4F2188C3140052823A /* KellnerAlleBestellungenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerAlleBestellungenVC.swift; sourceTree = "<group>"; };
+		385FFA512188C3500052823A /* ProdukteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProdukteVC.swift; sourceTree = "<group>"; };
+		3877686B2173AC5C0070F988 /* KellnerInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerInfos.swift; sourceTree = "<group>"; };
+		3877686D2173ADEF0070F988 /* KellnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerVC.swift; sourceTree = "<group>"; };
+		387768702173AF070070F988 /* KellnerTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerTBC.swift; sourceTree = "<group>"; };
+		387768722173B3470070F988 /* ExpandableHeaderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderViewDelegate.swift; sourceTree = "<group>"; };
+		387768742173B3D60070F988 /* KellnerTVSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerTVSection.swift; sourceTree = "<group>"; };
+		387768762173B5B10070F988 /* BestellungInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestellungInfos.swift; sourceTree = "<group>"; };
+		387768792173B94D0070F988 /* KellnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerCell.swift; sourceTree = "<group>"; };
+		3877687A2173B94E0070F988 /* KellnerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerCell.xib; sourceTree = "<group>"; };
+		387A380F2178BDAF00F9FB81 /* ExpandleHeaderView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandleHeaderView2.swift; sourceTree = "<group>"; };
+		387A38112178C0F500F9FB81 /* KellnerCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerCell2.swift; sourceTree = "<group>"; };
+		387A38122178C0F500F9FB81 /* KellnerCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerCell2.xib; sourceTree = "<group>"; };
+		387A38152178C18F00F9FB81 /* ExpandleHeaderView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandleHeaderView3.swift; sourceTree = "<group>"; };
+		387A38172178C1D800F9FB81 /* KellnerCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerCell3.swift; sourceTree = "<group>"; };
+		387A38182178C1D800F9FB81 /* KellnerCell3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerCell3.xib; sourceTree = "<group>"; };
+		387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerExtrasCell.swift; sourceTree = "<group>"; };
+		387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerExtrasCell.xib; sourceTree = "<group>"; };
+		38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_HN_20_R.swift; sourceTree = "<group>"; };
+		38B9485C2194401300BA8E7E /* EinstellungenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenVC.swift; sourceTree = "<group>"; };
+		38CE33242178CCC600DBE708 /* L_HN_36_W.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L_HN_36_W.swift; sourceTree = "<group>"; };
+		38CE33262178CD5700DBE708 /* B_HN_40_G.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_HN_40_G.swift; sourceTree = "<group>"; };
+		38CE33292178E02100DBE708 /* L_HN_20_W.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L_HN_20_W.swift; sourceTree = "<group>"; };
+		38CE332C2178E03D00DBE708 /* L_HN_16_W.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L_HN_16_W.swift; sourceTree = "<group>"; };
+		38CE332E2178E08700DBE708 /* B_HN_20_G.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_HN_20_G.swift; sourceTree = "<group>"; };
+		38D2AC102190A93200B60430 /* ExpandTVSection2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTVSection2.swift; sourceTree = "<group>"; };
+		38D2AC122190A97C00B60430 /* produktCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = produktCell.swift; sourceTree = "<group>"; };
+		38D2AC132190A97C00B60430 /* produktCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = produktCell.xib; sourceTree = "<group>"; };
+		38D2AC162190AA4700B60430 /* produktCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = produktCell2.swift; sourceTree = "<group>"; };
+		38D2AC172190AA4700B60430 /* produktCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = produktCell2.xib; sourceTree = "<group>"; };
+		38D2AC1A2190AADB00B60430 /* SpeisekarteInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeisekarteInformation.swift; sourceTree = "<group>"; };
+		8092DFD4E900B544C95E8F4E /* Pods_SMOLO_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMOLO_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		848EFD45C4209AE17DC1236A /* Pods-SMOLO+UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+UITests/Pods-SMOLO+UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C2564E725D34DF77B656D40 /* Pods_SMOLO_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMOLO_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6EB95324F388FCC2722EA9E /* Pods-SMOLO+UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+UITests/Pods-SMOLO+UITests.release.xcconfig"; sourceTree = "<group>"; };
+		B8A699007BA13C84B097901D /* Pods_SMOLO_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMOLO_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9854DB1D9990CE7AB00B227 /* Pods-SMOLO+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+/Pods-SMOLO+.release.xcconfig"; sourceTree = "<group>"; };
+		F8894C7681264C21D7ED39AD /* Pods-SMOLO+Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+Tests/Pods-SMOLO+Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD7DDC0C214BEFA2008CDE12 /* SMOLO+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SMOLO+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD7DDC0F214BEFA2008CDE12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		FD7DDC14214BEFA2008CDE12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FD7DDC16214BEFA5008CDE12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FD7DDC19214BEFA5008CDE12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FD7DDC1B214BEFA5008CDE12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD7DDC20214BEFA5008CDE12 /* SMOLO+Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SMOLO+Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD7DDC24214BEFA5008CDE12 /* SMOLO_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMOLO_Tests.swift; sourceTree = "<group>"; };
+		FD7DDC26214BEFA5008CDE12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD7DDC2B214BEFA5008CDE12 /* SMOLO+UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SMOLO+UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD7DDC2F214BEFA5008CDE12 /* SMOLO_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMOLO_UITests.swift; sourceTree = "<group>"; };
+		FD7DDC31214BEFA5008CDE12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD7DDC3D214BF03C008CDE12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FD7DDC09214BEFA2008CDE12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0CA75F6CD0B497C5F2DF0BF /* Pods_SMOLO_.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD7DDC1D214BEFA5008CDE12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7796451B185D5E5DA59F4B41 /* Pods_SMOLO_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD7DDC28214BEFA5008CDE12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C83E09151A8D899B0010D11 /* Pods_SMOLO_UITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3877686A2173AC370070F988 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3877686B2173AC5C0070F988 /* KellnerInfos.swift */,
+				387768722173B3470070F988 /* ExpandableHeaderViewDelegate.swift */,
+				387768742173B3D60070F988 /* KellnerTVSection.swift */,
+				387768762173B5B10070F988 /* BestellungInfos.swift */,
+				387A380F2178BDAF00F9FB81 /* ExpandleHeaderView2.swift */,
+				387A38152178C18F00F9FB81 /* ExpandleHeaderView3.swift */,
+				38D2AC102190A93200B60430 /* ExpandTVSection2.swift */,
+				38D2AC1A2190AADB00B60430 /* SpeisekarteInformation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		387768782173B9380070F988 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				387768792173B94D0070F988 /* KellnerCell.swift */,
+				3877687A2173B94E0070F988 /* KellnerCell.xib */,
+				387A38112178C0F500F9FB81 /* KellnerCell2.swift */,
+				387A38122178C0F500F9FB81 /* KellnerCell2.xib */,
+				387A38172178C1D800F9FB81 /* KellnerCell3.swift */,
+				387A38182178C1D800F9FB81 /* KellnerCell3.xib */,
+				387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */,
+				387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */,
+				38D2AC122190A97C00B60430 /* produktCell.swift */,
+				38D2AC132190A97C00B60430 /* produktCell.xib */,
+				38D2AC162190AA4700B60430 /* produktCell2.swift */,
+				38D2AC172190AA4700B60430 /* produktCell2.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		38CE33282178DF9200DBE708 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				38CE33242178CCC600DBE708 /* L_HN_36_W.swift */,
+				38CE33262178CD5700DBE708 /* B_HN_40_G.swift */,
+				38CE332E2178E08700DBE708 /* B_HN_20_G.swift */,
+				38CE33292178E02100DBE708 /* L_HN_20_W.swift */,
+				38CE332C2178E03D00DBE708 /* L_HN_16_W.swift */,
+				38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9CEB4D971F1215C20A226458 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C2564E725D34DF77B656D40 /* Pods_SMOLO_.framework */,
+				8092DFD4E900B544C95E8F4E /* Pods_SMOLO_Tests.framework */,
+				B8A699007BA13C84B097901D /* Pods_SMOLO_UITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF1824F4CC7329C79ABF9E2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0679D6B618068BC034BAB1E6 /* Pods-SMOLO+.debug.xcconfig */,
+				B9854DB1D9990CE7AB00B227 /* Pods-SMOLO+.release.xcconfig */,
+				F8894C7681264C21D7ED39AD /* Pods-SMOLO+Tests.debug.xcconfig */,
+				3155B7CC9331CFFB446C71E0 /* Pods-SMOLO+Tests.release.xcconfig */,
+				848EFD45C4209AE17DC1236A /* Pods-SMOLO+UITests.debug.xcconfig */,
+				A6EB95324F388FCC2722EA9E /* Pods-SMOLO+UITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FD7DDC03214BEFA2008CDE12 = {
+			isa = PBXGroup;
+			children = (
+				FD7DDC0E214BEFA2008CDE12 /* SMOLO+ */,
+				FD7DDC23214BEFA5008CDE12 /* SMOLO+Tests */,
+				FD7DDC2E214BEFA5008CDE12 /* SMOLO+UITests */,
+				FD7DDC0D214BEFA2008CDE12 /* Products */,
+				AF1824F4CC7329C79ABF9E2D /* Pods */,
+				9CEB4D971F1215C20A226458 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FD7DDC0D214BEFA2008CDE12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FD7DDC0C214BEFA2008CDE12 /* SMOLO+.app */,
+				FD7DDC20214BEFA5008CDE12 /* SMOLO+Tests.xctest */,
+				FD7DDC2B214BEFA5008CDE12 /* SMOLO+UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FD7DDC0E214BEFA2008CDE12 /* SMOLO+ */ = {
+			isa = PBXGroup;
+			children = (
+				38CE33282178DF9200DBE708 /* Fonts */,
+				387768782173B9380070F988 /* Cells */,
+				3877686A2173AC370070F988 /* Models */,
+				FD7DDC0F214BEFA2008CDE12 /* AppDelegate.swift */,
+				3877686D2173ADEF0070F988 /* KellnerVC.swift */,
+				385FFA4F2188C3140052823A /* KellnerAlleBestellungenVC.swift */,
+				385FFA512188C3500052823A /* ProdukteVC.swift */,
+				FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */,
+				38B9485C2194401300BA8E7E /* EinstellungenVC.swift */,
+				385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */,
+				387768702173AF070070F988 /* KellnerTBC.swift */,
+				FD7DDC13214BEFA2008CDE12 /* Main.storyboard */,
+				FD7DDC16214BEFA5008CDE12 /* Assets.xcassets */,
+				FD7DDC18214BEFA5008CDE12 /* LaunchScreen.storyboard */,
+				FD7DDC1B214BEFA5008CDE12 /* Info.plist */,
+				FD7DDC3D214BF03C008CDE12 /* GoogleService-Info.plist */,
+			);
+			path = "SMOLO+";
+			sourceTree = "<group>";
+		};
+		FD7DDC23214BEFA5008CDE12 /* SMOLO+Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FD7DDC24214BEFA5008CDE12 /* SMOLO_Tests.swift */,
+				FD7DDC26214BEFA5008CDE12 /* Info.plist */,
+			);
+			path = "SMOLO+Tests";
+			sourceTree = "<group>";
+		};
+		FD7DDC2E214BEFA5008CDE12 /* SMOLO+UITests */ = {
+			isa = PBXGroup;
+			children = (
+				FD7DDC2F214BEFA5008CDE12 /* SMOLO_UITests.swift */,
+				FD7DDC31214BEFA5008CDE12 /* Info.plist */,
+			);
+			path = "SMOLO+UITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FD7DDC0B214BEFA2008CDE12 /* SMOLO+ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD7DDC34214BEFA5008CDE12 /* Build configuration list for PBXNativeTarget "SMOLO+" */;
+			buildPhases = (
+				215E850F07440FD71A14DA32 /* [CP] Check Pods Manifest.lock */,
+				FD7DDC08214BEFA2008CDE12 /* Sources */,
+				FD7DDC09214BEFA2008CDE12 /* Frameworks */,
+				FD7DDC0A214BEFA2008CDE12 /* Resources */,
+				7BCA3455037DC539789B6F0E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SMOLO+";
+			productName = "SMOLO+";
+			productReference = FD7DDC0C214BEFA2008CDE12 /* SMOLO+.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FD7DDC1F214BEFA5008CDE12 /* SMOLO+Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD7DDC37214BEFA5008CDE12 /* Build configuration list for PBXNativeTarget "SMOLO+Tests" */;
+			buildPhases = (
+				8DC7CF5C1AAC1881E5830D33 /* [CP] Check Pods Manifest.lock */,
+				FD7DDC1C214BEFA5008CDE12 /* Sources */,
+				FD7DDC1D214BEFA5008CDE12 /* Frameworks */,
+				FD7DDC1E214BEFA5008CDE12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD7DDC22214BEFA5008CDE12 /* PBXTargetDependency */,
+			);
+			name = "SMOLO+Tests";
+			productName = "SMOLO+Tests";
+			productReference = FD7DDC20214BEFA5008CDE12 /* SMOLO+Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FD7DDC2A214BEFA5008CDE12 /* SMOLO+UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD7DDC3A214BEFA5008CDE12 /* Build configuration list for PBXNativeTarget "SMOLO+UITests" */;
+			buildPhases = (
+				2A4A286B8991B3290E5625D7 /* [CP] Check Pods Manifest.lock */,
+				FD7DDC27214BEFA5008CDE12 /* Sources */,
+				FD7DDC28214BEFA5008CDE12 /* Frameworks */,
+				FD7DDC29214BEFA5008CDE12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FD7DDC2D214BEFA5008CDE12 /* PBXTargetDependency */,
+			);
+			name = "SMOLO+UITests";
+			productName = "SMOLO+UITests";
+			productReference = FD7DDC2B214BEFA5008CDE12 /* SMOLO+UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FD7DDC04214BEFA2008CDE12 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = MAD;
+				TargetAttributes = {
+					FD7DDC0B214BEFA2008CDE12 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					FD7DDC1F214BEFA5008CDE12 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = FD7DDC0B214BEFA2008CDE12;
+					};
+					FD7DDC2A214BEFA5008CDE12 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = FD7DDC0B214BEFA2008CDE12;
+					};
+				};
+			};
+			buildConfigurationList = FD7DDC07214BEFA2008CDE12 /* Build configuration list for PBXProject "SMOLO+" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FD7DDC03214BEFA2008CDE12;
+			productRefGroup = FD7DDC0D214BEFA2008CDE12 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FD7DDC0B214BEFA2008CDE12 /* SMOLO+ */,
+				FD7DDC1F214BEFA5008CDE12 /* SMOLO+Tests */,
+				FD7DDC2A214BEFA5008CDE12 /* SMOLO+UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FD7DDC0A214BEFA2008CDE12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38D2AC152190A97C00B60430 /* produktCell.xib in Resources */,
+				FD7DDC1A214BEFA5008CDE12 /* LaunchScreen.storyboard in Resources */,
+				387A381A2178C1D800F9FB81 /* KellnerCell3.xib in Resources */,
+				387A381E2178C2B800F9FB81 /* KellnerExtrasCell.xib in Resources */,
+				FD7DDC3E214BF03C008CDE12 /* GoogleService-Info.plist in Resources */,
+				FD7DDC17214BEFA5008CDE12 /* Assets.xcassets in Resources */,
+				FD7DDC15214BEFA2008CDE12 /* Main.storyboard in Resources */,
+				387A38142178C0F500F9FB81 /* KellnerCell2.xib in Resources */,
+				38D2AC192190AA4700B60430 /* produktCell2.xib in Resources */,
+				3877687C2173B94E0070F988 /* KellnerCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD7DDC1E214BEFA5008CDE12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD7DDC29214BEFA5008CDE12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		215E850F07440FD71A14DA32 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SMOLO+-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A4A286B8991B3290E5625D7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SMOLO+UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BCA3455037DC539789B6F0E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SMOLO+/Pods-SMOLO+-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SMOLO+/Pods-SMOLO+-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DC7CF5C1AAC1881E5830D33 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SMOLO+Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FD7DDC08214BEFA2008CDE12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				385FFA502188C3140052823A /* KellnerAlleBestellungenVC.swift in Sources */,
+				387768752173B3D60070F988 /* KellnerTVSection.swift in Sources */,
+				38CE332D2178E03D00DBE708 /* L_HN_16_W.swift in Sources */,
+				38D2AC112190A93200B60430 /* ExpandTVSection2.swift in Sources */,
+				38CE33252178CCC600DBE708 /* L_HN_36_W.swift in Sources */,
+				38D2AC142190A97C00B60430 /* produktCell.swift in Sources */,
+				38B9485D2194401300BA8E7E /* EinstellungenVC.swift in Sources */,
+				385FFA522188C3500052823A /* ProdukteVC.swift in Sources */,
+				385FFA4E2188C1680052823A /* KellnerAngenommenVC.swift in Sources */,
+				387768732173B3470070F988 /* ExpandableHeaderViewDelegate.swift in Sources */,
+				3877687B2173B94E0070F988 /* KellnerCell.swift in Sources */,
+				387A38102178BDAF00F9FB81 /* ExpandleHeaderView2.swift in Sources */,
+				387A38162178C18F00F9FB81 /* ExpandleHeaderView3.swift in Sources */,
+				387768712173AF070070F988 /* KellnerTBC.swift in Sources */,
+				38CE332A2178E02100DBE708 /* L_HN_20_W.swift in Sources */,
+				3877686E2173ADEF0070F988 /* KellnerVC.swift in Sources */,
+				387768772173B5B10070F988 /* BestellungInfos.swift in Sources */,
+				38CE33272178CD5700DBE708 /* B_HN_40_G.swift in Sources */,
+				38D2AC182190AA4700B60430 /* produktCell2.swift in Sources */,
+				38D2AC1B2190AADB00B60430 /* SpeisekarteInformation.swift in Sources */,
+				38B9485B21943DCF00BA8E7E /* B_HN_20_R.swift in Sources */,
+				387A381D2178C2B800F9FB81 /* KellnerExtrasCell.swift in Sources */,
+				FD7DDC12214BEFA2008CDE12 /* LoginVC.swift in Sources */,
+				38CE332F2178E08700DBE708 /* B_HN_20_G.swift in Sources */,
+				387A38132178C0F500F9FB81 /* KellnerCell2.swift in Sources */,
+				3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */,
+				FD7DDC10214BEFA2008CDE12 /* AppDelegate.swift in Sources */,
+				387A38192178C1D800F9FB81 /* KellnerCell3.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD7DDC1C214BEFA5008CDE12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD7DDC25214BEFA5008CDE12 /* SMOLO_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD7DDC27214BEFA5008CDE12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD7DDC30214BEFA5008CDE12 /* SMOLO_UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FD7DDC22214BEFA5008CDE12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD7DDC0B214BEFA2008CDE12 /* SMOLO+ */;
+			targetProxy = FD7DDC21214BEFA5008CDE12 /* PBXContainerItemProxy */;
+		};
+		FD7DDC2D214BEFA5008CDE12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD7DDC0B214BEFA2008CDE12 /* SMOLO+ */;
+			targetProxy = FD7DDC2C214BEFA5008CDE12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FD7DDC13214BEFA2008CDE12 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD7DDC14214BEFA2008CDE12 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FD7DDC18214BEFA5008CDE12 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FD7DDC19214BEFA5008CDE12 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FD7DDC32214BEFA5008CDE12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FD7DDC33214BEFA5008CDE12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FD7DDC35214BEFA5008CDE12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0679D6B618068BC034BAB1E6 /* Pods-SMOLO+.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F5638PLTRY;
+				INFOPLIST_FILE = "SMOLO+/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "MAD.SMOLO-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FD7DDC36214BEFA5008CDE12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9854DB1D9990CE7AB00B227 /* Pods-SMOLO+.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F5638PLTRY;
+				INFOPLIST_FILE = "SMOLO+/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "MAD.SMOLO-";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FD7DDC38214BEFA5008CDE12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8894C7681264C21D7ED39AD /* Pods-SMOLO+Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F5638PLTRY;
+				INFOPLIST_FILE = "SMOLO+Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "MAD.SMOLO-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SMOLO+.app/SMOLO+";
+			};
+			name = Debug;
+		};
+		FD7DDC39214BEFA5008CDE12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3155B7CC9331CFFB446C71E0 /* Pods-SMOLO+Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F5638PLTRY;
+				INFOPLIST_FILE = "SMOLO+Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "MAD.SMOLO-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SMOLO+.app/SMOLO+";
+			};
+			name = Release;
+		};
+		FD7DDC3B214BEFA5008CDE12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 848EFD45C4209AE17DC1236A /* Pods-SMOLO+UITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F5638PLTRY;
+				INFOPLIST_FILE = "SMOLO+UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "MAD.SMOLO-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "SMOLO+";
+			};
+			name = Debug;
+		};
+		FD7DDC3C214BEFA5008CDE12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6EB95324F388FCC2722EA9E /* Pods-SMOLO+UITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F5638PLTRY;
+				INFOPLIST_FILE = "SMOLO+UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "MAD.SMOLO-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "SMOLO+";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FD7DDC07214BEFA2008CDE12 /* Build configuration list for PBXProject "SMOLO+" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD7DDC32214BEFA5008CDE12 /* Debug */,
+				FD7DDC33214BEFA5008CDE12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD7DDC34214BEFA5008CDE12 /* Build configuration list for PBXNativeTarget "SMOLO+" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD7DDC35214BEFA5008CDE12 /* Debug */,
+				FD7DDC36214BEFA5008CDE12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD7DDC37214BEFA5008CDE12 /* Build configuration list for PBXNativeTarget "SMOLO+Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD7DDC38214BEFA5008CDE12 /* Debug */,
+				FD7DDC39214BEFA5008CDE12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FD7DDC3A214BEFA5008CDE12 /* Build configuration list for PBXNativeTarget "SMOLO+UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD7DDC3B214BEFA5008CDE12 /* Debug */,
+				FD7DDC3C214BEFA5008CDE12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FD7DDC04214BEFA2008CDE12 /* Project object */;
+}
