@@ -28,8 +28,8 @@ class produktCell2: UITableViewCell {
         super.awakeFromNib()
         verfuegbarBtn.imageView?.contentMode = UIViewContentMode.scaleAspectFit
 
-        verfuegbarBtn.setImage(UIImage(named: "checkbox-i"), for: .normal)
-        verfuegbarBtn.setImage(UIImage(named: "checkbox"), for: .selected)
+        verfuegbarBtn.setImage(UIImage(named: "checkbox"), for: .normal)
+        verfuegbarBtn.setImage(UIImage(named: "checkbox-i"), for: .selected)
         itemNameLbl.textColor = UIColor.white
         itemNameLbl.font = UIFont(name: "Verdana", size: 15.0)
     }

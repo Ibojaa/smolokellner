@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -111,28 +112,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5r1-mt-yps">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5r1-mt-yps" customClass="B_HN_20_R" customModule="SMOLO_" customModuleProvider="target">
                                 <rect key="frame" x="16" y="507" width="343" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logout:" destination="5dX-ym-wLM" eventType="touchUpInside" id="lXQ-R2-s9x"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6v-TF-leO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6v-TF-leO" customClass="B_HN_20_G" customModule="SMOLO_" customModuleProvider="target">
                                 <rect key="frame" x="16" y="233" width="343" height="30"/>
                                 <state key="normal" title="Passwort ändern"/>
                                 <connections>
                                     <action selector="passwortaendern:" destination="5dX-ym-wLM" eventType="touchUpInside" id="zkd-PQ-67J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozl-zK-YHb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozl-zK-YHb" customClass="B_HN_20_G" customModule="SMOLO_" customModuleProvider="target">
                                 <rect key="frame" x="16" y="300" width="343" height="30"/>
                                 <state key="normal" title="Speisekarte bearbeiten"/>
                                 <connections>
                                     <action selector="speisekartebearbeiten:" destination="5dX-ym-wLM" eventType="touchUpInside" id="Z9i-ob-Ra3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRW-vp-zt4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRW-vp-zt4" customClass="B_HN_20_G" customModule="SMOLO_" customModuleProvider="target">
                                 <rect key="frame" x="16" y="372" width="343" height="30"/>
                                 <state key="normal" title="Impressum"/>
                                 <connections>
@@ -162,11 +163,63 @@
                     <tabBarItem key="tabBarItem" title="Item" id="Hrb-jr-PMi"/>
                     <connections>
                         <segue destination="tg6-nV-ZCS" kind="show" identifier="speisekarte" id="EDV-SG-gMZ"/>
+                        <segue destination="ABi-4T-600" kind="show" identifier="passwort" id="ITc-Yt-Ecw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sV2-7m-mpe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1320.8" y="1239.1304347826087"/>
+        </scene>
+        <!--PasswortVC-->
+        <scene sceneID="BGr-UC-JhQ">
+            <objects>
+                <viewController id="ABi-4T-600" customClass="PasswortVC" customModule="SMOLO_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gca-Hh-hU9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="36V-ZA-EYn">
+                                <rect key="frame" x="64" y="147" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EsK-HZ-Kgs">
+                                <rect key="frame" x="64" y="220" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="epk-XQ-xNa">
+                                <rect key="frame" x="64" y="289" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQ4-Ed-wrg" customClass="B_HN_20_R" customModule="SMOLO_" customModuleProvider="target">
+                                <rect key="frame" x="49" y="449" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Abbrechen"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3n-5G-Kvv" customClass="B_HN_20_G" customModule="SMOLO_" customModuleProvider="target">
+                                <rect key="frame" x="201" y="449" width="115" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Passwort ändern"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="twZ-xA-WFE"/>
+                    </view>
+                    <connections>
+                        <outlet property="altesPW" destination="36V-ZA-EYn" id="isz-tR-bPS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFT-Qz-boE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1339" y="1999"/>
         </scene>
         <!--Item-->
         <scene sceneID="nW2-7x-Ysv">
@@ -191,35 +244,28 @@
                                     <outlet property="delegate" destination="tg6-nV-ZCS" id="eXj-47-4uJ"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doT-HZ-eri" customClass="B_HN_20_G" customModule="SMOLO_" customModuleProvider="target">
-                                <rect key="frame" x="245" y="606" width="114" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrg-cX-FP1">
+                                <rect key="frame" x="16" y="606" width="343" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="114" id="siX-KR-5Hb"/>
+                                    <constraint firstAttribute="height" constant="33" id="V2D-26-sRk"/>
                                 </constraints>
-                                <state key="normal" title="Speichern"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrg-cX-FP1" customClass="B_HN_20_R" customModule="SMOLO_" customModuleProvider="target">
-                                <rect key="frame" x="16" y="606" width="114" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="114" id="k5t-Zq-Bvw"/>
-                                    <constraint firstAttribute="height" constant="33" id="uXD-Zk-kEs"/>
-                                </constraints>
-                                <state key="normal" title="Abbrechen"/>
+                                <state key="normal" title="Fertig"/>
+                                <connections>
+                                    <action selector="fertigTapped:" destination="tg6-nV-ZCS" eventType="touchUpInside" id="ek9-TE-buk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ftn-0h-svP" firstAttribute="leading" secondItem="LhL-cO-Oqv" secondAttribute="leadingMargin" id="02S-Yi-vEA"/>
-                            <constraint firstItem="Zrg-cX-FP1" firstAttribute="baseline" secondItem="doT-HZ-eri" secondAttribute="firstBaseline" id="5CF-yn-Gay"/>
-                            <constraint firstItem="Ftn-0h-svP" firstAttribute="top" secondItem="dkz-NY-kER" secondAttribute="top" id="94T-30-orb"/>
-                            <constraint firstItem="pv8-30-PeU" firstAttribute="top" secondItem="Ftn-0h-svP" secondAttribute="bottom" constant="20" id="BGN-Su-n9V"/>
-                            <constraint firstItem="Zrg-cX-FP1" firstAttribute="top" secondItem="pv8-30-PeU" secondAttribute="bottom" constant="29" id="Cku-Z5-ZfW"/>
-                            <constraint firstItem="pv8-30-PeU" firstAttribute="trailing" secondItem="LhL-cO-Oqv" secondAttribute="trailingMargin" id="GMb-5X-8Ze"/>
-                            <constraint firstItem="Zrg-cX-FP1" firstAttribute="top" secondItem="doT-HZ-eri" secondAttribute="top" id="Lam-Lu-OcS"/>
-                            <constraint firstItem="dkz-NY-kER" firstAttribute="bottom" secondItem="Zrg-cX-FP1" secondAttribute="bottom" constant="28" id="bnq-ln-kQU"/>
-                            <constraint firstItem="Ftn-0h-svP" firstAttribute="leading" secondItem="pv8-30-PeU" secondAttribute="leading" id="jc2-3C-qDr"/>
-                            <constraint firstItem="pv8-30-PeU" firstAttribute="leading" secondItem="Zrg-cX-FP1" secondAttribute="leading" id="o08-vR-RZ4"/>
-                            <constraint firstItem="pv8-30-PeU" firstAttribute="trailing" secondItem="doT-HZ-eri" secondAttribute="trailing" id="pyN-aw-UjU"/>
+                            <constraint firstItem="Ftn-0h-svP" firstAttribute="leading" secondItem="pv8-30-PeU" secondAttribute="leading" id="Tkc-L6-W1h"/>
+                            <constraint firstItem="pv8-30-PeU" firstAttribute="leading" secondItem="Zrg-cX-FP1" secondAttribute="leading" id="WAG-LJ-oa9"/>
+                            <constraint firstItem="pv8-30-PeU" firstAttribute="top" secondItem="Ftn-0h-svP" secondAttribute="bottom" constant="20" id="aXe-o7-nfW"/>
+                            <constraint firstItem="pv8-30-PeU" firstAttribute="trailing" secondItem="LhL-cO-Oqv" secondAttribute="trailingMargin" id="baA-x7-lNa"/>
+                            <constraint firstItem="dkz-NY-kER" firstAttribute="bottom" secondItem="Zrg-cX-FP1" secondAttribute="bottom" constant="28" id="fP3-Qs-pL3"/>
+                            <constraint firstItem="Ftn-0h-svP" firstAttribute="top" secondItem="dkz-NY-kER" secondAttribute="top" id="mP7-GM-E3R"/>
+                            <constraint firstItem="pv8-30-PeU" firstAttribute="trailing" secondItem="Zrg-cX-FP1" secondAttribute="trailing" id="nVL-lZ-Bg7"/>
+                            <constraint firstItem="Ftn-0h-svP" firstAttribute="leading" secondItem="LhL-cO-Oqv" secondAttribute="leadingMargin" id="sWn-Fu-ygc"/>
+                            <constraint firstItem="Zrg-cX-FP1" firstAttribute="top" secondItem="pv8-30-PeU" secondAttribute="bottom" constant="29" id="u5I-GG-yge"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dkz-NY-kER"/>
                     </view>
@@ -230,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zn9-Tb-L8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2241" y="1245"/>
+            <point key="canvasLocation" x="2240.8000000000002" y="1244.527736131934"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="fPH-nn-ML3">

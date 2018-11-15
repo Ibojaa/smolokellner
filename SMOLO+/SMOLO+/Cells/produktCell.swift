@@ -12,6 +12,7 @@ import UIKit
 protocol produktCellDelegate {
     func pass(sender: produktCell)
     func reloadUnterkategorien(sender: produktCell)
+    func reloadTable(sender: produktCell)
 }
 
 class produktCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate, produktCellDelegate2, ExpandableHeaderViewDelegate2 {
@@ -138,7 +139,7 @@ class produktCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate, 
                 indexSet.add(i)}
         }
         produktTV.reloadSections(indexSet as IndexSet, with: .automatic)
-        
+        delegate?.reloadTable(sender: self)
         produktTV.endUpdates()
         
     }

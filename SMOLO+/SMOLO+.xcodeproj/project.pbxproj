@@ -11,6 +11,7 @@
 		385FFA4E2188C1680052823A /* KellnerAngenommenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */; };
 		385FFA502188C3140052823A /* KellnerAlleBestellungenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385FFA4F2188C3140052823A /* KellnerAlleBestellungenVC.swift */; };
 		385FFA522188C3500052823A /* ProdukteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385FFA512188C3500052823A /* ProdukteVC.swift */; };
+		38608621219C570D00C4FE5F /* PasswortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38608620219C570D00C4FE5F /* PasswortVC.swift */; };
 		3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877686B2173AC5C0070F988 /* KellnerInfos.swift */; };
 		3877686E2173ADEF0070F988 /* KellnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877686D2173ADEF0070F988 /* KellnerVC.swift */; };
 		387768712173AF070070F988 /* KellnerTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768702173AF070070F988 /* KellnerTBC.swift */; };
@@ -75,6 +76,7 @@
 		385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerAngenommenVC.swift; sourceTree = "<group>"; };
 		385FFA4F2188C3140052823A /* KellnerAlleBestellungenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerAlleBestellungenVC.swift; sourceTree = "<group>"; };
 		385FFA512188C3500052823A /* ProdukteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProdukteVC.swift; sourceTree = "<group>"; };
+		38608620219C570D00C4FE5F /* PasswortVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswortVC.swift; sourceTree = "<group>"; };
 		3877686B2173AC5C0070F988 /* KellnerInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerInfos.swift; sourceTree = "<group>"; };
 		3877686D2173ADEF0070F988 /* KellnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerVC.swift; sourceTree = "<group>"; };
 		387768702173AF070070F988 /* KellnerTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerTBC.swift; sourceTree = "<group>"; };
@@ -155,6 +157,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3822EB06219C19B800A2FCF3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3877686D2173ADEF0070F988 /* KellnerVC.swift */,
+				385FFA4F2188C3140052823A /* KellnerAlleBestellungenVC.swift */,
+				FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */,
+				38B9485C2194401300BA8E7E /* EinstellungenVC.swift */,
+				385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */,
+				385FFA512188C3500052823A /* ProdukteVC.swift */,
+				387768702173AF070070F988 /* KellnerTBC.swift */,
+				38608620219C570D00C4FE5F /* PasswortVC.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3877686A2173AC370070F988 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,13 +271,7 @@
 				387768782173B9380070F988 /* Cells */,
 				3877686A2173AC370070F988 /* Models */,
 				FD7DDC0F214BEFA2008CDE12 /* AppDelegate.swift */,
-				3877686D2173ADEF0070F988 /* KellnerVC.swift */,
-				385FFA4F2188C3140052823A /* KellnerAlleBestellungenVC.swift */,
-				385FFA512188C3500052823A /* ProdukteVC.swift */,
-				FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */,
-				38B9485C2194401300BA8E7E /* EinstellungenVC.swift */,
-				385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */,
-				387768702173AF070070F988 /* KellnerTBC.swift */,
+				3822EB06219C19B800A2FCF3 /* Views */,
 				FD7DDC13214BEFA2008CDE12 /* Main.storyboard */,
 				FD7DDC16214BEFA5008CDE12 /* Assets.xcassets */,
 				FD7DDC18214BEFA5008CDE12 /* LaunchScreen.storyboard */,
@@ -541,6 +552,7 @@
 				3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */,
 				FD7DDC10214BEFA2008CDE12 /* AppDelegate.swift in Sources */,
 				387A38192178C1D800F9FB81 /* KellnerCell3.swift in Sources */,
+				38608621219C570D00C4FE5F /* PasswortVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

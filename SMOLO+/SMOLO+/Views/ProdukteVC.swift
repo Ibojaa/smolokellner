@@ -34,23 +34,36 @@ class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,E
     // OUTLETS
     @IBOutlet weak var produkteTV: UITableView!
     
+    @IBAction func fertigTapped(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     
     // FUNCS
-    
+    func reloadTable(sender: produktCell) {
+        print("hiwesdcew")
+        sections = sender.unterkategorien
+        produkteTV.beginUpdates()
+        produkteTV.reloadRows(at: [IndexPath(row: 0, section: sender.cellIndexPathSection)], with: .automatic)
+        produkteTV.endUpdates()
+        
+    }
     func reloadUnterkategorien(sender: produktCell) {
-        section1 = sender.section
-        sections.removeAll()
-        Kategorien.removeAll()
-        Unterkategorien.removeAll()
-        Items.removeAll()
-        Preis.removeAll()
-        Liter.removeAll()
-        Beschreibung.removeAll()
-        Verfuegbarkeit.removeAll()
-        Expanded.removeAll()
-        getKategorien()
-        //        produkteTV.reloadRows(at: [IndexPath(row: 0, section: sender.section)], with: .none)
-        //        produkteTV.endUpdates()
+        print("232d")
+//        section1 = sender.section
+//        sections.removeAll()
+//        Kategorien.removeAll()
+//        Unterkategorien.removeAll()
+//        Items.removeAll()
+//        Preis.removeAll()
+//        Liter.removeAll()
+//        Beschreibung.removeAll()
+//        Verfuegbarkeit.removeAll()
+//        Expanded.removeAll()
+//        getKategorien()
+//        produkteTV.beginUpdates()
+//        produkteTV.reloadRows(at: [IndexPath(row: 0, section: sender.cellIndexPathSection)], with: .none)
+//        produkteTV.endUpdates()
         
     }
     
@@ -64,11 +77,13 @@ class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,E
         var verfuegbarkeiten = sections[cellIndexPathSection].verfuegbarkeit[sender.section2]
         var verfuegbarkeit = Bool()
         verfuegbarkeit = verfuegbarkeiten[sender.row2]
-        
+        verfuegbarkeiten[sender.row2] = !verfuegbarkeiten[sender.row2]
+        sections[cellIndexPathSection].verfuegbarkeit[sender.section2] = verfuegbarkeiten
+        sender.verfuegbarkeit = sections[cellIndexPathSection].verfuegbarkeit
+
         var datref: DatabaseReference!
         datref = Database.database().reference()
         datref.child("Speisekarten").child(self.Barname).child(vKategorie).child(vUnterkategorie).child(item).updateChildValues(["Verfuegbarkeit" : !verfuegbarkeit])
-        
     }
     
     
@@ -234,8 +249,10 @@ class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,E
         var heightForRowAt: Int?
         if (sections[indexPath.section].expanded) {
             heightForRowAt = (sections[indexPath.section].Unterkategorie.count*50)
+            print("heightforrow")
             for expandend in sections[indexPath.section].expanded2 {
                 if expandend == true {
+                    print("heightforrow3")
                     heightForRowAt = heightForRowAt! + sections[indexPath.section].items[indexPath.row].count*50
                 }
             }

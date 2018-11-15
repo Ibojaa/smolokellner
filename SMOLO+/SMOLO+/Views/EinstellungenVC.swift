@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EinstellungenVC: UIViewController {
     
@@ -26,10 +27,25 @@ class EinstellungenVC: UIViewController {
     }
     
     @IBAction func logout(_ sender: Any) {
+        if Auth.auth().currentUser?.uid != nil {
+            do
+            { try Auth.auth().signOut()
+                self.dismiss(animated: true, completion: nil)
+            }
+            catch let error as NSError
+            { print(error.localizedDescription) }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "speisekarte" {
+            
+            let PVC = segue.destination as! ProdukteVC
+            PVC.KellnerID = (Auth.auth().currentUser?.uid)!
+            print(Barname, "barrr")
+            PVC.Barname = Barname
+
+        }
     }
     
     
