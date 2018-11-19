@@ -17,6 +17,7 @@ class EinstellungenVC: UIViewController {
     
     // ACTIONS
     @IBAction func passwortaendern(_ sender: Any) {
+        performSegue(withIdentifier: "passwort", sender: self)
     }
     
     @IBAction func speisekartebearbeiten(_ sender: Any) {
@@ -24,6 +25,7 @@ class EinstellungenVC: UIViewController {
     }
     
     @IBAction func Impressum(_ sender: Any) {
+        performSegue(withIdentifier: "impressum", sender: self)
     }
     
     @IBAction func logout(_ sender: Any) {
@@ -44,7 +46,6 @@ class EinstellungenVC: UIViewController {
             PVC.KellnerID = (Auth.auth().currentUser?.uid)!
             print(Barname, "barrr")
             PVC.Barname = Barname
-
         }
     }
     
@@ -53,7 +54,7 @@ class EinstellungenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
-
+        self.navigationItem.title = "Einstellungen"
     }
 }
 

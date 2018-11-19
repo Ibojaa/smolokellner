@@ -9,9 +9,11 @@ import Foundation
 class KellnerInfos: NSObject {
     
     var Barname: String?
+    var Pin: String?
     
     init(dictionary: [String: Any]) {
         self.Barname = dictionary["Barname"] as? String ?? ""
+        self.Pin = dictionary["Pin"] as? String ?? ""
     
     }
 }

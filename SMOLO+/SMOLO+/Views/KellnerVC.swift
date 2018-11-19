@@ -42,6 +42,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
 
     @IBOutlet weak var barnameLbl: UILabel!
     
+    
     @IBOutlet weak var bestellungTV: UITableView!
     
     @IBOutlet var viewProblem: UIView!
@@ -774,13 +775,15 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         }
         var ItemsPreis = 0.0
         var ExtraPreis = 0.0
-        
+        print(Bestellungen[indexPath.section].preis, "Bestellungen[indexPath.section].preis")
+        print(Bestellungen[indexPath.section].menge, "Bestellungen[indexPath.section].menge")
+
         for itemsPreise in  Bestellungen[indexPath.section].preis {
             var mengen = Bestellungen[indexPath.section].menge
-            
+            print(itemsPreise, "Itemspreise")
             for itemPreise in itemsPreise {
-                
                 for preis in itemPreise {
+                    print(preis)
                     ItemsPreis = ItemsPreis + preis
                 }
                 
@@ -868,7 +871,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         problemTextView.alpha = 0.5
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
         viewProblem.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
-        barnameLbl.text = Barname
+//        barnameLbl.text = Barname
         loadBestellungenKeys()
         
         let refreshControl = UIRefreshControl()

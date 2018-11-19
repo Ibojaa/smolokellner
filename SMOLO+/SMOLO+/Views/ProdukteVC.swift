@@ -329,8 +329,8 @@ class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,E
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
 
         getKategorien()
-        
-        
+        self.navigationItem.title = "Speisekarte"
+self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         // Do any additional setup after loading the view.
     }
     

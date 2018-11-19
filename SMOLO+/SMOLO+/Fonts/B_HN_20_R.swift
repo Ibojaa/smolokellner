@@ -15,6 +15,6 @@ class B_HN_20_R: UIButton {
         self.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)!
         self.tintColor = UIColor.white
         self.titleLabel?.textAlignment = NSTextAlignment.center
-        self.backgroundColor = UIColor(red: 190/255, green: 0/255, blue: 2, alpha: 0.58)
+        self.backgroundColor = UIColor(red: 255/255, green: 43/255, blue: 19/255, alpha: 0.58)
     }
 }

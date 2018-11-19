@@ -25,8 +25,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var LoginButton: UIButton!
     
+    @IBOutlet var pwVergessenView: UIView!
     
+    @IBOutlet weak var pwTextfield: UITextField!
     
+    @IBOutlet weak var visualEffect: UIVisualEffectView!
+    
+    // ACTIONS
     @IBAction func LoginTapped(_ sender: Any) {
         
         if self.KellnerIdTextfield.text == "" || self.PasswortTextfield.text == "" {
@@ -74,6 +79,64 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
 }
     
+    
+    @IBAction func pwVergessenTapped(_ sender: Any) {
+        self.view.addSubview(visualEffect)
+        visualEffect.center = self.view.center
+        visualEffect.bounds.size = self.view.bounds.size
+        self.view.addSubview(pwVergessenView)
+        pwVergessenView.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
+        pwVergessenView.center = self.view.center
+        pwVergessenView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+        pwVergessenView.alpha = 0
+        pwTextfield.becomeFirstResponder()
+        UIView.animate(withDuration: 0.2) {
+            self.pwVergessenView.alpha = 1
+            self.pwVergessenView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    
+    @IBAction func pwReset(_ sender: Any) {
+        Auth.auth().fetchProviders(forEmail: pwTextfield.text!) { (loginProvider, error) in
+            if error != nil {
+                let alertController = UIAlertController(title: "Fehler", message: "Es ist ein Fehler passiert. \(String(describing: error?.localizedDescription ?? "unbekanterfehler"))", preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)            } else {
+                
+                if loginProvider != nil && loginProvider![0] == "password" {
+                    Auth.auth().sendPasswordReset(withEmail: self.pwTextfield.text!) { (error) in
+                        if error != nil {
+                            
+                            self.alert(title: "Fehler", message: "\(String(describing: error?.localizedDescription))", actiontitle: "OK")
+                            
+                        } else {
+                            self.animateOutPW()
+                            }
+                    }} else {
+                    self.alert(title: "Fehler", message: "Diese Email existiert nicht", actiontitle: "OK")
+                }
+                
+            }
+            
+        }
+    }
+    // FUNCS
+    func animateOutPW(){
+        pwTextfield.resignFirstResponder()
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.pwVergessenView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
+            self.pwVergessenView.alpha = 0
+        }) { (sucess:Bool) in
+            self.pwVergessenView.removeFromSuperview()
+            self.visualEffect.removeFromSuperview()
+        }
+    }
+    
     func segueToKellnerVC(KellnerID: String){
         var datref: DatabaseReference!
         datref = Database.database().reference()
@@ -89,6 +152,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField == pwTextfield {
+            animateOutPW()
+        }
+        
+        return true
+    }
+
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "kellnerLoggedIn" {
             
@@ -102,7 +175,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             let KABCV = KTBC.viewControllers![2] as! KellnerAlleBestellungenVC
             KABCV.KellnerID = (Auth.auth().currentUser?.uid)!
             KABCV.Barname = barname
-            let EVC = KTBC.viewControllers![3] as! EinstellungenVC
+
+            let NVC = KTBC.viewControllers![3] as! NVC
+            let EVC = NVC.viewControllers.first as! EinstellungenVC
             EVC.KellnerID = (Auth.auth().currentUser?.uid)!
             EVC.Barname = barname
             
@@ -112,9 +187,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    func alert(title: String, message: String, actiontitle: String) {
+        let alertNichtRegistriert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertNichtRegistriert.addAction(UIAlertAction(title: actiontitle, style: .default, handler: nil))
+        self.present(alertNichtRegistriert, animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -122,6 +198,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         if touch?.view == self.view {
             PasswortTextfield.resignFirstResponder()
             KellnerIdTextfield.resignFirstResponder()
+        } else {
+            animateOutPW()
+            pwTextfield.resignFirstResponder()
         }
     }
     
@@ -137,13 +216,17 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         PasswortTextfield.keyboardAppearance = UIKeyboardAppearance.dark
         Auth.auth().languageCode = "de"
         LoginButton.layer.cornerRadius = 4
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func unwindToOne(_ sender: UIStoryboardSegue){
+        
+    }
 
 }
 
