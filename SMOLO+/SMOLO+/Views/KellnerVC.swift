@@ -476,7 +476,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     }
     
     func tischumbuchen(at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .destructive, title: "annehmen") { (action, view, completion) in
+        let action = UIContextualAction(style: .destructive, title: "umbuchen") { (action, view, completion) in
             completion(true)
             self.animateInTisch()
         }
