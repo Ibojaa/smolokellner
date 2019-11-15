@@ -177,7 +177,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             startv.KellnerID = (Auth.auth().currentUser?.uid)!
             startv.Barname = barname
            
-            let KABCV = KTBC.viewControllers![1] as! KellnerAlleBestellungenVC
+            let KABCV = KTBC.viewControllers![1] as! DetailKatVC
             KABCV.KellnerID = (Auth.auth().currentUser?.uid)!
             KABCV.Barname = barname
 //

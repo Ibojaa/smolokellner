@@ -76,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="370" y="323"/>
         </scene>
-        <!--alle-->
+        <!--DetailKatVC-->
         <scene sceneID="VH5-ef-zX5">
             <objects>
-                <viewController storyboardIdentifier="allebestellungen" modalPresentationStyle="fullScreen" id="vGi-s4-oCo" userLabel="alle" customClass="KellnerAlleBestellungenVC" customModule="SMOLO_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="allebestellungen" modalPresentationStyle="fullScreen" id="vGi-s4-oCo" userLabel="DetailKatVC" customClass="DetailKatVC" customModule="SMOLO_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SIE-5G-a8v">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="alle" id="cHa-qY-2mi"/>
                     <connections>
-                        <outlet property="alleTV" destination="0SY-Xf-hGX" id="KCM-9t-WLw"/>
+                        <outlet property="angenommenBestellungenTV" destination="0SY-Xf-hGX" id="we9-km-l0W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nq2-OY-E8o" userLabel="First Responder" sceneMemberID="firstResponder"/>

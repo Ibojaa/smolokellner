@@ -37,6 +37,7 @@
 		38CE332A2178E02100DBE708 /* L_HN_20_W.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE33292178E02100DBE708 /* L_HN_20_W.swift */; };
 		38CE332D2178E03D00DBE708 /* L_HN_16_W.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE332C2178E03D00DBE708 /* L_HN_16_W.swift */; };
 		38CE332F2178E08700DBE708 /* B_HN_20_G.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE332E2178E08700DBE708 /* B_HN_20_G.swift */; };
+		38CFD89D237EF13A007B7C76 /* DetailKatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CFD89C237EF13A007B7C76 /* DetailKatVC.swift */; };
 		38D2AC112190A93200B60430 /* ExpandTVSection2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2AC102190A93200B60430 /* ExpandTVSection2.swift */; };
 		38D2AC142190A97C00B60430 /* produktCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2AC122190A97C00B60430 /* produktCell.swift */; };
 		38D2AC152190A97C00B60430 /* produktCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2AC132190A97C00B60430 /* produktCell.xib */; };
@@ -107,6 +108,7 @@
 		38CE33292178E02100DBE708 /* L_HN_20_W.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L_HN_20_W.swift; sourceTree = "<group>"; };
 		38CE332C2178E03D00DBE708 /* L_HN_16_W.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L_HN_16_W.swift; sourceTree = "<group>"; };
 		38CE332E2178E08700DBE708 /* B_HN_20_G.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_HN_20_G.swift; sourceTree = "<group>"; };
+		38CFD89C237EF13A007B7C76 /* DetailKatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailKatVC.swift; sourceTree = "<group>"; };
 		38D2AC102190A93200B60430 /* ExpandTVSection2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandTVSection2.swift; sourceTree = "<group>"; };
 		38D2AC122190A97C00B60430 /* produktCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = produktCell.swift; sourceTree = "<group>"; };
 		38D2AC132190A97C00B60430 /* produktCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = produktCell.xib; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				FD6C03B5237D846B00EEDDCF /* StartVC.swift */,
 				FD6C03B7237EA2DC00EEDDCF /* FertiggestelltVC.swift */,
 				FD6C03B9237EA2EB00EEDDCF /* AbrechnenVC.swift */,
+				38CFD89C237EF13A007B7C76 /* DetailKatVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				3877686E2173ADEF0070F988 /* KellnerVC.swift in Sources */,
 				387768772173B5B10070F988 /* BestellungInfos.swift in Sources */,
 				38CE33272178CD5700DBE708 /* B_HN_40_G.swift in Sources */,
+				38CFD89D237EF13A007B7C76 /* DetailKatVC.swift in Sources */,
 				38D2AC182190AA4700B60430 /* produktCell2.swift in Sources */,
 				FD6C03BA237EA2EB00EEDDCF /* AbrechnenVC.swift in Sources */,
 				38D2AC1B2190AADB00B60430 /* SpeisekarteInformation.swift in Sources */,
