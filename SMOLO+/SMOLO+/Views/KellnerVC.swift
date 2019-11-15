@@ -847,7 +847,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     
     
     override func viewDidLoad() {
-        
+        print(Barname, "kellnervc")
         super.viewDidLoad()
         problemTextView.keyboardAppearance = UIKeyboardAppearance.dark
         problemTextView.alpha = 0.5

@@ -165,18 +165,23 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "kellnerLoggedIn" {
             
+            
             let KTBC = segue.destination as! KellnerTBC
-            let KVC = KTBC.viewControllers![0] as! KellnerVC
-            KVC.KellnerID = (Auth.auth().currentUser?.uid)!
-            KVC.Barname = barname
-            let KACV = KTBC.viewControllers![1] as! KellnerAngenommenVC
-            KACV.KellnerID = (Auth.auth().currentUser?.uid)!
-            KACV.Barname = barname
-            let KABCV = KTBC.viewControllers![2] as! KellnerAlleBestellungenVC
+                
+                //UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "kellnertbc") as! KellnerTBC
+                
+            KTBC.Barname = barname
+            KTBC.KellnerID = (Auth.auth().currentUser?.uid)!
+            print(KTBC.Barname, "hihii")
+            let startv = KTBC.viewControllers![0] as! StartVC
+            startv.KellnerID = (Auth.auth().currentUser?.uid)!
+            startv.Barname = barname
+           
+            let KABCV = KTBC.viewControllers![1] as! KellnerAlleBestellungenVC
             KABCV.KellnerID = (Auth.auth().currentUser?.uid)!
             KABCV.Barname = barname
-
-            let NVC = KTBC.viewControllers![3] as! NVC
+//
+            let NVC = KTBC.viewControllers![2] as! NVC
             let EVC = NVC.viewControllers.first as! EinstellungenVC
             EVC.KellnerID = (Auth.auth().currentUser?.uid)!
             EVC.Barname = barname

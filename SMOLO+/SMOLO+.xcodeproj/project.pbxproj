@@ -45,6 +45,9 @@
 		38D2AC1B2190AADB00B60430 /* SpeisekarteInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2AC1A2190AADB00B60430 /* SpeisekarteInformation.swift */; };
 		7796451B185D5E5DA59F4B41 /* Pods_SMOLO_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8092DFD4E900B544C95E8F4E /* Pods_SMOLO_Tests.framework */; };
 		E0CA75F6CD0B497C5F2DF0BF /* Pods_SMOLO_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2564E725D34DF77B656D40 /* Pods_SMOLO_.framework */; };
+		FD6C03B6237D846B00EEDDCF /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6C03B5237D846B00EEDDCF /* StartVC.swift */; };
+		FD6C03B8237EA2DC00EEDDCF /* FertiggestelltVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6C03B7237EA2DC00EEDDCF /* FertiggestelltVC.swift */; };
+		FD6C03BA237EA2EB00EEDDCF /* AbrechnenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6C03B9237EA2EB00EEDDCF /* AbrechnenVC.swift */; };
 		FD7DDC10214BEFA2008CDE12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC0F214BEFA2008CDE12 /* AppDelegate.swift */; };
 		FD7DDC12214BEFA2008CDE12 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */; };
 		FD7DDC15214BEFA2008CDE12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC13214BEFA2008CDE12 /* Main.storyboard */; };
@@ -117,6 +120,9 @@
 		B8A699007BA13C84B097901D /* Pods_SMOLO_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMOLO_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9854DB1D9990CE7AB00B227 /* Pods-SMOLO+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+/Pods-SMOLO+.release.xcconfig"; sourceTree = "<group>"; };
 		F8894C7681264C21D7ED39AD /* Pods-SMOLO+Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+Tests/Pods-SMOLO+Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD6C03B5237D846B00EEDDCF /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
+		FD6C03B7237EA2DC00EEDDCF /* FertiggestelltVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FertiggestelltVC.swift; sourceTree = "<group>"; };
+		FD6C03B9237EA2EB00EEDDCF /* AbrechnenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbrechnenVC.swift; sourceTree = "<group>"; };
 		FD7DDC0C214BEFA2008CDE12 /* SMOLO+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SMOLO+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD7DDC0F214BEFA2008CDE12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FD7DDC11214BEFA2008CDE12 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -174,6 +180,9 @@
 				38608620219C570D00C4FE5F /* PasswortVC.swift */,
 				38329EB121A03D9500FD1A72 /* ImpressumVC.swift */,
 				384CE51A21A2C1E900E724F1 /* NVC.swift */,
+				FD6C03B5237D846B00EEDDCF /* StartVC.swift */,
+				FD6C03B7237EA2DC00EEDDCF /* FertiggestelltVC.swift */,
+				FD6C03B9237EA2EB00EEDDCF /* AbrechnenVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -545,16 +554,19 @@
 				387A38102178BDAF00F9FB81 /* ExpandleHeaderView2.swift in Sources */,
 				387A38162178C18F00F9FB81 /* ExpandleHeaderView3.swift in Sources */,
 				387768712173AF070070F988 /* KellnerTBC.swift in Sources */,
+				FD6C03B6237D846B00EEDDCF /* StartVC.swift in Sources */,
 				38CE332A2178E02100DBE708 /* L_HN_20_W.swift in Sources */,
 				3877686E2173ADEF0070F988 /* KellnerVC.swift in Sources */,
 				387768772173B5B10070F988 /* BestellungInfos.swift in Sources */,
 				38CE33272178CD5700DBE708 /* B_HN_40_G.swift in Sources */,
 				38D2AC182190AA4700B60430 /* produktCell2.swift in Sources */,
+				FD6C03BA237EA2EB00EEDDCF /* AbrechnenVC.swift in Sources */,
 				38D2AC1B2190AADB00B60430 /* SpeisekarteInformation.swift in Sources */,
 				38B9485B21943DCF00BA8E7E /* B_HN_20_R.swift in Sources */,
 				387A381D2178C2B800F9FB81 /* KellnerExtrasCell.swift in Sources */,
 				FD7DDC12214BEFA2008CDE12 /* LoginVC.swift in Sources */,
 				38CE332F2178E08700DBE708 /* B_HN_20_G.swift in Sources */,
+				FD6C03B8237EA2DC00EEDDCF /* FertiggestelltVC.swift in Sources */,
 				387A38132178C0F500F9FB81 /* KellnerCell2.swift in Sources */,
 				3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */,
 				384CE51B21A2C1E900E724F1 /* NVC.swift in Sources */,

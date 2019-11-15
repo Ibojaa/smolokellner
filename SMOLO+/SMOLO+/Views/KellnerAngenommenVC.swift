@@ -604,7 +604,7 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     override func viewDidLoad() {
-        
+        print(Barname,"angenommen")
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
 
