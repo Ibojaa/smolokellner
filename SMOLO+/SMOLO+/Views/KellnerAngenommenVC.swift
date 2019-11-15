@@ -15,7 +15,7 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     // VARS
     
-    var showKat = [String()]
+    var showKat = String()
     var DropDownKats = [String]()
     var Button = DropDownBtn()
     
@@ -710,7 +710,7 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
 
 
 protocol DropDownProtocoll {
-    func DropDownPressed(array: [String])
+    func DropDownPressed(string: String)
 }
 protocol DropDownBtnProtocoll {
     func passShowKat()
@@ -718,9 +718,9 @@ protocol DropDownBtnProtocoll {
 
 
 class DropDownBtn: UIButton, DropDownProtocoll {
-    func DropDownPressed(array: [String]) {
-        self.setTitle(array, for: .normal)
-        showKatBtn = array
+    func DropDownPressed(string: String) {
+        self.setTitle(string, for: .normal)
+        showKatBtn = string
         self.delegate.passShowKat()
         
         self.dismissDropDown()
@@ -728,8 +728,9 @@ class DropDownBtn: UIButton, DropDownProtocoll {
     
     
     var DropView = DropDownView()
-    var showKatBtn = [String()]
+    var showKatBtn = String()
     var delegate: DropDownBtnProtocoll!
+    
     var height = NSLayoutConstraint()
     
     override init(frame: CGRect) {
