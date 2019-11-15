@@ -52,6 +52,7 @@ class EinstellungenVC: UIViewController {
     
     
     override func viewDidLoad() {
+        print(Barname, "einstellung")
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
         self.navigationItem.title = "Einstellungen"

@@ -15,6 +15,7 @@ class NVC: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(Barname,"nvc")
 
 //        self.navigationController?.navigationBar.tintColor = UIColor.white
 //        self.navigationController?.navigationBar.barTintColor = UIColor.green
