@@ -10,6 +10,10 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     var showKat = String()
     var DropDownKats = [String]()
     var Button = DropDownBtn()
+    var IDfilter = [String: Bool]()
+//    var IDFilter = [String]()
+//    var IDgefiltert = [String]()
+//    var noID = [String]()
     
     var Barname = String()
     var KellnerID = String()
@@ -74,30 +78,43 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let bestellungInfos = BestellungInfos(dictionary: dictionary)
                 if bestellungInfos.Status == "angenommen" {
-                    self.bestellungIDs.append(snapshot.key)
+                    self.appendID(bestellungID: snapshot.key)
+                    self.IDfilter[snapshot.key] = false
                     self.loadBestellungen(BestellungID: snapshot.key)
-                    
                 }
             }
-            
+        
         }, withCancel: nil)
         
     }
+    func appendID(bestellungID: String){
+        self.bestellungIDs.append(bestellungID)
+    }
     
-
     func loadBestellungen(BestellungID: String){
         var datref: DatabaseReference!
         datref = Database.database().reference()
         datref.child("Bestellungen").child(Barname).child(BestellungID).observeSingleEvent(of: .value) { (snapshot) in
             
             for key in (snapshot.children.allObjects as? [DataSnapshot])! {
+                print(self.showKat, key.key, "keykey1")
                 if key.key == "Information" {
                     if let dictionary = key.value as? [String: AnyObject]{
                         let bestellungInfos = BestellungInfos(dictionary: dictionary)
                         self.Tischnummer.updateValue(bestellungInfos.tischnummer!, forKey: BestellungID)
                         self.FromUserID.updateValue(bestellungInfos.fromUserID!, forKey: BestellungID)
                         self.TimeStamp.updateValue(bestellungInfos.timeStamp!, forKey: BestellungID) }}
+//                else if key.key != self.showKat{
+//                    if !self.noID.contains(BestellungID){
+//                        self.noID.append(BestellungID)
+//                    }
+//                }
                 else if key.key == self.showKat {
+                    print(self.showKat, key.key, "keykey2")
+                    self.IDfilter[BestellungID] = true
+//                    self.IDFilter.append(BestellungID)
+                    
+                    print(BestellungID, "printID")
                     let childsnapshotUnterkategorie = snapshot.childSnapshot(forPath: key.key)
                     if self.BestellungKategorien[BestellungID] != nil {
                         self.BestellungKategorien[BestellungID]?.append(key.key)
@@ -355,7 +372,7 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                                                     self.extrasString.append(extraInfo.itemName!)
                                                     self.extrasPreis.append(extraInfo.itemPreis!)
                                                     if self.extrasString.count == extrasSnap.childrenCount && self.extrasPreis.count == extrasSnap.childrenCount {
-                                                        var a = self.BestellungUnterkategorien[BestellungID]!
+                                                        let a = self.BestellungUnterkategorien[BestellungID]!
                                                         let b = a[(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                         let c = b.index(of: children.key)
                                                         if newnewExtras.count < c!+1 {
@@ -445,18 +462,40 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                                                             self.extrasString.removeAll()
                                                         }}}}}}}
                             } }  }} }
-            if self.bestellungIDs.count == self.BestellungKategorien.count {
-                for i in 0..<self.bestellungIDs.count {
-                    self.setSectionsKellnerBestellung(BestellungID: self.bestellungIDs[i], tischnummer: self.Tischnummer[self.bestellungIDs[i]]!, fromUserID: self.FromUserID[self.bestellungIDs[i]]!, TimeStamp: self.TimeStamp[self.bestellungIDs[i]]!, Kategorie: self.BestellungKategorien[self.bestellungIDs[i]]!, Unterkategorie: self.BestellungUnterkategorien[self.bestellungIDs[i]]!, items: self.BestellungItemsNamen[self.bestellungIDs[i]]!, preis: self.BestellungItemsPreise[self.bestellungIDs[i]]!, liter: self.BestellungItemsLiter[self.bestellungIDs[i]]!, extras: self.BestellungenItemsExtrasNamen[self.bestellungIDs[i]]!, extrasPreis: self.BestellungenItemsExtrasPreise[self.bestellungIDs[i]]!, kommentar: self.BestellungItemsKommentar[self.bestellungIDs[i]]!, menge: self.BestellungItemsMengen[self.bestellungIDs[i]]!, expanded2: self.BestellungExpanded2[self.bestellungIDs[i]]!, expanded: false)
-                    if self.Bestellungen.count == self.bestellungIDs.count{
-                        self.angenommenBestellungenTV.reloadData()
-                    }}}}}
-    
-    
-    
-    
+//            print(self.noID, self.IDFilter, self.bestellungIDs, self.BestellungKategorien, "IDsundKats")
+//            var IDFilterCount = [Bool]()
+//            for id in self.bestellungIDs {
+//
+//            }
+//            if self.IDfilter.count == self.bestellungIDs.count{
+//            for (ID, value) in self.IDfilter {
+//                if value == true {
+//                    IDFilterCount.append(value) }
+//                }}
+            let trueID = self.IDfilter.filter { $0.value }
+            let falseID = self.IDfilter.filter { !$0.value }
+
+            print(self.IDfilter, trueID, falseID, self.BestellungKategorien, "filtercount")
+            print(trueID, "true id")
+            self.Bestellungen.removeAll()
+            if self.IDfilter.count - falseID.count == self.BestellungKategorien.count{
+                
+                print(self.bestellungIDs, self.BestellungKategorien,  "doppeltebestellung")
+                for (id, value) in trueID {
+                        
+                        self.setSectionsKellnerBestellung(BestellungID: id, tischnummer: self.Tischnummer[id]!, fromUserID: self.FromUserID[id]!, TimeStamp: self.TimeStamp[id]!, Kategorie: self.BestellungKategorien[id]!, Unterkategorie: self.BestellungUnterkategorien[id]!, items: self.BestellungItemsNamen[id]!, preis: self.BestellungItemsPreise[id]!, liter: self.BestellungItemsLiter[id]!, extras: self.BestellungenItemsExtrasNamen[id]!, extrasPreis: self.BestellungenItemsExtrasPreise[id]!, kommentar: self.BestellungItemsKommentar[id]!, menge: self.BestellungItemsMengen[id]!, expanded2: self.BestellungExpanded2[id]!, expanded: false)
+                
+                }
+                print(self.Bestellungen.count, trueID, "bestellung und filter count")
+                                  if self.Bestellungen.count == trueID.count {
+                                      self.angenommenBestellungenTV.reloadData()
+                                  }
+            }
+        }}
     func setSectionsKellnerBestellung(BestellungID: String, tischnummer: String, fromUserID: String, TimeStamp: Double, Kategorie: [String], Unterkategorie: [[String]], items: [[[String]]], preis: [[[Double]]], liter: [[[String]]], extras: [[[[String]]]], extrasPreis: [[[[Double]]]], kommentar: [[[String]]], menge: [[[Int]]], expanded2: [[Bool]], expanded: Bool){
         self.Bestellungen.append(KellnerTVSection(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, timeStamp: TimeStamp, Kategorie: Kategorie, Unterkategorie: Unterkategorie, items: items, preis: preis, liter: liter, extras: extras, extrasPreis: extrasPreis, kommentar: kommentar, menge: menge, expanded2: expanded2, expanded: expanded))
+//        IDgefiltert.append(BestellungID)
+        print(BestellungID,"printBestellung")
     }
     
     
