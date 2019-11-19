@@ -154,7 +154,7 @@ class KellnerCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource, 
         super.awakeFromNib()
         
         timeLbl.textColor = UIColor.white
-
+        annehmen.titleLabel?.text = "texttt"
         // Initialization code
     }
     

@@ -17,17 +17,7 @@ class KellnerTBC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(Barname, "barnamee")
-//        let startvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "startvc") as! StartVC
-//        startvc.Barname = Barname
-//        startvc.KellnerID = KellnerID
-//
-//        let allebe = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "allebestellungen") as! KellnerAlleBestellungenVC
-//               allebe.Barname = Barname
-//               allebe.KellnerID = KellnerID
-//
-//        let evc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EVC") as! EinstellungenVC
-//               evc.Barname = Barname
-//               evc.KellnerID = KellnerID
+//      
         // Do any additional setup after loading the view.
     }
     

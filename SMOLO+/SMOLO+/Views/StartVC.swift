@@ -19,6 +19,7 @@ class StartVC: UIViewController {
     
     var kellnerview: KellnerVC?
     var angenommenview: KellnerAngenommenVC?
+    var fertigview: FertiggestelltVC?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination
@@ -33,21 +34,16 @@ class StartVC: UIViewController {
             angenommenview?.Barname = Barname
             angenommenview?.KellnerID = KellnerID
         }
+        if let thridview = destination as? FertiggestelltVC{
+            fertigview = thridview
+            fertigview?.Barname = Barname
+            fertigview?.KellnerID = KellnerID
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(Barname,"barname2")
-        let linkscont = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "kellnervc") as! KellnerVC
-        linkscont.Barname = Barname
-        linkscont.KellnerID = KellnerID
-        
-        let rechtscont = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "kellnerangenommenvc") as! KellnerAngenommenVC
-        rechtscont.Barname = Barname
-        rechtscont.KellnerID = KellnerID
-//            let KACV = KTBC.viewControllers![1] as! KellnerAngenommenVC
-//                       KACV.KellnerID = (Auth.auth().currentUser?.uid)!
-//                       KACV.Barname = barname
+//     
         // Do any additional setup after loading the view.
     }
     

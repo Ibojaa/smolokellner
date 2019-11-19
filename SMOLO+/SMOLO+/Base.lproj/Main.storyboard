@@ -59,17 +59,36 @@
         <!--FertiggestelltVC-->
         <scene sceneID="JIE-Pf-7Ax">
             <objects>
-                <viewController id="aRx-mo-CBz" customClass="FertiggestelltVC" customModule="SMOLO_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="fertiggestelltvc" id="aRx-mo-CBz" customClass="FertiggestelltVC" customModule="SMOLO_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pkK-ha-qGz">
                         <rect key="frame" x="0.0" y="0.0" width="419" height="959"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yJx-j3-ajp">
+                                <rect key="frame" x="8" y="92" width="403" height="859"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="aRx-mo-CBz" id="Iq8-An-Pna"/>
+                                    <outlet property="delegate" destination="aRx-mo-CBz" id="hn6-pA-mQ4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yJx-j3-ajp" firstAttribute="top" secondItem="Mtg-5X-3jB" secondAttribute="top" constant="92" id="JbN-uY-a3O"/>
+                            <constraint firstItem="Mtg-5X-3jB" firstAttribute="trailing" secondItem="yJx-j3-ajp" secondAttribute="trailing" constant="8" id="Ow6-vw-zks"/>
+                            <constraint firstItem="yJx-j3-ajp" firstAttribute="leading" secondItem="Mtg-5X-3jB" secondAttribute="leading" constant="8" id="dxv-TX-1S8"/>
+                            <constraint firstItem="Mtg-5X-3jB" firstAttribute="bottom" secondItem="yJx-j3-ajp" secondAttribute="bottom" constant="8" id="g2V-B3-Kwn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Mtg-5X-3jB"/>
                     </view>
+                    <connections>
+                        <outlet property="fertigeBestellungenTV" destination="yJx-j3-ajp" id="xOm-iJ-iTR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTH-VJ-4e0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-337" y="1914"/>
+            <point key="canvasLocation" x="-337.11566617862371" y="1913.9648437499998"/>
         </scene>
         <!--AbrechnenVC-->
         <scene sceneID="BrD-uw-B26">
@@ -542,7 +561,7 @@
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIC-37-CNU">
                                                 <rect key="frame" x="854" y="0.0" width="419" height="959"/>
-                                                <color key="backgroundColor" red="0.72549019609999998" green="0.66666666669999997" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="419" id="X7w-UU-3Wf"/>
                                                     <constraint firstAttribute="height" constant="959" id="cl2-Hn-SXd"/>

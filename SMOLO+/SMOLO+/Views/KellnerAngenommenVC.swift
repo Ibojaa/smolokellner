@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 
-class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
+class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, kellnerCellDelegate {
+   
+    
     
     
     
@@ -45,8 +47,21 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     // FUNCS
 
+ func annehmen(sender: KellnerCell) {
+          self.removeBestellung2(KellnerID: self.KellnerID, BestellungID:
+                  self.Bestellungen[sender.Cell1Section].BestellungID)
+    print("angenommen2hier")
+    self.reload()
+    }
 
-    
+    func removeBestellung2(KellnerID: String, BestellungID: String){
+           var datref: DatabaseReference!
+           datref = Database.database().reference()
+
+                   datref.child("Bestellungen").child(self.Barname).child(BestellungID).child("Information").updateChildValues(["Status": "fertig"])
+                   datref.child("userBestellungen").child(KellnerID).child(BestellungID).updateChildValues(["Status": "fertig"])
+             
+       }
     
     func loadBestellungenKeys(){
         var datref: DatabaseReference!
@@ -535,7 +550,9 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = Bundle.main.loadNibNamed("KellnerCell", owner: self, options: nil)?.first as! KellnerCell
         cell.Bestellungen = Bestellungen
         cell.Cell1Section = indexPath.section
+        cell.annehmen.setTitle("Fertig", for: .normal)
         cell.bestellungID = Bestellungen[indexPath.section].BestellungID
+        cell.delegate = self
         
         
         let formatter = DateFormatter()

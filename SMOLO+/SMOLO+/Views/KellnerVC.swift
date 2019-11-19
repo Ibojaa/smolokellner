@@ -442,10 +442,19 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     }
     
     func removeBestellung(KellnerID: String, BestellungID: String){
+        print("removebestellung")
         var datref: DatabaseReference!
         datref = Database.database().reference()
-        datref.child("Bestellungen").child(Barname).child(BestellungID).child("Information").updateChildValues(["Status": "angenommen"])
-        datref.child("userBestellungen").child(KellnerID).child(BestellungID).updateChildValues(["Status": "angenommen"])
+//    datref.child("Bestellungen").child(Barname).child(BestellungID).child("Information").observe(.childAdded, with: { (snapshot) in
+//
+//        if let dicti = snapshot.value as? [String:Any]{
+//
+//            let vorgangsstatus = dicti["Status"] as? String
+//            print(vorgangsstatus!, "STATUS!!!!!!")
+//            if vorgangsstatus == "versendet" {
+                datref.child("Bestellungen").child(self.Barname).child(BestellungID).child("Information").updateChildValues(["Status": "angenommen"])
+                datref.child("userBestellungen").child(KellnerID).child(BestellungID).updateChildValues(["Status": "angenommen"])
+           // }}})
         
     }
     
@@ -721,6 +730,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         
         cell.Bestellungen = Bestellungen
         cell.Cell1Section = indexPath.section
+        cell.annehmen.setTitle("Annehmen", for: .normal)
         cell.bestellungID = Bestellungen[indexPath.section].BestellungID
         cell.delegate = self
         
