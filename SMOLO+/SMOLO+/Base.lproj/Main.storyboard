@@ -65,24 +65,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yJx-j3-ajp">
-                                <rect key="frame" x="8" y="92" width="403" height="859"/>
+                                <rect key="frame" x="8" y="142" width="403" height="799"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="aRx-mo-CBz" id="Iq8-An-Pna"/>
                                     <outlet property="delegate" destination="aRx-mo-CBz" id="hn6-pA-mQ4"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zw1-UI-eCc">
+                                <rect key="frame" x="8" y="84" width="403" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="tWQ-do-eAI"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="yJx-j3-ajp" firstAttribute="top" secondItem="Mtg-5X-3jB" secondAttribute="top" constant="92" id="JbN-uY-a3O"/>
+                            <constraint firstItem="Zw1-UI-eCc" firstAttribute="leading" secondItem="Mtg-5X-3jB" secondAttribute="leading" constant="8" id="HpX-Xa-iVT"/>
+                            <constraint firstItem="yJx-j3-ajp" firstAttribute="top" secondItem="Zw1-UI-eCc" secondAttribute="bottom" constant="8" id="Il9-2f-AQq"/>
+                            <constraint firstItem="yJx-j3-ajp" firstAttribute="top" secondItem="Mtg-5X-3jB" secondAttribute="top" constant="142" id="JbN-uY-a3O"/>
                             <constraint firstItem="Mtg-5X-3jB" firstAttribute="trailing" secondItem="yJx-j3-ajp" secondAttribute="trailing" constant="8" id="Ow6-vw-zks"/>
                             <constraint firstItem="yJx-j3-ajp" firstAttribute="leading" secondItem="Mtg-5X-3jB" secondAttribute="leading" constant="8" id="dxv-TX-1S8"/>
-                            <constraint firstItem="Mtg-5X-3jB" firstAttribute="bottom" secondItem="yJx-j3-ajp" secondAttribute="bottom" constant="8" id="g2V-B3-Kwn"/>
+                            <constraint firstItem="Mtg-5X-3jB" firstAttribute="bottom" secondItem="yJx-j3-ajp" secondAttribute="bottom" constant="18" id="g2V-B3-Kwn"/>
+                            <constraint firstItem="Mtg-5X-3jB" firstAttribute="trailing" secondItem="Zw1-UI-eCc" secondAttribute="trailing" constant="8" id="vaL-29-HiS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mtg-5X-3jB"/>
                     </view>
                     <connections>
+                        <outlet property="TopView" destination="Zw1-UI-eCc" id="dBK-cX-X1d"/>
                         <outlet property="fertigeBestellungenTV" destination="yJx-j3-ajp" id="xOm-iJ-iTR"/>
                     </connections>
                 </viewController>

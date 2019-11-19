@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, kellnerCellDelegate {
+class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, kellnerCellDelegate, UISearchResultsUpdating, UISearchBarDelegate {
        
         
         
@@ -21,6 +21,8 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         var KellnerID = String()
         
         var Bestellungen = [KellnerTVSection]()
+        var filteredBestellungen = [KellnerTVSection]()
+        var bestellungenfinal = [KellnerTVSection]()
         var BestellungKategorien = [String: [String]]()
         var BestellungUnterkategorien = [String: [[String]]]()
         var BestellungExpanded2 = [String: [[Bool]]]()
@@ -39,12 +41,15 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         var extrasString = [String]()
         var extrasPreis = [Double]()
         
+        let searchController = UISearchController(searchResultsController: nil)
+
         // OUTLETS
         
 
         @IBOutlet weak var fertigeBestellungenTV: UITableView!
         
-        
+    @IBOutlet weak var TopView: UIView!
+    
         // FUNCS
 
      func annehmen(sender: KellnerCell) {
@@ -470,8 +475,11 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         func numberOfSections(in tableView: UITableView) -> Int {
             print(self.Bestellungen, "bestellungen")
+             if searchController.isActive == true && searchController.searchBar.text != ""{
+                return self.filteredBestellungen.count
+             }else{
             return self.Bestellungen.count
-            
+            }
         }
         
         
@@ -492,24 +500,29 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             if (Bestellungen[indexPath.section].expanded) {
-                let kategorieCount = Bestellungen[indexPath.section].Kategorie.count
+                if searchController.isActive == true && searchController.searchBar.text != ""{
+                                         bestellungenfinal = filteredBestellungen
+                                     } else {
+                                         bestellungenfinal = Bestellungen
+                                     }
+                let kategorieCount = bestellungenfinal[indexPath.section].Kategorie.count
                 var UnterkategorieCount = 0
                 var itemsCount = 0
                 var extraCount = 0
-                for items in  Bestellungen[indexPath.section].items {
+                for items in  bestellungenfinal[indexPath.section].items {
                     for item in items {
                         itemsCount = itemsCount + item.count
                     }
                 }
                 
-                for extras in Bestellungen[indexPath.section].extras {
+                for extras in bestellungenfinal[indexPath.section].extras {
                     for extra in extras {
                         for newextras in extra {
                             extraCount = extraCount + newextras.count
                         }
                     }
                 }
-                for unterkategorie in Bestellungen[indexPath.section].Unterkategorie {
+                for unterkategorie in bestellungenfinal[indexPath.section].Unterkategorie {
                     UnterkategorieCount = UnterkategorieCount + unterkategorie.count
                 }
                 return CGFloat(kategorieCount*40 + UnterkategorieCount*50 + itemsCount*120 + extraCount*50)
@@ -533,7 +546,11 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            
+            if searchController.isActive == true && searchController.searchBar.text != ""{
+                                     bestellungenfinal = filteredBestellungen
+                                 } else {
+                                     bestellungenfinal = Bestellungen
+                                 }
             
             let header = ExpandableHeaderView()
             header.contentView.layer.cornerRadius = 10
@@ -541,30 +558,36 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             header.layer.cornerRadius = 10
             header.layer.backgroundColor = UIColor.clear.cgColor
             
-            header.customInit(tableView: tableView, title: Bestellungen[section].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
+            header.customInit(tableView: tableView, title: bestellungenfinal[section].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
             return header
         }
         
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = Bundle.main.loadNibNamed("KellnerCell", owner: self, options: nil)?.first as! KellnerCell
-            cell.Bestellungen = Bestellungen
+            
+            if searchController.isActive == true && searchController.searchBar.text != ""{
+                bestellungenfinal = filteredBestellungen
+            } else {
+                bestellungenfinal = Bestellungen
+            }
+            cell.Bestellungen = bestellungenfinal
             cell.Cell1Section = indexPath.section
             cell.annehmen.setTitle("Fertig", for: .normal)
-            cell.bestellungID = Bestellungen[indexPath.section].BestellungID
+            cell.bestellungID = bestellungenfinal[indexPath.section].BestellungID
             cell.delegate = self
             
             
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy/MM/dd HH:mm"
             let DayOne = formatter.date(from: "2018/05/15 12:00")
-            let timeStampDate = NSDate(timeInterval: self.Bestellungen[indexPath.section].TimeStamp, since: DayOne!)
+            let timeStampDate = NSDate(timeInterval: self.bestellungenfinal[indexPath.section].TimeStamp, since: DayOne!)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
             
             cell.timeLbl.text = "\(dateFormatter.string(from: timeStampDate as Date)) Uhr"
             
-            if Bestellungen[indexPath.section].expanded == false {
+            if bestellungenfinal[indexPath.section].expanded == false {
                 cell.timeLbl.isHidden = true
                 cell.gesamtPreisLbl.isHidden = true
                 cell.annehmen.isHidden = true
@@ -589,7 +612,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     //            }
     //        }
     //
-            for extrasPreise in Bestellungen[indexPath.section].extrasPreis {
+            for extrasPreise in bestellungenfinal[indexPath.section].extrasPreis {
                 for extrasPreis in extrasPreise {
                     for extraPreis in extrasPreis {
                         for preis in extraPreis {
@@ -610,22 +633,61 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         
         func toggleSection(tableView: UITableView, header: ExpandableHeaderView, section: Int) {
-            for i in 0..<Bestellungen.count{
+            print("toggle")
+            if searchController.isActive == true && searchController.searchBar.text != ""{
+                           bestellungenfinal = filteredBestellungen
+                       } else {
+                           bestellungenfinal = Bestellungen
+                       }
+            for i in 0..<bestellungenfinal.count{
                 if i == section {
-                    Bestellungen[section].expanded = !Bestellungen[section].expanded
+                    bestellungenfinal[section].expanded = !bestellungenfinal[section].expanded
                 } else {
-                    Bestellungen[i].expanded = false
+                    bestellungenfinal[i].expanded = false
                     
                 }
             }
-            
-            fertigeBestellungenTV.beginUpdates()
-            fertigeBestellungenTV.reloadRows(at: [IndexPath(row: 0, section: section)], with: .automatic)
-            
-            fertigeBestellungenTV.endUpdates()
+            fertigeBestellungenTV.reloadData()
+//            fertigeBestellungenTV.beginUpdates()
+//            fertigeBestellungenTV.reloadRows(at: [IndexPath(row: 0, section: section)], with: .automatic)
+//
+//            fertigeBestellungenTV.endUpdates()
             
         }
-        
+        //Searchfunc
+    
+        func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+              self.searchController.searchBar.endEditing(true)
+          }
+          
+//          func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
+//              self.searchController.searchBar.endEditing(true)
+//          }
+//
+//          func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+//              return (self.pulleyViewController?.setDrawerPosition(position: .open, animated: true) != nil)
+//          }
+          
+//          func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//          self.pulleyViewController?.setDrawerPosition(position: .open, animated: true)
+//          }
+          
+          func filteredContent (searchText: String, scope: String = "All"){
+              
+              filteredBestellungen = Bestellungen.filter { bar in
+                return ((bar.Tischnummer.lowercased().contains(searchText.lowercased())))
+                 
+
+              }
+              fertigeBestellungenTV.reloadData()
+
+          }
+
+          
+          func updateSearchResults(for: UISearchController){
+              filteredContent(searchText: searchController.searchBar.text!)
+              print(4)
+          }
         // OTHERS
         
         
@@ -643,6 +705,29 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             refreshControl.attributedTitle = NSAttributedString(string: title)
             refreshControl.addTarget(self, action: #selector(refreshOptions(sender:)), for: .valueChanged)
             fertigeBestellungenTV.refreshControl = refreshControl
+            
+            
+            searchController.searchBar.placeholder = "Finde deine SMOLO"
+            searchController.searchBar.barTintColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+            searchController.searchBar.searchBarStyle = .prominent
+            searchController.searchBar.tintColor = .white
+
+            if let txfSearchField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+                txfSearchField.textColor = .white
+                txfSearchField.borderStyle = .roundedRect
+                txfSearchField.backgroundColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+            }
+            searchController.searchResultsUpdater = self
+            searchController.dimsBackgroundDuringPresentation  = false
+            definesPresentationContext = true
+            //BarTV.tableHeaderView = searchController.searchBar
+            searchController.searchBar.delegate = self
+                // Add the search bar as a subview of the UIView you added above the table view
+            self.TopView.addSubview(self.searchController.searchBar)
+            // Call sizeToFit() on the search bar so it fits nicely in the UIView
+            self.searchController.searchBar.sizeToFit()
+            // For some reason, the search bar will extend outside the view to the left after calling sizeToFit. This next line corrects this.
+            self.searchController.searchBar.frame.size.width = self.view.frame.size.width
             
             
         }
