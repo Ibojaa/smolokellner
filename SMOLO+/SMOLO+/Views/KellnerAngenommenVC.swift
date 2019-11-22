@@ -613,8 +613,8 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
         ItemsMenge.removeAll()
         gesamtpreisBerechnen(section: indexPath.section, row: indexPath.row)
 
-        cell.gesamtPreisLbl.text = "\(gesamtpreislabel) €"
-        
+        cell.gesamtPreisLbl.text = "\(String(format: "%.2f", gesamtpreislabel)) €"
+
         return cell
     }
     func gesamtpreisBerechnen(section: Int, row: Int) {

@@ -759,7 +759,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         ItemsMenge.removeAll()
         gesamtpreisBerechnen(section: indexPath.section, row: indexPath.row)
 
-        cell.gesamtPreisLbl.text = "\(gesamtpreislabel) €"
+        cell.gesamtPreisLbl.text = "\(String(format: "%.2f", gesamtpreislabel)) €"
         return cell
         
     }
