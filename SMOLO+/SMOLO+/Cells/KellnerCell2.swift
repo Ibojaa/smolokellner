@@ -82,21 +82,21 @@ class KellnerCell2: UITableViewCell, UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("KellnerCell3", owner: self, options: nil)?.first as! KellnerCell3
         
-        var Items = Bestellungen[Cell1Section].items[Cell2Section]
-        var Preise = Bestellungen[Cell1Section].preis[Cell2Section]
-        var Mengen = Bestellungen[Cell1Section].menge[Cell2Section]
-        var Kommentare = Bestellungen[Cell1Section].kommentar[Cell2Section]
-        var newItems = Items[Cell2Row]
-        var newPreise = Preise[Cell2Row]
-        var newMengen = Mengen[Cell2Row]
-        var newKommentare = Kommentare[Cell2Row]
-        var Extras = Bestellungen[Cell1Section].extras[Cell2Section]
-        var newExtras = Extras[Cell2Row]
-        var newnewExtras = newExtras[indexPath.row]
-        var ExtrasPreise = Bestellungen[Cell1Section].extrasPreis[Cell2Section]
-        var newExtrasPreise = ExtrasPreise[Cell2Row]
+        let Items = Bestellungen[Cell1Section].items[Cell2Section]
+        let Preise = Bestellungen[Cell1Section].preis[Cell2Section]
+        let Mengen = Bestellungen[Cell1Section].menge[Cell2Section]
+        let Kommentare = Bestellungen[Cell1Section].kommentar[Cell2Section]
+        let newItems = Items[Cell2Row]
+        let newPreise = Preise[Cell2Row]
+        let newMengen = Mengen[Cell2Row]
+        let newKommentare = Kommentare[Cell2Row]
+        let Extras = Bestellungen[Cell1Section].extras[Cell2Section]
+        let newExtras = Extras[Cell2Row]
+        let newnewExtras = newExtras[indexPath.row]
+        let ExtrasPreise = Bestellungen[Cell1Section].extrasPreis[Cell2Section]
+        let newExtrasPreise = ExtrasPreise[Cell2Row]
         print(newExtras, newExtrasPreise, indexPath.row)
-        var newnewExtrasPreise = newExtrasPreise[indexPath.row]
+        let newnewExtrasPreise = newExtrasPreise[indexPath.row]
         
         cell.itemName.text = newItems[indexPath.row]
         cell.extras = newnewExtras

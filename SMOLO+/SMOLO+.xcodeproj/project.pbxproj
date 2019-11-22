@@ -30,6 +30,8 @@
 		387A381A2178C1D800F9FB81 /* KellnerCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A38182178C1D800F9FB81 /* KellnerCell3.xib */; };
 		387A381D2178C2B800F9FB81 /* KellnerExtrasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */; };
 		387A381E2178C2B800F9FB81 /* KellnerExtrasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */; };
+		38A974E92384B48200FBD910 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A974E72384B48200FBD910 /* FilterCell.swift */; };
+		38A974EA2384B48200FBD910 /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A974E82384B48200FBD910 /* FilterCell.xib */; };
 		38B9485B21943DCF00BA8E7E /* B_HN_20_R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */; };
 		38B9485D2194401300BA8E7E /* EinstellungenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9485C2194401300BA8E7E /* EinstellungenVC.swift */; };
 		38CE33252178CCC600DBE708 /* L_HN_36_W.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CE33242178CCC600DBE708 /* L_HN_36_W.swift */; };
@@ -101,6 +103,8 @@
 		387A38182178C1D800F9FB81 /* KellnerCell3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerCell3.xib; sourceTree = "<group>"; };
 		387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerExtrasCell.swift; sourceTree = "<group>"; };
 		387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerExtrasCell.xib; sourceTree = "<group>"; };
+		38A974E72384B48200FBD910 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
+		38A974E82384B48200FBD910 /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
 		38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_HN_20_R.swift; sourceTree = "<group>"; };
 		38B9485C2194401300BA8E7E /* EinstellungenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EinstellungenVC.swift; sourceTree = "<group>"; };
 		38CE33242178CCC600DBE708 /* L_HN_36_W.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L_HN_36_W.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				38D2AC132190A97C00B60430 /* produktCell.xib */,
 				38D2AC162190AA4700B60430 /* produktCell2.swift */,
 				38D2AC172190AA4700B60430 /* produktCell2.xib */,
+				38A974E72384B48200FBD910 /* FilterCell.swift */,
+				38A974E82384B48200FBD910 /* FilterCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				FD7DDC3E214BF03C008CDE12 /* GoogleService-Info.plist in Resources */,
 				FD7DDC17214BEFA5008CDE12 /* Assets.xcassets in Resources */,
 				FD7DDC15214BEFA2008CDE12 /* Main.storyboard in Resources */,
+				38A974EA2384B48200FBD910 /* FilterCell.xib in Resources */,
 				387A38142178C0F500F9FB81 /* KellnerCell2.xib in Resources */,
 				38D2AC192190AA4700B60430 /* produktCell2.xib in Resources */,
 				3877687C2173B94E0070F988 /* KellnerCell.xib in Resources */,
@@ -567,6 +574,7 @@
 				FD6C03BA237EA2EB00EEDDCF /* AbrechnenVC.swift in Sources */,
 				38D2AC1B2190AADB00B60430 /* SpeisekarteInformation.swift in Sources */,
 				38B9485B21943DCF00BA8E7E /* B_HN_20_R.swift in Sources */,
+				38A974E92384B48200FBD910 /* FilterCell.swift in Sources */,
 				387A381D2178C2B800F9FB81 /* KellnerExtrasCell.swift in Sources */,
 				FD7DDC12214BEFA2008CDE12 /* LoginVC.swift in Sources */,
 				38CE332F2178E08700DBE708 /* B_HN_20_G.swift in Sources */,

@@ -475,11 +475,12 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         func numberOfSections(in tableView: UITableView) -> Int {
             print(self.Bestellungen, "bestellungen")
-             if searchController.isActive == true && searchController.searchBar.text != ""{
-                return self.filteredBestellungen.count
-             }else{
-            return self.Bestellungen.count
-            }
+              if searchController.isActive == true && searchController.searchBar.text != ""{
+                            bestellungenfinal = filteredBestellungen
+                        } else {
+                            bestellungenfinal = Bestellungen
+                        }
+            return bestellungenfinal.count
         }
         
         
@@ -647,11 +648,11 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     
                 }
             }
-            fertigeBestellungenTV.reloadData()
-//            fertigeBestellungenTV.beginUpdates()
-//            fertigeBestellungenTV.reloadRows(at: [IndexPath(row: 0, section: section)], with: .automatic)
-//
-//            fertigeBestellungenTV.endUpdates()
+            
+            fertigeBestellungenTV.beginUpdates()
+            fertigeBestellungenTV.reloadRows(at: [IndexPath(row: 0, section: section)], with: .automatic)
+
+            fertigeBestellungenTV.endUpdates()
             
         }
         //Searchfunc

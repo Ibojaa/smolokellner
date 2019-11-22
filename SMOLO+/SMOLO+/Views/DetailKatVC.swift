@@ -1,20 +1,31 @@
 import UIKit
 import Firebase
 
-class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, DropDownBtnProtocoll {
+class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, DropDownBtnProtocoll, FilterBtnDelegate {
+    func passKatsBtn(sender: DropDownBtn) {
+        DropDownKats = sender.DropDownKatsBtn
+        print(DropDownKats, "DDK")
+
+        
+    }
     
     
+    
+    func FilternBtnTapped() {
+        print("HIIIII")
+        Button.dismissDropDown()
+        dismissFilternBtn()
+        print(DropDownKats)
+        
+    }
     
     // VARS
     
     var showKat = String()
-    var DropDownKats = [String]()
+    var DropDownKats = [String: Bool]()
     var Button = DropDownBtn()
+    var FilternBtn = FilterBtn()
     var IDfilter = [String: Bool]()
-//    var IDFilter = [String]()
-//    var IDgefiltert = [String]()
-//    var noID = [String]()
-    
     var Barname = String()
     var KellnerID = String()
     
@@ -49,21 +60,35 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         print(showKat, "showkat")
         reload()
     }
+    func dismissFilternBtn() {
+        if self.view.subviews.contains(FilternBtn) {
+            self.view.viewWithTag(1000)?.removeFromSuperview()
+        }
+    }
+    func showFilternBtn() {
+        
+        if !self.view.subviews.contains(FilternBtn){
+            self.view.addSubview(FilternBtn)
+            FilternBtn.tag = 1000
+            FilternBtn.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            FilternBtn.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 200).isActive = true
+            FilternBtn.widthAnchor.constraint(equalToConstant: 230).isActive = true
+            FilternBtn.heightAnchor.constraint(equalToConstant: 44).isActive = true
+
+        }
+    }
     
     func getKategorien (){
             var datref: DatabaseReference!
             datref = Database.database().reference()
-
+            
         datref.child("Speisekarten").child("\(self.Barname)").observeSingleEvent(of: .value, with: { (snapshotKategorie) in
             for key in (snapshotKategorie.children.allObjects as? [DataSnapshot])! {
                 print(key.key, "keykey")
-                        if !self.DropDownKats.contains(key.key) {
-                            self.DropDownKats.append(key.key)
-                        }
+                self.DropDownKats[key.key] = false
                     }
-            self.Button.DropView.dropDownOpt = self.DropDownKats
-            print(self.DropDownKats, "dropdownkats")
-            self.Button.DropView.tableview.reloadData()
+            self.Button.DropView.DropDownKatsView = self.DropDownKats
+            self.Button.DropView.DropDownTV.reloadData()
 
         }, withCancel: nil)
         
@@ -481,7 +506,7 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
             if self.IDfilter.count - falseID.count == self.BestellungKategorien.count{
                 
                 print(self.bestellungIDs, self.BestellungKategorien,  "doppeltebestellung")
-                for (id, value) in trueID {
+                for (id, _) in trueID {
                         
                         self.setSectionsKellnerBestellung(BestellungID: id, tischnummer: self.Tischnummer[id]!, fromUserID: self.FromUserID[id]!, TimeStamp: self.TimeStamp[id]!, Kategorie: self.BestellungKategorien[id]!, Unterkategorie: self.BestellungUnterkategorien[id]!, items: self.BestellungItemsNamen[id]!, preis: self.BestellungItemsPreise[id]!, liter: self.BestellungItemsLiter[id]!, extras: self.BestellungenItemsExtrasNamen[id]!, extrasPreis: self.BestellungenItemsExtrasPreise[id]!, kommentar: self.BestellungItemsKommentar[id]!, menge: self.BestellungItemsMengen[id]!, expanded2: self.BestellungExpanded2[id]!, expanded: false)
                 
@@ -683,11 +708,9 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         Button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         Button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        
-        Button.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        Button.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        
+        Button.widthAnchor.constraint(equalToConstant: 230).isActive = true
+        Button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
 
         loadBestellungenKeys()
@@ -698,6 +721,10 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         refreshControl.addTarget(self, action: #selector(refreshOptions(sender:)), for: .valueChanged)
         angenommenBestellungenTV.refreshControl = refreshControl
         
+        FilternBtn = FilterBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        FilternBtn.setTitle("Filtern", for: .normal)
+        FilternBtn.translatesAutoresizingMaskIntoConstraints = false
+        FilternBtn.delegate = self
         
     }
     func reload(){
@@ -742,27 +769,41 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 
 protocol DropDownProtocoll {
     func DropDownPressed(string: String)
+    func passKatsView(sender: DropDownView)
 }
 protocol DropDownBtnProtocoll {
     func passShowKat()
+    func showFilternBtn()
+    func passKatsBtn(sender: DropDownBtn)
+    
 }
 
 
 class DropDownBtn: UIButton, DropDownProtocoll {
+    func passKatsView(sender: DropDownView) {
+        DropDownKatsBtn = sender.DropDownKatsView
+        delegate.passKatsBtn(sender: self)
+        print(DropDownKatsBtn, "DDKBtn")
+
+    }
+    
+    
     func DropDownPressed(string: String) {
         self.setTitle(string, for: .normal)
         showKatBtn = string
         self.delegate.passShowKat()
         
-        self.dismissDropDown()
     }
     
     
     var DropView = DropDownView()
     var showKatBtn = String()
     var delegate: DropDownBtnProtocoll!
-    
+    var DropDownKatsBtn = [String: Bool]()
     var height = NSLayoutConstraint()
+    
+    var isOpen = false
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -783,39 +824,29 @@ class DropDownBtn: UIButton, DropDownProtocoll {
         height = DropView.heightAnchor.constraint(equalToConstant: 0)
     }
     
-    var isOpen = false
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        delegate?.showFilternBtn()
         if isOpen == false {
             isOpen = true
             NSLayoutConstraint.deactivate([self.height])
-            
-            if self.DropView.tableview.contentSize.height > 150 {
-                    self.height.constant = 150
+            if self.DropView.DropDownTV.contentSize.height > 220 {
+                    self.height.constant = 220
             } else {
-                self.height.constant = self.DropView.tableview.contentSize.height
+                self.height.constant = self.DropView.DropDownTV.contentSize.height
             }
             
-            self.height.constant = 150
+            self.height.constant = 220
             NSLayoutConstraint.activate([self.height])
             
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
                 self.DropView.layoutIfNeeded()
                 self.DropView.center.y += self.DropView.frame.height/2
             }, completion: nil)
-        } else {
-            isOpen = false
-            NSLayoutConstraint.deactivate([self.height])
-            self.height.constant = 0
-            NSLayoutConstraint.activate([self.height])
-            
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-                self.DropView.center.y -= self.DropView.frame.height/2
-                self.DropView.layoutIfNeeded()
-            }, completion: nil)
         }
     }
     
     func dismissDropDown(){
+        
         isOpen = false
         NSLayoutConstraint.deactivate([self.height])
         self.height.constant = 0
@@ -836,31 +867,42 @@ class DropDownBtn: UIButton, DropDownProtocoll {
 
 
 
-class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
+class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource, FilterCellDelegate {
     
-    var dropDownOpt = [String]()
+    func passKatsCell(sender: FilterCell) {
+        DropDownKatsView = sender.DropDownKatsCell
+        delegate.passKatsView(sender: self)
+        
+        
+        print(DropDownKatsView, "DDKView")
+
+    }
     
-    var tableview = UITableView()
     
+    
+    
+    var DropDownKatsView = [String: Bool]()
+    var DropDownTV = UITableView()
     var delegate: DropDownProtocoll!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        tableview.backgroundColor = UIColor.darkGray
+        DropDownTV.backgroundColor = UIColor.darkGray
         self.backgroundColor = UIColor.darkGray
         
-        tableview.delegate = self
-        tableview.dataSource = self
+        DropDownTV.delegate = self
+        DropDownTV.dataSource = self
         
-        tableview.translatesAutoresizingMaskIntoConstraints = false
+        DropDownTV.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(tableview)
+        self.addSubview(DropDownTV)
         
-        tableview.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        tableview.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        tableview.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        tableview.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        DropDownTV.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        DropDownTV.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        DropDownTV.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        DropDownTV.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        DropDownTV.allowsSelection = false
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -871,22 +913,52 @@ class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dropDownOpt.count
+        return DropDownKatsView.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = dropDownOpt[indexPath.row]
+        let cell = Bundle.main.loadNibNamed("FilterCell", owner: self, options: nil)?.first as! FilterCell
+
+        cell.filterLbl.text = Array(DropDownKatsView)[indexPath.row].key
+        cell.DropDownKatsCell = DropDownKatsView
+        cell.FilterRow = indexPath.row
         cell.backgroundColor = UIColor.darkGray
-    
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.delegate.DropDownPressed(string: dropDownOpt[indexPath.row])
-        
-        
+        self.delegate.DropDownPressed(string: Array(DropDownKatsView)[indexPath.row].key)
+    }
+    override func layoutSubviews()
+    {
+        super.layoutSubviews()
+        DropDownTV.delegate = self
+        DropDownTV.dataSource = self
     }
     
+}
+
+protocol FilterBtnDelegate {
+    func FilternBtnTapped()
+}
+class FilterBtn: UIButton {
     
+    var delegate: FilterBtnDelegate?
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.darkGray
+    }
+    
+    override func didMoveToSuperview() {
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("Holaaaa")
+        delegate?.FilternBtnTapped()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
