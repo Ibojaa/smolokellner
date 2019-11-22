@@ -13,9 +13,9 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     // VARS
     var Barname = String()
     var KellnerID = String()
-    var ItemsPreis = 0.0
-    var ItemsMenge = 0
-    var ExtraPreis = 0.0
+    var ItemsPreis = [Double]()
+    var ItemsMenge = [Double]()
+    var ExtraPreis = [Double]()
     var Bestellungen = [KellnerTVSection]()
     var bestellungIDs = [String]()
     var BestellungKategorien = [String: [String]]()
@@ -39,7 +39,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     
     var problemSection = 0
     var problemRow = 0
-    
+     var gesamtpreislabel = 0.0
     // OUTLETS
 
     @IBOutlet weak var barnameLbl: UILabel!
@@ -754,23 +754,30 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
             cell.annehmen.isHidden = false
 
         }
+        ExtraPreis.removeAll()
+        ItemsPreis.removeAll()
+        ItemsMenge.removeAll()
         gesamtpreisBerechnen(section: indexPath.section, row: indexPath.row)
+
+        cell.gesamtPreisLbl.text = "\(String(format: "%.2f", gesamtpreislabel)) €"
         return cell
         
     }
     
     
     func gesamtpreisBerechnen(section: Int, row: Int) {
-        
+        gesamtpreislabel = 0.0
         print(Bestellungen[section].preis, "Bestellungen[indexPath.section].preis")
         print(Bestellungen[section].menge, "Bestellungen[indexPath.section].menge")
         print(Bestellungen[section].extrasPreis, "Bestellungen[section].extrasPreis")
-        
+        ExtraPreis.removeAll()
+        ItemsPreis.removeAll()
+        ItemsMenge.removeAll()
         for extrasPreise in Bestellungen[section].extrasPreis {
             for extrasPreis in extrasPreise {
                 for extraPreis in extrasPreis {
                     for preis in extraPreis {
-                        ExtraPreis =  preis
+                        ExtraPreis.append(preis)
                     }
                 }
             }
@@ -780,7 +787,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
             for itemPreise in itemsPreise {
                 for preis in itemPreise {
                     print(preis, 5)
-                    ItemsPreis =  preis
+                    ItemsPreis.append(preis)
                 }
             }
         }
@@ -789,18 +796,24 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
             for itemsMenge in itemsMengen {
                 for menge in itemsMenge {
                     print(menge, 6)
-                    ItemsMenge = menge
+                    ItemsMenge.append(Double(menge))
                 }
             }
         }
         teilPreis(itemPreis: ItemsPreis, extrasPreis: ExtraPreis, menge: ItemsMenge)
     
     }
-    func teilPreis(itemPreis: Double, extrasPreis: Double, menge: Int) {
-         var x = 0
-        x = Int((itemPreis+extrasPreis))*menge
-        print(x, "preiiiis")
+    func teilPreis(itemPreis: [Double], extrasPreis: [Double], menge: [Double]) {
+       
+        for i in 0..<itemPreis.count{
+            gesamtpreislabel += (itemPreis[i]+extrasPreis[i])*menge[i]
+        print(menge, itemPreis, extrasPreis, "variablen")
+            print(gesamtpreislabel, "preiiiis")
+            
+            
+        }
     }
+    
     func toggleSection(tableView: UITableView, header: ExpandableHeaderView, section: Int) {
         bestellungTV.beginUpdates()
         
