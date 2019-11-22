@@ -38,7 +38,11 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
     var bestellungIDs = [String]()
     var extrasString = [String]()
     var extrasPreis = [Double]()
-    
+    var ItemsPreis = [Double]()
+    var ItemsMenge = [Double]()
+    var ExtraPreis = [Double]()
+    var gesamtpreislabel = 0.0
+
     // OUTLETS
     
 
@@ -574,9 +578,9 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
             cell.timeLbl.isHidden = false
             cell.annehmen.isHidden = false
         }
-        var ItemsPreis = 0.0
-        var ExtraPreis = 0.0
-        
+//        var ItemsPreis = 0.0
+//        var ExtraPreis = 0.0
+//
 //        for itemsPreise in  Bestellungen[indexPath.section].preis {
 //            var mengen = Bestellungen[indexPath.section].menge
 //            
@@ -589,23 +593,78 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
 //            }
 //        }
 //        
-        for extrasPreise in Bestellungen[indexPath.section].extrasPreis {
+//        for extrasPreise in Bestellungen[indexPath.section].extrasPreis {
+//            for extrasPreis in extrasPreise {
+//                for extraPreis in extrasPreis {
+//                    for preis in extraPreis {
+//                        ExtraPreis = ExtraPreis + preis
+//                    }
+//                }
+//            }
+//        }
+//
+//        cell.gesamtPreisLbl.text = "\(ExtraPreis+ItemsPreis) €"
+//
+//        ItemsPreis = 0.0
+//        ExtraPreis = 0.0
+        
+        ExtraPreis.removeAll()
+        ItemsPreis.removeAll()
+        ItemsMenge.removeAll()
+        gesamtpreisBerechnen(section: indexPath.section, row: indexPath.row)
+
+        cell.gesamtPreisLbl.text = "\(gesamtpreislabel) €"
+        
+        return cell
+    }
+    func gesamtpreisBerechnen(section: Int, row: Int) {
+        gesamtpreislabel = 0.0
+        print(Bestellungen[section].preis, "Bestellungen[indexPath.section].preis")
+        print(Bestellungen[section].menge, "Bestellungen[indexPath.section].menge")
+        print(Bestellungen[section].extrasPreis, "Bestellungen[section].extrasPreis")
+        ExtraPreis.removeAll()
+        ItemsPreis.removeAll()
+        ItemsMenge.removeAll()
+        for extrasPreise in Bestellungen[section].extrasPreis {
             for extrasPreis in extrasPreise {
                 for extraPreis in extrasPreis {
                     for preis in extraPreis {
-                        ExtraPreis = ExtraPreis + preis
+                        ExtraPreis.append(preis)
                     }
                 }
             }
         }
         
-        cell.gesamtPreisLbl.text = "\(ExtraPreis+ItemsPreis) €"
+        for itemsPreise in  Bestellungen[section].preis {
+            for itemPreise in itemsPreise {
+                for preis in itemPreise {
+                    print(preis, 5)
+                    ItemsPreis.append(preis)
+                }
+            }
+        }
         
-        ItemsPreis = 0.0
-        ExtraPreis = 0.0
-        return cell
-    }
+        for itemsMengen in  Bestellungen[section].menge {
+            for itemsMenge in itemsMengen {
+                for menge in itemsMenge {
+                    print(menge, 6)
+                    ItemsMenge.append(Double(menge))
+                }
+            }
+        }
+        teilPreis(itemPreis: ItemsPreis, extrasPreis: ExtraPreis, menge: ItemsMenge)
     
+    }
+    func teilPreis(itemPreis: [Double], extrasPreis: [Double], menge: [Double]) {
+       
+        for i in 0..<itemPreis.count{
+            gesamtpreislabel += (itemPreis[i]+extrasPreis[i])*menge[i]
+        print(menge, itemPreis, extrasPreis, "variablen")
+            print(gesamtpreislabel, "preiiiis")
+            
+            
+        }
+    }
     
     
     
