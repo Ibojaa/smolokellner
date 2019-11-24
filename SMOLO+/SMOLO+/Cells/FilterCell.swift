@@ -21,30 +21,28 @@ class FilterCell: UITableViewCell {
     @IBOutlet weak var filterLbl: UILabel!
     @IBOutlet weak var filterBtn: UIButton!
     
+
+    
     @IBAction func CheckFilterTapped(_ sender: Any) {
         print(filterLbl.text!, DropDownKatsCell, "FilterLbL.TExt")
-        if DropDownKatsCell[filterLbl.text!] == false {
-            DropDownKatsCell[filterLbl.text!] = true
-            filterBtn.isSelected = true
-            delegate?.passKatsCell(sender: self)
-            print(DropDownKatsCell, "DDKCell")
-        }
-        else {
-            DropDownKatsCell[filterLbl.text!] = false
-            filterBtn.isSelected = false
-            delegate?.passKatsCell(sender: self)
-            print(DropDownKatsCell, "DDKCell")
+                     if DropDownKatsCell[filterLbl.text!] == false {
+                         DropDownKatsCell.updateValue(true, forKey: filterLbl.text!)
+                         filterBtn.isSelected = true
+                         print(DropDownKatsCell, "DDKCell1")
+                         delegate?.passKatsCell(sender: self)
+                     }
+                     else {
+                         DropDownKatsCell.updateValue(false, forKey: filterLbl.text!)
+                         filterBtn.isSelected = false
+                         delegate?.passKatsCell(sender: self)
+                         print(DropDownKatsCell, "DDKCell2")
 
-        }
+                     }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        filterBtn.imageView?.contentMode = UIViewContentMode.scaleAspectFit
-
-        filterBtn.setImage(UIImage(named: "checkbox"), for: .normal)
-        filterBtn.setImage(UIImage(named: "checkbox-i"), for: .selected)
-    
+        filterBtn.imageView?.contentMode = UIViewContentMode.scaleAspectFit    
        
     }
 

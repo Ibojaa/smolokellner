@@ -3,16 +3,20 @@ import Firebase
 
 class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, DropDownBtnProtocoll, FilterBtnDelegate {
     func passKatsBtn(sender: DropDownBtn) {
+
         DropDownKats = sender.DropDownKatsBtn
         print(DropDownKats, "DDK")
-
         
+        Button.DropView.DropDownTV.reloadData()
     }
+    
     
     
     
     func FilternBtnTapped() {
         print("HIIIII")
+        loadBestellungenKeys()
+
         Button.dismissDropDown()
         dismissFilternBtn()
         print(DropDownKats)
@@ -134,7 +138,7 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 //                        self.noID.append(BestellungID)
 //                    }
 //                }
-                else if key.key == self.showKat {
+                else if self.DropDownKats[key.key]! {
                     print(self.showKat, key.key, "keykey2")
                     self.IDfilter[BestellungID] = true
 //                    self.IDFilter.append(BestellungID)
@@ -782,8 +786,8 @@ protocol DropDownBtnProtocoll {
 class DropDownBtn: UIButton, DropDownProtocoll {
     func passKatsView(sender: DropDownView) {
         DropDownKatsBtn = sender.DropDownKatsView
-        delegate.passKatsBtn(sender: self)
         print(DropDownKatsBtn, "DDKBtn")
+        delegate.passKatsBtn(sender: self)
 
     }
     
@@ -871,16 +875,9 @@ class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource, FilterCe
     
     func passKatsCell(sender: FilterCell) {
         DropDownKatsView = sender.DropDownKatsCell
-        delegate.passKatsView(sender: self)
-        
-        
         print(DropDownKatsView, "DDKView")
-
+        delegate.passKatsView(sender: self)
     }
-    
-    
-    
-    
     var DropDownKatsView = [String: Bool]()
     var DropDownTV = UITableView()
     var delegate: DropDownProtocoll!
@@ -924,6 +921,11 @@ class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource, FilterCe
         cell.FilterRow = indexPath.row
         cell.backgroundColor = UIColor.darkGray
         cell.delegate = self
+        if DropDownKatsView[Array(DropDownKatsView)[indexPath.row].key] == true {
+            cell.filterBtn.setImage(UIImage(named: "checkbox"), for: .normal)
+        } else {
+        cell.filterBtn.setImage(UIImage(named: "checkbox-i"), for: .selected)
+        }
         return cell
     }
     
