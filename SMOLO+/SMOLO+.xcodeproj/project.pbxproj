@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C83E09151A8D899B0010D11 /* Pods_SMOLO_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A699007BA13C84B097901D /* Pods_SMOLO_UITests.framework */; };
+		381C416F23995C02002F8CDB /* BestellungFertig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C416E23995C02002F8CDB /* BestellungFertig.swift */; };
 		38329EB221A03D9500FD1A72 /* ImpressumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38329EB121A03D9500FD1A72 /* ImpressumVC.swift */; };
 		384CE51B21A2C1E900E724F1 /* NVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CE51A21A2C1E900E724F1 /* NVC.swift */; };
 		385FFA4E2188C1680052823A /* KellnerAngenommenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */; };
@@ -30,6 +31,8 @@
 		387A381A2178C1D800F9FB81 /* KellnerCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A38182178C1D800F9FB81 /* KellnerCell3.xib */; };
 		387A381D2178C2B800F9FB81 /* KellnerExtrasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */; };
 		387A381E2178C2B800F9FB81 /* KellnerExtrasCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */; };
+		387B697F23A1736B00F36907 /* BestellungFertigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B697D23A1736B00F36907 /* BestellungFertigCell.swift */; };
+		387B698023A1736B00F36907 /* BestellungFertigCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387B697E23A1736B00F36907 /* BestellungFertigCell.xib */; };
 		38A974E92384B48200FBD910 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A974E72384B48200FBD910 /* FilterCell.swift */; };
 		38A974EA2384B48200FBD910 /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38A974E82384B48200FBD910 /* FilterCell.xib */; };
 		38B9485B21943DCF00BA8E7E /* B_HN_20_R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */; };
@@ -83,6 +86,7 @@
 /* Begin PBXFileReference section */
 		0679D6B618068BC034BAB1E6 /* Pods-SMOLO+.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+/Pods-SMOLO+.debug.xcconfig"; sourceTree = "<group>"; };
 		3155B7CC9331CFFB446C71E0 /* Pods-SMOLO+Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+Tests/Pods-SMOLO+Tests.release.xcconfig"; sourceTree = "<group>"; };
+		381C416E23995C02002F8CDB /* BestellungFertig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestellungFertig.swift; sourceTree = "<group>"; };
 		38329EB121A03D9500FD1A72 /* ImpressumVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpressumVC.swift; sourceTree = "<group>"; };
 		384CE51A21A2C1E900E724F1 /* NVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVC.swift; sourceTree = "<group>"; };
 		385FFA4D2188C1680052823A /* KellnerAngenommenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerAngenommenVC.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 		387A38182178C1D800F9FB81 /* KellnerCell3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerCell3.xib; sourceTree = "<group>"; };
 		387A381B2178C2B800F9FB81 /* KellnerExtrasCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerExtrasCell.swift; sourceTree = "<group>"; };
 		387A381C2178C2B800F9FB81 /* KellnerExtrasCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KellnerExtrasCell.xib; sourceTree = "<group>"; };
+		387B697D23A1736B00F36907 /* BestellungFertigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestellungFertigCell.swift; sourceTree = "<group>"; };
+		387B697E23A1736B00F36907 /* BestellungFertigCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BestellungFertigCell.xib; sourceTree = "<group>"; };
 		38A974E72384B48200FBD910 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		38A974E82384B48200FBD910 /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
 		38B9485A21943DCF00BA8E7E /* B_HN_20_R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B_HN_20_R.swift; sourceTree = "<group>"; };
@@ -206,6 +212,7 @@
 				FD52E50C23995A2A00CBAF29 /* Ampelmodel.swift */,
 				387768722173B3470070F988 /* ExpandableHeaderViewDelegate.swift */,
 				387768742173B3D60070F988 /* KellnerTVSection.swift */,
+				381C416E23995C02002F8CDB /* BestellungFertig.swift */,
 				387768762173B5B10070F988 /* BestellungInfos.swift */,
 				387A380F2178BDAF00F9FB81 /* ExpandleHeaderView2.swift */,
 				387A38152178C18F00F9FB81 /* ExpandleHeaderView3.swift */,
@@ -218,6 +225,7 @@
 		387768782173B9380070F988 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				387B697C23A1733F00F36907 /* BestellungFertig */,
 				387768792173B94D0070F988 /* KellnerCell.swift */,
 				3877687A2173B94E0070F988 /* KellnerCell.xib */,
 				387A38112178C0F500F9FB81 /* KellnerCell2.swift */,
@@ -234,6 +242,15 @@
 				38A974E82384B48200FBD910 /* FilterCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		387B697C23A1733F00F36907 /* BestellungFertig */ = {
+			isa = PBXGroup;
+			children = (
+				387B697D23A1736B00F36907 /* BestellungFertigCell.swift */,
+				387B697E23A1736B00F36907 /* BestellungFertigCell.xib */,
+			);
+			path = BestellungFertig;
 			sourceTree = "<group>";
 		};
 		38CE33282178DF9200DBE708 /* Fonts */ = {
@@ -440,6 +457,7 @@
 				38D2AC152190A97C00B60430 /* produktCell.xib in Resources */,
 				FD7DDC1A214BEFA5008CDE12 /* LaunchScreen.storyboard in Resources */,
 				387A381A2178C1D800F9FB81 /* KellnerCell3.xib in Resources */,
+				387B698023A1736B00F36907 /* BestellungFertigCell.xib in Resources */,
 				387A381E2178C2B800F9FB81 /* KellnerExtrasCell.xib in Resources */,
 				FD7DDC3E214BF03C008CDE12 /* GoogleService-Info.plist in Resources */,
 				FD7DDC17214BEFA5008CDE12 /* Assets.xcassets in Resources */,
@@ -569,6 +587,7 @@
 				38329EB221A03D9500FD1A72 /* ImpressumVC.swift in Sources */,
 				3877687B2173B94E0070F988 /* KellnerCell.swift in Sources */,
 				387A38102178BDAF00F9FB81 /* ExpandleHeaderView2.swift in Sources */,
+				387B697F23A1736B00F36907 /* BestellungFertigCell.swift in Sources */,
 				387A38162178C18F00F9FB81 /* ExpandleHeaderView3.swift in Sources */,
 				387768712173AF070070F988 /* KellnerTBC.swift in Sources */,
 				FD6C03B6237D846B00EEDDCF /* StartVC.swift in Sources */,
@@ -591,6 +610,7 @@
 				3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */,
 				384CE51B21A2C1E900E724F1 /* NVC.swift in Sources */,
 				FD7DDC10214BEFA2008CDE12 /* AppDelegate.swift in Sources */,
+				381C416F23995C02002F8CDB /* BestellungFertig.swift in Sources */,
 				387A38192178C1D800F9FB81 /* KellnerCell3.swift in Sources */,
 				38608621219C570D00C4FE5F /* PasswortVC.swift in Sources */,
 			);
@@ -769,6 +789,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NR8A659GLT;
 				INFOPLIST_FILE = "SMOLO+/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -788,6 +809,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NR8A659GLT;
 				INFOPLIST_FILE = "SMOLO+/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

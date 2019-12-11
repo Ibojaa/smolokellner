@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -104,17 +103,43 @@
         <!--AbrechnenVC-->
         <scene sceneID="BrD-uw-B26">
             <objects>
-                <viewController id="mDk-RR-JEB" customClass="AbrechnenVC" customModule="SMOLO_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AbrechnenVC" id="mDk-RR-JEB" customClass="AbrechnenVC" customModule="SMOLO_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7fn-BQ-0hD">
                         <rect key="frame" x="0.0" y="0.0" width="419" height="959"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pye-NP-X4u">
+                                <rect key="frame" x="20" y="532" width="379" height="196"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mDk-RR-JEB" id="le2-Fc-wgL"/>
+                                    <outlet property="delegate" destination="mDk-RR-JEB" id="esS-uk-phf"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17w-Ze-miK">
+                                <rect key="frame" x="20" y="795" width="379" height="30"/>
+                                <state key="normal" title="Bezahlen"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Pye-NP-X4u" firstAttribute="leading" secondItem="7fn-BQ-0hD" secondAttribute="leadingMargin" id="8O8-0N-VH1"/>
+                            <constraint firstItem="Pye-NP-X4u" firstAttribute="trailing" secondItem="17w-Ze-miK" secondAttribute="trailing" id="Dlh-DZ-H0t"/>
+                            <constraint firstItem="Pye-NP-X4u" firstAttribute="trailing" secondItem="7fn-BQ-0hD" secondAttribute="trailingMargin" id="OiI-Gf-NQg"/>
+                            <constraint firstItem="RXZ-z0-PzD" firstAttribute="bottom" secondItem="17w-Ze-miK" secondAttribute="bottom" constant="134" id="Qgd-BX-8dN"/>
+                            <constraint firstItem="17w-Ze-miK" firstAttribute="top" secondItem="Pye-NP-X4u" secondAttribute="bottom" constant="67" id="TDM-fj-KuU"/>
+                            <constraint firstItem="Pye-NP-X4u" firstAttribute="leading" secondItem="17w-Ze-miK" secondAttribute="leading" id="f50-RX-xkT"/>
+                            <constraint firstItem="Pye-NP-X4u" firstAttribute="top" secondItem="RXZ-z0-PzD" secondAttribute="top" constant="532" id="fHF-Le-o69"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RXZ-z0-PzD"/>
                     </view>
+                    <connections>
+                        <outlet property="AbrechnenTV" destination="Pye-NP-X4u" id="KI3-Qt-6ui"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MSz-qn-Hs4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-135" y="1915"/>
+            <point key="canvasLocation" x="-135.06588579795022" y="1914.5507812499998"/>
         </scene>
         <!--KellnerTBC-->
         <scene sceneID="SLb-fM-FkU">

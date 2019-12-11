@@ -3,16 +3,20 @@ import Firebase
 
 class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, DropDownBtnProtocoll, FilterBtnDelegate {
     func passKatsBtn(sender: DropDownBtn) {
+
         DropDownKats = sender.DropDownKatsBtn
         print(DropDownKats, "DDK")
-
         
+        Button.DropView.DropDownTV.reloadData()
     }
+    
     
     
     
     func FilternBtnTapped() {
         print("HIIIII")
+        loadBestellungenKeys()
+
         Button.dismissDropDown()
         dismissFilternBtn()
         print(DropDownKats)
@@ -134,7 +138,7 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
 //                        self.noID.append(BestellungID)
 //                    }
 //                }
-                else if key.key == self.showKat {
+                else if self.DropDownKats[key.key]! {
                     print(self.showKat, key.key, "keykey2")
                     self.IDfilter[BestellungID] = true
 //                    self.IDFilter.append(BestellungID)
@@ -507,7 +511,7 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                 
                 print(self.bestellungIDs, self.BestellungKategorien,  "doppeltebestellung")
                 for (id, _) in trueID {
-                        
+                   
                         self.setSectionsKellnerBestellung(BestellungID: id, tischnummer: self.Tischnummer[id]!, fromUserID: self.FromUserID[id]!, TimeStamp: self.TimeStamp[id]!, Kategorie: self.BestellungKategorien[id]!, Unterkategorie: self.BestellungUnterkategorien[id]!, items: self.BestellungItemsNamen[id]!, preis: self.BestellungItemsPreise[id]!, liter: self.BestellungItemsLiter[id]!, extras: self.BestellungenItemsExtrasNamen[id]!, extrasPreis: self.BestellungenItemsExtrasPreise[id]!, kommentar: self.BestellungItemsKommentar[id]!, menge: self.BestellungItemsMengen[id]!, expanded2: self.BestellungExpanded2[id]!, expanded: false)
                 
                 }
@@ -517,6 +521,7 @@ class DetailKatVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
                                   }
             }
         }}
+    
     func setSectionsKellnerBestellung(BestellungID: String, tischnummer: String, fromUserID: String, TimeStamp: Double, Kategorie: [String], Unterkategorie: [[String]], items: [[[String]]], preis: [[[Double]]], liter: [[[String]]], extras: [[[[String]]]], extrasPreis: [[[[Double]]]], kommentar: [[[String]]], menge: [[[Int]]], expanded2: [[Bool]], expanded: Bool){
         self.Bestellungen.append(KellnerTVSection(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, timeStamp: TimeStamp, Kategorie: Kategorie, Unterkategorie: Unterkategorie, items: items, preis: preis, liter: liter, extras: extras, extrasPreis: extrasPreis, kommentar: kommentar, menge: menge, expanded2: expanded2, expanded: expanded))
 //        IDgefiltert.append(BestellungID)
@@ -782,8 +787,8 @@ protocol DropDownBtnProtocoll {
 class DropDownBtn: UIButton, DropDownProtocoll {
     func passKatsView(sender: DropDownView) {
         DropDownKatsBtn = sender.DropDownKatsView
-        delegate.passKatsBtn(sender: self)
         print(DropDownKatsBtn, "DDKBtn")
+        delegate.passKatsBtn(sender: self)
 
     }
     
@@ -871,16 +876,9 @@ class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource, FilterCe
     
     func passKatsCell(sender: FilterCell) {
         DropDownKatsView = sender.DropDownKatsCell
-        delegate.passKatsView(sender: self)
-        
-        
         print(DropDownKatsView, "DDKView")
-
+        delegate.passKatsView(sender: self)
     }
-    
-    
-    
-    
     var DropDownKatsView = [String: Bool]()
     var DropDownTV = UITableView()
     var delegate: DropDownProtocoll!
@@ -924,6 +922,11 @@ class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource, FilterCe
         cell.FilterRow = indexPath.row
         cell.backgroundColor = UIColor.darkGray
         cell.delegate = self
+        if DropDownKatsView[Array(DropDownKatsView)[indexPath.row].key] == true {
+            cell.filterBtn.setImage(UIImage(named: "checkbox"), for: .normal)
+        } else {
+        cell.filterBtn.setImage(UIImage(named: "checkbox-i"), for: .selected)
+        }
         return cell
     }
     
