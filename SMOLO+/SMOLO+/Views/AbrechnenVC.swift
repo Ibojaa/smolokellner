@@ -8,7 +8,31 @@
 
 import UIKit
 
-class AbrechnenVC: UIViewController {
+class AbrechnenVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var BestellungBezahlen = [BestellungFertig]()
+    
+    @IBOutlet weak var AbrechnenTV: UITableView!
+    func reload(){
+        print("hiiiiiiiiiiii")
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 36
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(BestellungBezahlen, "hallllo")
+        return 3
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = Bundle.main.loadNibNamed("BestellungFertigCell", owner: self, options: nil)?.first as! BestellungFertigCell
+        cell.itemLBl.text = "halllo"
+        return cell
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

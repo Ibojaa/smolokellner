@@ -12,19 +12,13 @@ import Firebase
 class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, kellnerCellDelegate, UISearchResultsUpdating, UISearchBarDelegate {
     
     
-  
-    
-       
-        
-        
-        
-        
         // VARS
 
         var Barname = String()
         var KellnerID = String()
         var BestellungenSpeicher = [KellnerTVSection]()
         var Bestellungen = [KellnerTVSection]()
+        var BestellungenFertig = [BestellungFertig]()
         var filteredBestellungen = [KellnerTVSection]()
         var BestellungKategorien = [String: [String]]()
         var BestellungUnterkategorien = [String: [[String]]]()
@@ -36,6 +30,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         var BestellungenItemsExtrasNamen = [String: [[[[String]]]]]()
         var BestellungenItemsExtrasPreise = [String: [[[[Double]]]]]()
         var BestellungItemsMengen = [String: [[[Int]]]]()
+    
         var Tischnummer = [String: String]()
         var Angenommen = [String: String]()
         var FromUserID = [String: String]()
@@ -49,6 +44,15 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         var ItemsMenge = [Double]()
         var ExtraPreis = [Double]()
         var gesamtpreislabel = 0.0
+    
+        // Abrechnung
+        
+        var TischnummerIDs = [String: [String]]()
+        
+        var BestellungenBezahlen = [BestellungFertig]()
+    
+        var FooterSection = Int()
+
     
         // OUTLETS
         
@@ -113,6 +117,13 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     let bestellungInfos = BestellungInfos(dictionary: dictionary)
                     if bestellungInfos.Status == "fertig" {
                         self.bestellungIDs.append(snapshot.key)
+                        
+                        if self.TischnummerIDs[bestellungInfos.tischnummer!] == nil {
+                            self.TischnummerIDs[bestellungInfos.tischnummer!] = [snapshot.key]
+                        } else {
+                            self.TischnummerIDs[bestellungInfos.tischnummer!]?.append(snapshot.key)
+                        }
+                        print(snapshot.key, bestellungInfos.tischnummer!,self.TischnummerIDs, "TischnummerIDS")
                         self.loadBestellungen(BestellungID: snapshot.key)
                         
                     }
@@ -486,18 +497,83 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 if self.bestellungIDs.count == self.BestellungKategorien.count {
                     for i in 0..<self.bestellungIDs.count {
                         self.setSectionsKellnerBestellung(BestellungID: self.bestellungIDs[i], tischnummer: self.Tischnummer[self.bestellungIDs[i]]!, fromUserID: self.FromUserID[self.bestellungIDs[i]]!, TimeStamp: self.TimeStamp[self.bestellungIDs[i]]!, Kategorie: self.BestellungKategorien[self.bestellungIDs[i]]!, Unterkategorie: self.BestellungUnterkategorien[self.bestellungIDs[i]]!, items: self.BestellungItemsNamen[self.bestellungIDs[i]]!, preis: self.BestellungItemsPreise[self.bestellungIDs[i]]!, liter: self.BestellungItemsLiter[self.bestellungIDs[i]]!, extras: self.BestellungenItemsExtrasNamen[self.bestellungIDs[i]]!, extrasPreis: self.BestellungenItemsExtrasPreise[self.bestellungIDs[i]]!, kommentar: self.BestellungItemsKommentar[self.bestellungIDs[i]]!, menge: self.BestellungItemsMengen[self.bestellungIDs[i]]!, expanded2: self.BestellungExpanded2[self.bestellungIDs[i]]!, expanded: false)
+                        
                         if self.Bestellungen.count == self.bestellungIDs.count{
-                            self.fertigeBestellungenTV.reloadData()
-                        }}}}}
+                            self.BestellungenZusammenführen()
+//                            self.fertigeBestellungenTV.reloadData()
+                        }
+                    }
+                }
+            }
+    }
         
         
+    func BestellungenZusammenführen(){
+        var ids = [String]()
+        var AlleItems = [String]()
+        var AllePreise = [Double]()
+        var AlleMengen = [Int]()
+        var BezahltMengen = [Int]()
+        var Kategorien = [String]()
         
         
-        func setSectionsKellnerBestellung(BestellungID: String, tischnummer: String, fromUserID: String, TimeStamp: Double, Kategorie: [String], Unterkategorie: [[String]], items: [[[String]]], preis: [[[Double]]], liter: [[[String]]], extras: [[[[String]]]], extrasPreis: [[[[Double]]]], kommentar: [[[String]]], menge: [[[Int]]], expanded2: [[Bool]], expanded: Bool){
-            self.Bestellungen.append(KellnerTVSection(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, timeStamp: TimeStamp, Kategorie: Kategorie, Unterkategorie: Unterkategorie, items: items, preis: preis, liter: liter, extras: extras, extrasPreis: extrasPreis, kommentar: kommentar, menge: menge, expanded2: expanded2, expanded: expanded))
+        for tisch in TischnummerIDs.keys {
+            for bestellung in Bestellungen{
+                if bestellung.Tischnummer == tisch {
+                    print(tisch, bestellung.BestellungID, "print dies das")
+                    ids.append(bestellung.BestellungID)
+                    
+                    for items in bestellung.items{
+                        for item in items{
+                            AlleItems.append(contentsOf: item)
+                            }
+                        }
+                    
+                    for preise in bestellung.preis{
+                    for preis in preise{
+                        AllePreise.append(contentsOf: preis)
+                        BezahltMengen.append(0)
+                        }
+                    }
+                    
+                    for mengen in bestellung.menge{
+                    for menge in mengen{
+                        AlleMengen.append(contentsOf: menge)
+                        }
+                    }
+                    
+                    for kategorie in bestellung.Kategorie {
+                        if !Kategorien.contains(kategorie) {
+                            Kategorien.append(kategorie)
+                            }
+                        }
+                }
+            
+            }
+            print(ids, "ids gleiche nummer")
+            print(AlleItems, "alle Items")
+            setSectionsBestellungenFertig(BestellungID: ids, tischnummer: tisch, fromUserID: "kommt noch", TimeStamp: [0, 0], Kategorie: Kategorien, items: AlleItems, preis: AllePreise, menge: AlleMengen, bezahltMenge: BezahltMengen, expanded: false)
+            
+            ids.removeAll()
+            AlleItems.removeAll()
+            AllePreise.removeAll()
+            AlleMengen.removeAll()
+            Kategorien.removeAll()
+            BezahltMengen.removeAll()
+            fertigeBestellungenTV.reloadData()
+            
+            print(self.BestellungenFertig, "Fertige BEstellungen")
         }
         
         
+    }
+        func setSectionsKellnerBestellung(BestellungID: String, tischnummer: String, fromUserID: String, TimeStamp: Double, Kategorie: [String], Unterkategorie: [[String]], items: [[[String]]], preis: [[[Double]]], liter: [[[String]]], extras: [[[[String]]]], extrasPreis: [[[[Double]]]], kommentar: [[[String]]], menge: [[[Int]]], expanded2: [[Bool]], expanded: Bool){
+            self.Bestellungen.append(KellnerTVSection(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, timeStamp: TimeStamp, Kategorie: Kategorie, Unterkategorie: Unterkategorie, items: items, preis: preis, liter: liter, extras: extras, extrasPreis: extrasPreis, kommentar: kommentar, menge: menge, expanded2: expanded2, expanded: expanded))
+        }
+    
+    func setSectionsBestellungenFertig(BestellungID: [String], tischnummer: String, fromUserID: String, TimeStamp: [Double], Kategorie: [String], items: [String], preis: [Double], menge: [Int], bezahltMenge: [Int], expanded: Bool){
+        self.BestellungenFertig.append(BestellungFertig(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, Kategorie: Kategorie, items: items, preis: preis, menge: menge, bezahltMenge: bezahltMenge, expanded: expanded))
+           }
         
         //
         //        func removeBestellung(KellnerID: String, BestellungID: String){
@@ -510,16 +586,14 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         // TABLE
         
         func numberOfSections(in tableView: UITableView) -> Int {
-            print(self.Bestellungen, "bestellungen")
 
-            return self.Bestellungen.count
-            
-        }
+            return self.BestellungenFertig.count
+                    }
         
         
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 1
+            return BestellungenFertig[section].items.count
         }
         
         
@@ -533,47 +607,48 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if (Bestellungen[indexPath.section].expanded) {
-                let kategorieCount = Bestellungen[indexPath.section].Kategorie.count
-                var UnterkategorieCount = 0
-                var itemsCount = 0
-                var extraCount = 0
-                for items in  Bestellungen[indexPath.section].items {
-                    for item in items {
-                        itemsCount = itemsCount + item.count
-                    }
-                }
-                
-                for extras in Bestellungen[indexPath.section].extras {
-                    for extra in extras {
-                        for newextras in extra {
-                            extraCount = extraCount + newextras.count
-                        }
-                    }
-                }
-                for unterkategorie in Bestellungen[indexPath.section].Unterkategorie {
-                    UnterkategorieCount = UnterkategorieCount + unterkategorie.count
-                }
-                return CGFloat(kategorieCount*40 + UnterkategorieCount*50 + itemsCount*120 + extraCount*50)
+          
+            if (BestellungenFertig[indexPath.section].expanded) {
+                return 36
             }
             else {
                 return 0
             }
-            
         }
         
         func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
             
-            return 15
+           if (BestellungenFertig[section].expanded) {
+                return 50
+            }
+            else {
+                return 15
+            }
             
         }
         
         func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
             let view = UIView()
             view.backgroundColor = UIColor.clear
+            
+            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
+            button.setTitle("Alles bezahlen", for: .normal)
+            button.center.x = tableView.center.x
+            button.addTarget(self, action: #selector(allesBezahlen), for: .touchUpInside)
+            view.addSubview(button)
+            
             return view
         }
         
+    @objc func allesBezahlen() {
+        
+        BestellungenBezahlen.append(BestellungenFertig[FooterSection])
+        let AVC = self.storyboard?.instantiateViewController(withIdentifier: "AbrechnenVC") as! AbrechnenVC
+        AVC.BestellungBezahlen = BestellungenBezahlen
+        AVC.AbrechnenTV.reloadData()
+        
+        BestellungenBezahlen.removeAll()
+    }
         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             
             
@@ -583,74 +658,16 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             header.layer.cornerRadius = 10
             header.layer.backgroundColor = UIColor.clear.cgColor
             
-            header.customInit(tableView: tableView, title: Bestellungen[section].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
+            header.customInit(tableView: tableView, title: BestellungenFertig[section].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
             return header
         }
         
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = Bundle.main.loadNibNamed("KellnerCell", owner: self, options: nil)?.first as! KellnerCell
-            cell.Bestellungen = Bestellungen
-            cell.Cell1Section = indexPath.section
-            cell.annehmen.setTitle("Fertig", for: .normal)
-            cell.bestellungID = Bestellungen[indexPath.section].BestellungID
-            cell.delegate = self
-            
-            
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy/MM/dd HH:mm"
-            let DayOne = formatter.date(from: "2018/05/15 12:00")
-            let timeStampDate = NSDate(timeInterval: self.Bestellungen[indexPath.section].TimeStamp, since: DayOne!)
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
-            
-            cell.timeLbl.text = "\(dateFormatter.string(from: timeStampDate as Date)) Uhr"
-            
-            if Bestellungen[indexPath.section].expanded == false {
-                cell.timeLbl.isHidden = true
-                cell.gesamtPreisLbl.isHidden = true
-                cell.annehmen.isHidden = true
-                
-            } else {
-                cell.gesamtPreisLbl.isHidden = false
-                cell.timeLbl.isHidden = false
-                cell.annehmen.isHidden = false
-            }
-//            var ItemsPreis = 0.0
-//            var ExtraPreis = 0.0
-//
-    //        for itemsPreise in  Bestellungen[indexPath.section].preis {
-    //            var mengen = Bestellungen[indexPath.section].menge
-    //
-    //            for itemPreise in itemsPreise {
-    //
-    //                for preis in itemPreise {
-    //                    ItemsPreis = ItemsPreis + preis
-    //                }
-    //
-    //            }
-    //        }
-    //
-//            for extrasPreise in Bestellungen[indexPath.section].extrasPreis {
-//                for extrasPreis in extrasPreise {
-//                    for extraPreis in extrasPreis {
-//                        for preis in extraPreis {
-//                            ExtraPreis = ExtraPreis + preis
-//                        }
-//                    }
-//                }
-//            }
-//
-//            cell.gesamtPreisLbl.text = "\(ExtraPreis+ItemsPreis) €"
-//
-//            ItemsPreis = 0.0
-//            ExtraPreis = 0.0
-            ExtraPreis.removeAll()
-            ItemsPreis.removeAll()
-            ItemsMenge.removeAll()
-            gesamtpreisBerechnen(section: indexPath.section, row: indexPath.row)
-
-            cell.gesamtPreisLbl.text = "\(String(format: "%.2f", gesamtpreislabel)) €"
+            let cell = Bundle.main.loadNibNamed("BestellungFertigCell", owner: self, options: nil)?.first as! BestellungFertigCell
+            cell.itemLBl.text = BestellungenFertig[indexPath.section].items[indexPath.row]
+            cell.mengeLbl.text = "\(BestellungenFertig[indexPath.section].bezahltMenge[indexPath.row])/\(BestellungenFertig[indexPath.section].menge[indexPath.row])"
+            FooterSection = indexPath.section
             return cell
         }
         
@@ -705,15 +722,16 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         func toggleSection(tableView: UITableView, header: ExpandableHeaderView, section: Int) {
-            for i in 0..<Bestellungen.count{
-                if i == section {
-                    Bestellungen[section].expanded = !Bestellungen[section].expanded
-                } else {
-                    Bestellungen[i].expanded = false
-                    
-                }
-            }
-            
+                 BestellungenFertig[section].expanded = !BestellungenFertig[section].expanded
+//            for i in 0..<Bestellungen.count{
+//                if i == section {
+//                    Bestellungen[section].expanded = !Bestellungen[section].expanded
+//                } else {
+//                    Bestellungen[i].expanded = false
+//
+//                }
+//            }
+
             fertigeBestellungenTV.beginUpdates()
             fertigeBestellungenTV.reloadRows(at: [IndexPath(row: 0, section: section)], with: .automatic)
 
@@ -774,6 +792,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             BestellungItemsMengen.removeAll()
             BestellungenItemsExtrasNamen.removeAll()
             BestellungenItemsExtrasPreise.removeAll()
+            BestellungenFertig.removeAll()
             Tischnummer.removeAll()
             Angenommen.removeAll()
             FromUserID.removeAll()
@@ -795,5 +814,6 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
         }
+
         
     }

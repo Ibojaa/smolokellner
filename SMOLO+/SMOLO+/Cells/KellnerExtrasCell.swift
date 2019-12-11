@@ -9,6 +9,7 @@
 import UIKit
 
 class KellnerExtrasCell: UITableViewCell {
+    
     @IBOutlet weak var extrasNameLbl: UILabel!
     @IBOutlet weak var extrasPreisLbl: UILabel!
     
