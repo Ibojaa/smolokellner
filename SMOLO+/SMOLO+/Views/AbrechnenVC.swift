@@ -36,11 +36,16 @@ class AbrechnenVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         // Do any additional setup after loading the view.
     }
     
+     @objc func refresh() {
+        print("refreshtv")
+        self.AbrechnenTV.reloadData() // a refresh the tableView.
 
+    }
+    
     /*
     // MARK: - Navigation
 

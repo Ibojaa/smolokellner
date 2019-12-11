@@ -645,7 +645,8 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         BestellungenBezahlen.append(BestellungenFertig[FooterSection])
         let AVC = self.storyboard?.instantiateViewController(withIdentifier: "AbrechnenVC") as! AbrechnenVC
         AVC.BestellungBezahlen = BestellungenBezahlen
-        AVC.AbrechnenTV.reloadData()
+      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
+     //   AVC.AbrechnenTV.reloadData()
         
         BestellungenBezahlen.removeAll()
     }
