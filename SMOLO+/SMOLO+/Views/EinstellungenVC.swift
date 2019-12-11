@@ -20,6 +20,9 @@ class EinstellungenVC: UIViewController {
         performSegue(withIdentifier: "passwort", sender: self)
     }
     
+    @IBAction func detaileinstellungen(_ sender: Any) {
+        performSegue(withIdentifier: "detaileinstellungen", sender: self)
+    }
     @IBAction func speisekartebearbeiten(_ sender: Any) {
         performSegue(withIdentifier: "speisekarte", sender: self)
     }
@@ -41,11 +44,13 @@ class EinstellungenVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "speisekarte" {
-            
             let PVC = segue.destination as! ProdukteVC
             PVC.KellnerID = (Auth.auth().currentUser?.uid)!
-            print(Barname, "barrr")
             PVC.Barname = Barname
+        }
+        if segue.identifier == "detaileinstellungen" {
+            let devc = segue.destination as! DetailEinstellungenVC
+            devc.Barname = Barname
         }
     }
     

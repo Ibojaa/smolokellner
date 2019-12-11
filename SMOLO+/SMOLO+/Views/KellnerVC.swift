@@ -40,6 +40,10 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     var problemSection = 0
     var problemRow = 0
      var gesamtpreislabel = 0.0
+    
+    var roteAmpel = Double()
+    var gelbeAmpel = Double()
+    var gruneAmpel = 0.0
     // OUTLETS
 
     @IBOutlet weak var barnameLbl: UILabel!
@@ -70,8 +74,25 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         }, withCancel: nil)
         
     }
+    func loadampel(){
+           var datref: DatabaseReference!
+           datref = Database.database().reference()
+        datref.child("BarInfo").child(Barname).child("Ampelregel").observe(.value, with: { (snapshot) in
+               if let dictionary = snapshot.value as? [String: AnyObject]{
+                   let ampelInfos = Ampelmodel(dictionary: dictionary)
+                self.roteAmpel =   Double(ampelInfos.rot!)
+                self.gelbeAmpel =   Double(ampelInfos.gelb!)
+                print(self.roteAmpel, "roteAmpellan")
+                print(snapshot,"Ampelshot")
+               }
+           }, withCancel: nil)
+       }
     
     func loadBestellungen(BestellungID: String){
+        
+        Bestellungen.removeAll()
+
+        
         var datref: DatabaseReference!
         datref = Database.database().reference()
         datref.child("Bestellungen").child(Barname).child(BestellungID).observeSingleEvent(of: .value) { (snapshot) in
@@ -429,9 +450,11 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
                                                             self.extrasString.removeAll()
                                                         }}}}}}}
                             } }  }} }
+            print(self.bestellungIDs.count, self.BestellungKategorien.count, "countprint" )
             if self.bestellungIDs.count == self.BestellungKategorien.count {
                 for i in 0..<self.bestellungIDs.count {
                     self.setSectionsKellnerBestellung(BestellungID: self.bestellungIDs[i], tischnummer: self.Tischnummer[self.bestellungIDs[i]]!, fromUserID: self.FromUserID[self.bestellungIDs[i]]!, TimeStamp: self.TimeStamp[self.bestellungIDs[i]]!, Kategorie: self.BestellungKategorien[self.bestellungIDs[i]]!, Unterkategorie: self.BestellungUnterkategorien[self.bestellungIDs[i]]!, items: self.BestellungItemsNamen[self.bestellungIDs[i]]!, preis: self.BestellungItemsPreise[self.bestellungIDs[i]]!, liter: self.BestellungItemsLiter[self.bestellungIDs[i]]!, extras: self.BestellungenItemsExtrasNamen[self.bestellungIDs[i]]!, extrasPreis: self.BestellungenItemsExtrasPreise[self.bestellungIDs[i]]!, kommentar: self.BestellungItemsKommentar[self.bestellungIDs[i]]!, menge: self.BestellungItemsMengen[self.bestellungIDs[i]]!, expanded2: self.BestellungExpanded2[self.bestellungIDs[i]]!, expanded: false)
+                    print(self.Bestellungen.count, self.bestellungIDs.count, "bestellungencount2")
                     if self.Bestellungen.count == self.bestellungIDs.count{
                         self.bestellungTV.reloadData()
                     }}}}}
@@ -715,12 +738,32 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         
         
         let header = ExpandableHeaderView()
-        header.contentView.layer.cornerRadius = 10
+        header.contentView.layer.cornerRadius = 0
         header.contentView.layer.backgroundColor = UIColor.clear.cgColor
-        header.layer.cornerRadius = 10
+        header.layer.cornerRadius = 0
         header.layer.backgroundColor = UIColor.clear.cgColor
-        
+       // header.contentView.backgroundColor = UIColor(red: 185.0/255.0, green: 170.0/255.0, blue: 140.0/255.0, alpha: 1.0)
+
         header.customInit(tableView: tableView, title: Bestellungen[section].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
+      
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let DayOne = formatter.date(from: "2018/05/15 12:00")
+
+        let reftime = Date(timeInterval: self.Bestellungen[section].TimeStamp, since: DayOne!)
+        let aktuell = Date()
+        let intervale = aktuell.timeIntervalSince(reftime)
+        print(intervale, gelbeAmpel, roteAmpel, "Timeinterval")
+
+        if intervale < gelbeAmpel {
+            header.contentView.backgroundColor = UIColor(red: 70/255, green: 188/255, blue: 0, alpha: 0.58)
+        }
+        if intervale > gelbeAmpel && intervale < roteAmpel {
+                   header.contentView.backgroundColor = UIColor(red: 146.0/255.0, green: 144.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+               }
+        if intervale > roteAmpel {
+            header.contentView.backgroundColor = UIColor(red: 224/255, green: 41/255, blue: 0/255, alpha: 0.63)
+        }
         return header
     }
     
@@ -740,8 +783,9 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         let timeStampDate = NSDate(timeInterval: self.Bestellungen[indexPath.section].TimeStamp, since: DayOne!)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        
+    
         cell.timeLbl.text = "\(dateFormatter.string(from: timeStampDate as Date)) Uhr"
+        
         
         if Bestellungen[indexPath.section].expanded == false {
             cell.timeLbl.isHidden = true
@@ -863,6 +907,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         FromUserID.removeAll()
         TimeStamp.removeAll()
         loadBestellungenKeys()
+        loadampel()
         self.bestellungTV.reloadData()
         
         
@@ -871,6 +916,7 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     
     override func viewDidLoad() {
         print(Barname, "kellnervc")
+        loadampel()
         super.viewDidLoad()
         problemTextView.keyboardAppearance = UIKeyboardAppearance.dark
         problemTextView.alpha = 0.5

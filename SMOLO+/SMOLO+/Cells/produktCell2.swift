@@ -15,6 +15,8 @@ protocol produktCellDelegate2 {
 class produktCell2: UITableViewCell {
     @IBOutlet weak var itemNameLbl: UILabel!
     @IBOutlet weak var verfuegbarBtn: UIButton!
+    @IBOutlet weak var preistxt: UITextField!
+    
     
     var section2 = Int()
     var row2 = Int()

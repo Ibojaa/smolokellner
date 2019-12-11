@@ -10,47 +10,63 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="qnh-Ck-z8i" customClass="produktCell2" customModule="SMOLO_" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="42" id="qnh-Ck-z8i" customClass="produktCell2" customModule="SMOLO_" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="667" height="42"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qnh-Ck-z8i" id="egr-Uh-ceA">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="667" height="42"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jns-aI-ytX">
-                        <rect key="frame" x="15" y="11" width="255" height="22"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iF3-kD-A63">
-                        <rect key="frame" x="278" y="2" width="30" height="40"/>
+                        <rect key="frame" x="629" y="3" width="30" height="36"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="x0Y-NJ-d4w"/>
+                            <constraint firstAttribute="width" constant="30" id="elF-wa-Yx8"/>
                         </constraints>
                         <state key="normal" image="checkbox-i"/>
                         <connections>
                             <action selector="verfuegbarBtnTapped:" destination="qnh-Ck-z8i" eventType="touchUpInside" id="jz6-BM-8IM"/>
                         </connections>
                     </button>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s0h-ff-DMO">
+                        <rect key="frame" x="407" y="4" width="116" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="116" id="bFU-lv-QZz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jns-aI-ytX">
+                        <rect key="frame" x="20" y="8" width="365" height="26"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jns-aI-ytX" firstAttribute="leading" secondItem="egr-Uh-ceA" secondAttribute="leadingMargin" id="5ph-Re-9YW"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="iF3-kD-A63" secondAttribute="trailing" constant="-3" id="MAL-CQ-8GY"/>
-                    <constraint firstItem="jns-aI-ytX" firstAttribute="top" secondItem="egr-Uh-ceA" secondAttribute="topMargin" id="X4C-4y-OSA"/>
-                    <constraint firstItem="iF3-kD-A63" firstAttribute="leading" secondItem="jns-aI-ytX" secondAttribute="trailing" constant="8" id="cpp-Jn-JrE"/>
-                    <constraint firstItem="iF3-kD-A63" firstAttribute="centerY" secondItem="egr-Uh-ceA" secondAttribute="centerY" id="eTo-yI-g4P"/>
-                    <constraint firstItem="jns-aI-ytX" firstAttribute="bottom" secondItem="egr-Uh-ceA" secondAttribute="bottomMargin" id="xXY-oN-50Q"/>
+                    <constraint firstAttribute="bottom" secondItem="iF3-kD-A63" secondAttribute="bottom" constant="3" id="2TB-IM-MMH"/>
+                    <constraint firstItem="iF3-kD-A63" firstAttribute="leading" secondItem="s0h-ff-DMO" secondAttribute="trailing" constant="106" id="2hT-I2-dDz"/>
+                    <constraint firstItem="iF3-kD-A63" firstAttribute="top" secondItem="egr-Uh-ceA" secondAttribute="top" constant="3" id="3jr-D4-2Dl"/>
+                    <constraint firstItem="jns-aI-ytX" firstAttribute="centerY" secondItem="egr-Uh-ceA" secondAttribute="centerY" id="9Lh-YX-pP6"/>
+                    <constraint firstItem="s0h-ff-DMO" firstAttribute="top" secondItem="egr-Uh-ceA" secondAttribute="top" constant="4" id="AuQ-cs-uUN"/>
+                    <constraint firstAttribute="trailing" secondItem="iF3-kD-A63" secondAttribute="trailing" constant="8" id="BbT-An-c1d"/>
+                    <constraint firstAttribute="bottom" secondItem="jns-aI-ytX" secondAttribute="bottom" constant="8" id="Q5V-ws-vI2"/>
+                    <constraint firstItem="iF3-kD-A63" firstAttribute="centerY" secondItem="egr-Uh-ceA" secondAttribute="centerY" id="UVI-3H-hcj"/>
+                    <constraint firstItem="jns-aI-ytX" firstAttribute="leading" secondItem="egr-Uh-ceA" secondAttribute="leading" constant="20" id="VDv-5a-sJ0"/>
+                    <constraint firstItem="s0h-ff-DMO" firstAttribute="leading" secondItem="jns-aI-ytX" secondAttribute="trailing" constant="22" id="atF-tP-Vay"/>
+                    <constraint firstItem="s0h-ff-DMO" firstAttribute="centerY" secondItem="egr-Uh-ceA" secondAttribute="centerY" id="dDV-yD-Oro"/>
+                    <constraint firstAttribute="bottom" secondItem="s0h-ff-DMO" secondAttribute="bottom" constant="4" id="xxR-mB-Cqk"/>
+                    <constraint firstItem="jns-aI-ytX" firstAttribute="top" secondItem="egr-Uh-ceA" secondAttribute="top" constant="8" id="zO8-Zv-hjc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Z05-Oa-mUu"/>
             <connections>
                 <outlet property="itemNameLbl" destination="jns-aI-ytX" id="auN-mO-hFy"/>
+                <outlet property="preistxt" destination="s0h-ff-DMO" id="Wy8-U0-UsW"/>
                 <outlet property="verfuegbarBtn" destination="iF3-kD-A63" id="jYZ-zl-zm0"/>
             </connections>
-            <point key="canvasLocation" x="137.59999999999999" y="131.33433283358323"/>
+            <point key="canvasLocation" x="103.2" y="130.43478260869566"/>
         </tableViewCell>
     </objects>
     <resources>

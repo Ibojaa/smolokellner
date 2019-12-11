@@ -10,9 +10,10 @@
 import UIKit
 import Firebase
 
-class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,ExpandableHeaderViewDelegate, produktCellDelegate {
+class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,ExpandableHeaderViewDelegate, produktCellDelegate, UITextFieldDelegate {
     
     // VARS
+    var textFieldRealYPosition: CGFloat = 0.0
     var cellIndexPathSection = 0
     var cellIndexPathRow = 0
     var KellnerID = String()
@@ -32,14 +33,18 @@ class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,E
     
     
     // OUTLETS
+    
+  
+    
     @IBOutlet weak var produkteTV: UITableView!
     
     @IBAction func fertigTapped(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     // FUNCS
+
     func reloadTable(sender: produktCell) {
         print("hiwesdcew")
         sections = sender.unterkategorien
@@ -330,10 +335,41 @@ class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,E
 
         getKategorien()
         self.navigationItem.title = "Speisekarte"
-self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
-        // Do any additional setup after loading the view.
-    }
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        NotificationCenter.default.addObserver(self, selector: #selector(ProdukteVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProdukteVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
+          // Delegate all textfields
+       
+        }
+
+
+        @objc func keyboardWillShow(notification: NSNotification) {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                let distanceBetweenTextfielAndKeyboard = self.view.frame.height - textFieldRealYPosition - keyboardSize.height
+                if distanceBetweenTextfielAndKeyboard < 0 {
+                    UIView.animate(withDuration: 0.4) {
+                        self.view.transform = CGAffineTransform(translationX: 0.0, y: distanceBetweenTextfielAndKeyboard)
+                    }
+                }
+            }
+        }
+
+
+        @objc func keyboardWillHide(notification: NSNotification) {
+            UIView.animate(withDuration: 0.4) {
+                self.view.transform = .identity
+            }
+        }
+
+
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+          textFieldRealYPosition = textField.frame.origin.y + textField.frame.height
+          //take in account all superviews from textfield and potential contentOffset if you are using tableview to calculate the real position
+        }
+        
     
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

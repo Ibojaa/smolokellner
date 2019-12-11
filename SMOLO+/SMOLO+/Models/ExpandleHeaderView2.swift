@@ -52,10 +52,10 @@ class ExpandableHeaderView2: UITableViewHeaderFooterView {
         self.textLabel?.textAlignment = .left
         self.textLabel?.backgroundColor = UIColor.clear
         self.layer.backgroundColor = UIColor.clear.cgColor
-        //        self.contentView.backgroundColor = UIColor.clear
+        self.contentView.backgroundColor = UIColor.clear
         
-        //        self.backgroundColor = UIColor.clear
-        //        tableView.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.clear
         
     }
     

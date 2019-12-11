@@ -42,7 +42,9 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
     var ItemsMenge = [Double]()
     var ExtraPreis = [Double]()
     var gesamtpreislabel = 0.0
-
+    var roteAmpel2 = Double()
+    var gelbeAmpel2 = Double()
+    var gruneAmpel = 0.0
     // OUTLETS
     
 
@@ -84,7 +86,21 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
         }, withCancel: nil)
         
     }
-    
+    func loadampel2(){
+        print("load2")
+              var datref: DatabaseReference!
+              datref = Database.database().reference()
+        datref.child("BarInfo").child(Barname).child("Ampelregel").observe(.value, with: { (snapshot) in
+                  if let dictionary = snapshot.value as? [String: AnyObject]{
+                      let ampelInfos = Ampelmodel(dictionary: dictionary)
+                    self.roteAmpel2 =   Double(ampelInfos.rot2!)
+                   self.gelbeAmpel2 =   Double(ampelInfos.gelb2!)
+                   print(self.roteAmpel2, "rote2Ampellan")
+                   print(snapshot,"Ampelshot")
+                  }
+              }, withCancel: nil)
+          }
+       
 
     func loadBestellungen(BestellungID: String){
         var datref: DatabaseReference!
@@ -540,12 +556,32 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         
         let header = ExpandableHeaderView()
-        header.contentView.layer.cornerRadius = 10
+        header.contentView.layer.cornerRadius = 0
         header.contentView.layer.backgroundColor = UIColor.clear.cgColor
-        header.layer.cornerRadius = 10
+        header.layer.cornerRadius = 0
         header.layer.backgroundColor = UIColor.clear.cgColor
         
         header.customInit(tableView: tableView, title: Bestellungen[section].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let DayOne = formatter.date(from: "2018/05/15 12:00")
+
+        let reftime = Date(timeInterval: self.Bestellungen[section].TimeStamp, since: DayOne!)
+        let aktuell = Date()
+        let intervale = aktuell.timeIntervalSince(reftime)
+        print(intervale, gelbeAmpel2, roteAmpel2, "Timeinterval")
+
+        if intervale < gelbeAmpel2 {
+            header.contentView.backgroundColor = UIColor(red: 70/255, green: 188/255, blue: 0, alpha: 0.58)
+        }
+        if intervale > gelbeAmpel2 && intervale < roteAmpel2 {
+                   header.contentView.backgroundColor = UIColor(red: 146.0/255.0, green: 144.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+               }
+        if intervale > roteAmpel2 {
+            header.contentView.backgroundColor = UIColor(red: 224/255, green: 41/255, blue: 0/255, alpha: 0.63)
+        }
+        print(roteAmpel2, "rote2amp")
         return header
     }
     
@@ -692,7 +728,7 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
 
         super.viewDidLoad()
    
-        
+        loadampel2()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
 
         loadBestellungenKeys()
@@ -722,6 +758,7 @@ class KellnerAngenommenVC: UIViewController, UITableViewDelegate, UITableViewDat
         FromUserID.removeAll()
         TimeStamp.removeAll()
         loadBestellungenKeys()
+        loadampel2()
         self.angenommenBestellungenTV.reloadData()
         //
         

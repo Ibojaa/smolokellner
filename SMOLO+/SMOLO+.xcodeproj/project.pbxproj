@@ -48,6 +48,7 @@
 		38D2AC1B2190AADB00B60430 /* SpeisekarteInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2AC1A2190AADB00B60430 /* SpeisekarteInformation.swift */; };
 		7796451B185D5E5DA59F4B41 /* Pods_SMOLO_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8092DFD4E900B544C95E8F4E /* Pods_SMOLO_Tests.framework */; };
 		E0CA75F6CD0B497C5F2DF0BF /* Pods_SMOLO_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C2564E725D34DF77B656D40 /* Pods_SMOLO_.framework */; };
+		FD52E50D23995A2A00CBAF29 /* Ampelmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD52E50C23995A2A00CBAF29 /* Ampelmodel.swift */; };
 		FD6C03B6237D846B00EEDDCF /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6C03B5237D846B00EEDDCF /* StartVC.swift */; };
 		FD6C03B8237EA2DC00EEDDCF /* FertiggestelltVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6C03B7237EA2DC00EEDDCF /* FertiggestelltVC.swift */; };
 		FD6C03BA237EA2EB00EEDDCF /* AbrechnenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6C03B9237EA2EB00EEDDCF /* AbrechnenVC.swift */; };
@@ -59,6 +60,7 @@
 		FD7DDC25214BEFA5008CDE12 /* SMOLO_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC24214BEFA5008CDE12 /* SMOLO_Tests.swift */; };
 		FD7DDC30214BEFA5008CDE12 /* SMOLO_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7DDC2F214BEFA5008CDE12 /* SMOLO_UITests.swift */; };
 		FD7DDC3E214BF03C008CDE12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD7DDC3D214BF03C008CDE12 /* GoogleService-Info.plist */; };
+		FDC349B0239AAF96005FD53E /* DetailEinstellungenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC349AF239AAF96005FD53E /* DetailEinstellungenVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,7 @@
 		B8A699007BA13C84B097901D /* Pods_SMOLO_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMOLO_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9854DB1D9990CE7AB00B227 /* Pods-SMOLO+.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+/Pods-SMOLO+.release.xcconfig"; sourceTree = "<group>"; };
 		F8894C7681264C21D7ED39AD /* Pods-SMOLO+Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMOLO+Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMOLO+Tests/Pods-SMOLO+Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD52E50C23995A2A00CBAF29 /* Ampelmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ampelmodel.swift; sourceTree = "<group>"; };
 		FD6C03B5237D846B00EEDDCF /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		FD6C03B7237EA2DC00EEDDCF /* FertiggestelltVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FertiggestelltVC.swift; sourceTree = "<group>"; };
 		FD6C03B9237EA2EB00EEDDCF /* AbrechnenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbrechnenVC.swift; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 		FD7DDC2F214BEFA5008CDE12 /* SMOLO_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMOLO_UITests.swift; sourceTree = "<group>"; };
 		FD7DDC31214BEFA5008CDE12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD7DDC3D214BF03C008CDE12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FDC349AF239AAF96005FD53E /* DetailEinstellungenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEinstellungenVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,7 @@
 				FD6C03B7237EA2DC00EEDDCF /* FertiggestelltVC.swift */,
 				FD6C03B9237EA2EB00EEDDCF /* AbrechnenVC.swift */,
 				38CFD89C237EF13A007B7C76 /* DetailKatVC.swift */,
+				FDC349AF239AAF96005FD53E /* DetailEinstellungenVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				3877686B2173AC5C0070F988 /* KellnerInfos.swift */,
+				FD52E50C23995A2A00CBAF29 /* Ampelmodel.swift */,
 				387768722173B3470070F988 /* ExpandableHeaderViewDelegate.swift */,
 				387768742173B3D60070F988 /* KellnerTVSection.swift */,
 				387768762173B5B10070F988 /* BestellungInfos.swift */,
@@ -559,6 +565,7 @@
 				385FFA522188C3500052823A /* ProdukteVC.swift in Sources */,
 				385FFA4E2188C1680052823A /* KellnerAngenommenVC.swift in Sources */,
 				387768732173B3470070F988 /* ExpandableHeaderViewDelegate.swift in Sources */,
+				FD52E50D23995A2A00CBAF29 /* Ampelmodel.swift in Sources */,
 				38329EB221A03D9500FD1A72 /* ImpressumVC.swift in Sources */,
 				3877687B2173B94E0070F988 /* KellnerCell.swift in Sources */,
 				387A38102178BDAF00F9FB81 /* ExpandleHeaderView2.swift in Sources */,
@@ -579,6 +586,7 @@
 				FD7DDC12214BEFA2008CDE12 /* LoginVC.swift in Sources */,
 				38CE332F2178E08700DBE708 /* B_HN_20_G.swift in Sources */,
 				FD6C03B8237EA2DC00EEDDCF /* FertiggestelltVC.swift in Sources */,
+				FDC349B0239AAF96005FD53E /* DetailEinstellungenVC.swift in Sources */,
 				387A38132178C0F500F9FB81 /* KellnerCell2.swift in Sources */,
 				3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */,
 				384CE51B21A2C1E900E724F1 /* NVC.swift in Sources */,
