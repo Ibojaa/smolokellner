@@ -8,13 +8,29 @@
 
 import UIKit
 
-class AbrechnenVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+protocol AbrechnenDelegate{
+    func bezahlt()
+}
+
+class AbrechnenVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
+    func pass(bezahlt: [BestellungFertig]) {
+        BestellungBezahlen = bezahlt
+        print(BestellungBezahlen, "joooo")
+    }
+        
     var BestellungBezahlen = [BestellungFertig]()
+    var delegate: AbrechnenDelegate?
     
     @IBOutlet weak var AbrechnenTV: UITableView!
+    
+    @IBAction func bezahlenBtn(_ sender: Any) {
+        delegate?.bezahlt()
+        print(1)
+    }
+    
     func reload(){
-        print("hiiiiiiiiiiii")
+        print(BestellungBezahlen, "hallllo")
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -22,14 +38,18 @@ class AbrechnenVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(BestellungBezahlen, "hallllo")
-        return 3
+        if  BestellungBezahlen.count != 0{
+        return BestellungBezahlen[0].items.count
+        } else {
+           return 0
+        }
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("BestellungFertigCell", owner: self, options: nil)?.first as! BestellungFertigCell
-        cell.itemLBl.text = "halllo"
+        cell.itemLBl.text = BestellungBezahlen[indexPath.section].items[indexPath.row]
+        cell.mengeLbl.text = "\(BestellungBezahlen[indexPath.section].menge[indexPath.row])"
         return cell
     }
     
@@ -37,11 +57,13 @@ class AbrechnenVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
+        
         // Do any additional setup after loading the view.
     }
     
      @objc func refresh() {
         print("refreshtv")
+        
         self.AbrechnenTV.reloadData() // a refresh the tableView.
 
     }

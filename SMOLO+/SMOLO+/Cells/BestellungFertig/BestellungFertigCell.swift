@@ -13,6 +13,7 @@ class BestellungFertigCell: UITableViewCell {
     @IBOutlet weak var itemLBl: UILabel!
     @IBOutlet weak var mengeLbl: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

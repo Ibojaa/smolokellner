@@ -9,8 +9,10 @@
 import UIKit
 import Firebase
 
+
+
 class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate, kellnerCellDelegate, UISearchResultsUpdating, UISearchBarDelegate {
-    
+
     
         // VARS
 
@@ -19,6 +21,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         var BestellungenSpeicher = [KellnerTVSection]()
         var Bestellungen = [KellnerTVSection]()
         var BestellungenFertig = [BestellungFertig]()
+        var SplitRechnung = [BestellungFertig]()
         var filteredBestellungen = [KellnerTVSection]()
         var BestellungKategorien = [String: [String]]()
         var BestellungUnterkategorien = [String: [[String]]]()
@@ -47,11 +50,17 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
         // Abrechnung
         
+        
         var TischnummerIDs = [String: [String]]()
         
         var BestellungenBezahlen = [BestellungFertig]()
+        
+        @IBOutlet weak var aBezahlenBtn: UIButton!
+
+        
+        @IBOutlet weak var AbrechnenTV: UITableView!
     
-        var FooterSection = Int()
+    
 
     
         // OUTLETS
@@ -574,6 +583,10 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func setSectionsBestellungenFertig(BestellungID: [String], tischnummer: String, fromUserID: String, TimeStamp: [Double], Kategorie: [String], items: [String], preis: [Double], menge: [Int], bezahltMenge: [Int], expanded: Bool){
         self.BestellungenFertig.append(BestellungFertig(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, Kategorie: Kategorie, items: items, preis: preis, menge: menge, bezahltMenge: bezahltMenge, expanded: expanded))
            }
+    
+    func setSectionsSplit(BestellungID: [String], tischnummer: String, fromUserID: String, TimeStamp: [Double], Kategorie: [String], items: [String], preis: [Double], menge: [Int], bezahltMenge: [Int], expanded: Bool){
+    self.SplitRechnung.append(BestellungFertig(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, Kategorie: Kategorie, items: items, preis: preis, menge: menge, bezahltMenge: bezahltMenge, expanded: expanded))
+       }
         
         //
         //        func removeBestellung(KellnerID: String, BestellungID: String){
@@ -586,69 +599,121 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         // TABLE
         
         func numberOfSections(in tableView: UITableView) -> Int {
+            var numberOfSection: Int?
+            if tableView == fertigeBestellungenTV {
+            numberOfSection = self.BestellungenFertig.count
+                }
+            if tableView == AbrechnenTV {
+                numberOfSection = 1
+                print(numberOfSection, 2134)
 
-            return self.BestellungenFertig.count
-                    }
-        
-        
+            }
+            return numberOfSection!
+    }
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return BestellungenFertig[section].items.count
+            var numberOfRowsInSection: Int?
+            if tableView == fertigeBestellungenTV {
+                print(BestellungenFertig,  "bestellguengen fertog")
+                       numberOfRowsInSection = self.BestellungenFertig[section].items.count
+                           }
+            if tableView == AbrechnenTV {
+                           if  BestellungenBezahlen.count != 0{
+                           numberOfRowsInSection = BestellungenBezahlen[0].items.count
+                           } else {
+                            numberOfRowsInSection = 0                           }
+                print(numberOfRowsInSection, 2222222)
+
+                       }
+
+            return numberOfRowsInSection!
         }
         
         
         func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
             var heightForHeaderInSection: Int?
-            
             heightForHeaderInSection = 36
+            print(heightForHeaderInSection, 33333)
+
             return CGFloat(heightForHeaderInSection!)
+            
         }
         
         
         
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-          
+            var heightForRow: Int?
+          if tableView == fertigeBestellungenTV {
             if (BestellungenFertig[indexPath.section].expanded) {
-                return 36
+                heightForRow = 36
             }
             else {
-                return 0
+                heightForRow = 0
             }
-        }
+            }
+        if tableView == AbrechnenTV {
+            heightForRow = 36
+            
+            }
+            return CGFloat(heightForRow!)
+            }
+        
         
         func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
             
-           if (BestellungenFertig[section].expanded) {
-                return 50
-            }
-            else {
-                return 15
-            }
+            var heightForFooterInSection: Int?
             
+            if tableView == fertigeBestellungenTV {
+                       if (BestellungenFertig[section].expanded) {
+                           heightForFooterInSection = 50
+                       }
+                       else {
+                           heightForFooterInSection = 15
+                       }
+                
+            }
+            if tableView == AbrechnenTV {
+                           heightForFooterInSection = 15
+                       }
+            
+            return CGFloat(heightForFooterInSection!)
         }
         
         func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
             let view = UIView()
             view.backgroundColor = UIColor.clear
-            
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-            button.setTitle("Alles bezahlen", for: .normal)
-            button.center.x = tableView.center.x
-            button.addTarget(self, action: #selector(allesBezahlen), for: .touchUpInside)
-            view.addSubview(button)
-            
+            switch tableView {
+            case fertigeBestellungenTV:
+                let allesBezahlenBtn = CustomButton()
+                print(section, "3456zhvcdrtzhbvftzuj")
+                allesBezahlenBtn.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
+                allesBezahlenBtn.customObject = section
+                allesBezahlenBtn.setTitle("Alles bezahlen", for: .normal)
+                allesBezahlenBtn.center.x = tableView.center.x
+                allesBezahlenBtn.addTarget(self, action: #selector(self.allesBezahlen(_:)), for: .touchUpInside)
+                view.addSubview(allesBezahlenBtn)
+            default: break
+                }
+
             return view
         }
+
         
-    @objc func allesBezahlen() {
+    @objc public func allesBezahlen(_ sender: CustomButton) {
         
-        BestellungenBezahlen.append(BestellungenFertig[FooterSection])
-        let AVC = self.storyboard?.instantiateViewController(withIdentifier: "AbrechnenVC") as! AbrechnenVC
-        AVC.BestellungBezahlen = BestellungenBezahlen
-      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
-     //   AVC.AbrechnenTV.reloadData()
-        
+        let FooterSection = sender.customObject
+
         BestellungenBezahlen.removeAll()
+        print(BestellungenBezahlen, "bestellungenbezahlen")
+        BestellungenBezahlen.append(BestellungenFertig[FooterSection!])
+        print(BestellungenBezahlen, "bestellungenbezahlen")
+        AbrechnenTV.reloadData()
+    }
+    
+    func ok(){
+           AbrechnenTV.reloadData()
+           
+           SplitRechnung.removeAll()
     }
         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             
@@ -658,19 +723,55 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             header.contentView.layer.backgroundColor = UIColor.clear.cgColor
             header.layer.cornerRadius = 10
             header.layer.backgroundColor = UIColor.clear.cgColor
-            
+            if tableView == fertigeBestellungenTV {
             header.customInit(tableView: tableView, title: BestellungenFertig[section].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
+                
+            }
+            if tableView == AbrechnenTV {
+                if BestellungenBezahlen.count > 0 {
+                    header.customInit(tableView: tableView, title: BestellungenBezahlen[0].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
+                }
+                
+            }
             return header
         }
         
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = Bundle.main.loadNibNamed("BestellungFertigCell", owner: self, options: nil)?.first as! BestellungFertigCell
-            cell.itemLBl.text = BestellungenFertig[indexPath.section].items[indexPath.row]
-            cell.mengeLbl.text = "\(BestellungenFertig[indexPath.section].bezahltMenge[indexPath.row])/\(BestellungenFertig[indexPath.section].menge[indexPath.row])"
-            FooterSection = indexPath.section
+            switch tableView {
+            case fertigeBestellungenTV:
+                cell.itemLBl.text = BestellungenFertig[indexPath.section].items[indexPath.row]
+                cell.mengeLbl.text = "\(BestellungenFertig[indexPath.section].bezahltMenge[indexPath.row])/\(BestellungenFertig[indexPath.section].menge[indexPath.row])"
+            case AbrechnenTV:
+                print(BestellungenBezahlen, "erwer")
+                           if  BestellungenBezahlen.count > 0{
+                           cell.itemLBl.text = BestellungenBezahlen[0].items[indexPath.row]
+                           cell.mengeLbl.text = "\(BestellungenBezahlen[0].menge[indexPath.row])"
+                               print("giu24kjewds")
+                }
+            default:
+               print("sorrry")
+                
+            }
             return cell
+
         }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == fertigeBestellungenTV {
+        let id = BestellungenFertig[indexPath.section].BestellungID
+        let tischnummer = BestellungenFertig[indexPath.section].Tischnummer
+        let fromuserid = BestellungenFertig[indexPath.section].fromUserID
+        let kategorie = BestellungenFertig[indexPath.section].Kategorie
+        let items = BestellungenFertig[indexPath.section].items
+        let preis = BestellungenFertig[indexPath.section].preis
+        let menge = BestellungenFertig[indexPath.section].menge
+
+        setSectionsSplit(BestellungID: id, tischnummer: tischnummer, fromUserID: fromuserid, TimeStamp: [0,0], Kategorie: kategorie, items: items, preis: preis, menge: menge, bezahltMenge: [0], expanded: true)
+        ok()
+        }
+    }
         
         
         func gesamtpreisBerechnen(section: Int, row: Int) {
@@ -723,6 +824,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         func toggleSection(tableView: UITableView, header: ExpandableHeaderView, section: Int) {
+            if tableView == fertigeBestellungenTV {
                  BestellungenFertig[section].expanded = !BestellungenFertig[section].expanded
 //            for i in 0..<Bestellungen.count{
 //                if i == section {
@@ -739,6 +841,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             fertigeBestellungenTV.endUpdates()
             
         }
+    }
         
         // OTHERS
         
@@ -748,8 +851,17 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             super.viewDidLoad()
        
             
-            self.view.backgroundColor = UIColor(patternImage: UIImage(named: "hintergrund")!)
+            let background = UIImage(named: "hintergrund")
 
+                var imageView : UIImageView!
+                imageView = UIImageView(frame: view.bounds)
+                imageView.contentMode =  UIViewContentMode.scaleAspectFill
+                imageView.clipsToBounds = true
+                imageView.image = background
+                imageView.center = view.center
+                view.addSubview(imageView)
+                self.view.sendSubview(toBack: imageView)
+        
             loadBestellungenKeys()
             
             let refreshControl = UIRefreshControl()
@@ -780,6 +892,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             // For some reason, the search bar will extend outside the view to the left after calling sizeToFit. This next line corrects this.
             self.searchController.searchBar.frame.size.width = self.view.frame.size.width
             BestellungenSpeicher = Bestellungen
+            
         }
         func reload(){
             print("wrefrgtedws")
@@ -818,3 +931,13 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         
     }
+
+class CustomButton : UIButton {
+
+    var customObject : Int?
+
+    convenience init(object: Int) {
+        self.init()
+        self.customObject = object
+    }
+}

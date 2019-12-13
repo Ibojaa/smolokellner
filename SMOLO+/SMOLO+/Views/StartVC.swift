@@ -20,6 +20,7 @@ class StartVC: UIViewController {
     var kellnerview: KellnerVC?
     var angenommenview: KellnerAngenommenVC?
     var fertigview: FertiggestelltVC?
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination
@@ -38,7 +39,13 @@ class StartVC: UIViewController {
             fertigview = thridview
             fertigview?.Barname = Barname
             fertigview?.KellnerID = KellnerID
+
         }
+
+        
+        
+       
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
