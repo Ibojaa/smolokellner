@@ -18,7 +18,7 @@
 		3877686C2173AC5C0070F988 /* KellnerInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877686B2173AC5C0070F988 /* KellnerInfos.swift */; };
 		3877686E2173ADEF0070F988 /* KellnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3877686D2173ADEF0070F988 /* KellnerVC.swift */; };
 		387768712173AF070070F988 /* KellnerTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768702173AF070070F988 /* KellnerTBC.swift */; };
-		387768732173B3470070F988 /* ExpandableHeaderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768722173B3470070F988 /* ExpandableHeaderViewDelegate.swift */; };
+		387768732173B3470070F988 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768722173B3470070F988 /* ExpandableHeaderView.swift */; };
 		387768752173B3D60070F988 /* KellnerTVSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768742173B3D60070F988 /* KellnerTVSection.swift */; };
 		387768772173B5B10070F988 /* BestellungInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768762173B5B10070F988 /* BestellungInfos.swift */; };
 		3877687B2173B94E0070F988 /* KellnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387768792173B94D0070F988 /* KellnerCell.swift */; };
@@ -96,7 +96,7 @@
 		3877686B2173AC5C0070F988 /* KellnerInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerInfos.swift; sourceTree = "<group>"; };
 		3877686D2173ADEF0070F988 /* KellnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerVC.swift; sourceTree = "<group>"; };
 		387768702173AF070070F988 /* KellnerTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerTBC.swift; sourceTree = "<group>"; };
-		387768722173B3470070F988 /* ExpandableHeaderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderViewDelegate.swift; sourceTree = "<group>"; };
+		387768722173B3470070F988 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		387768742173B3D60070F988 /* KellnerTVSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerTVSection.swift; sourceTree = "<group>"; };
 		387768762173B5B10070F988 /* BestellungInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestellungInfos.swift; sourceTree = "<group>"; };
 		387768792173B94D0070F988 /* KellnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KellnerCell.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 			children = (
 				3877686B2173AC5C0070F988 /* KellnerInfos.swift */,
 				FD52E50C23995A2A00CBAF29 /* Ampelmodel.swift */,
-				387768722173B3470070F988 /* ExpandableHeaderViewDelegate.swift */,
+				387768722173B3470070F988 /* ExpandableHeaderView.swift */,
 				387768742173B3D60070F988 /* KellnerTVSection.swift */,
 				381C416E23995C02002F8CDB /* BestellungFertig.swift */,
 				387768762173B5B10070F988 /* BestellungInfos.swift */,
@@ -582,7 +582,7 @@
 				38B9485D2194401300BA8E7E /* EinstellungenVC.swift in Sources */,
 				385FFA522188C3500052823A /* ProdukteVC.swift in Sources */,
 				385FFA4E2188C1680052823A /* KellnerAngenommenVC.swift in Sources */,
-				387768732173B3470070F988 /* ExpandableHeaderViewDelegate.swift in Sources */,
+				387768732173B3470070F988 /* ExpandableHeaderView.swift in Sources */,
 				FD52E50D23995A2A00CBAF29 /* Ampelmodel.swift in Sources */,
 				38329EB221A03D9500FD1A72 /* ImpressumVC.swift in Sources */,
 				3877687B2173B94E0070F988 /* KellnerCell.swift in Sources */,
