@@ -778,7 +778,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             // Call sizeToFit() on the search bar so it fits nicely in the UIView
             self.searchController.searchBar.sizeToFit()
             // For some reason, the search bar will extend outside the view to the left after calling sizeToFit. This next line corrects this.
-            self.searchController.searchBar.frame.size.width = self.view.frame.size.width
+           // self.searchController.searchBar.frame.size.width = self.view.frame.size.width
             BestellungenSpeicher = Bestellungen
         }
         func reload(){

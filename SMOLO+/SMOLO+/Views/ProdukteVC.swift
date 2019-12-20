@@ -338,7 +338,7 @@ class ProdukteVC: UIViewController, UITableViewDataSource, UITableViewDelegate,E
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         NotificationCenter.default.addObserver(self, selector: #selector(ProdukteVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ProdukteVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
+        
           // Delegate all textfields
        
         }
