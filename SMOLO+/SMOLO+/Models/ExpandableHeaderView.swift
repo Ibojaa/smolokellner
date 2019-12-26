@@ -50,7 +50,7 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         self.textLabel?.textAlignment = .center
         
         self.textLabel?.backgroundColor = UIColor.clear
-        
+        self.textLabel?.frame.size.width = self.layer.frame.width
         
         //self.contentView.backgroundColor = UIColor(red: 185.0/255.0, green: 170.0/255.0, blue: 140.0/255.0, alpha: 1.0)
         

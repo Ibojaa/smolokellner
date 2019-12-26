@@ -54,6 +54,7 @@ class ExpandableHeaderView3: UITableViewHeaderFooterView {
         self.layer.backgroundColor = UIColor.clear.cgColor
         self.tableView.headerView(forSection: self.section)?.backgroundView?.backgroundColor = UIColor.clear
         self.tableView.headerView(forSection: self.section)?.layer.backgroundColor = UIColor.clear.cgColor
+        self.textLabel?.frame = self.layer.frame
 
         
     }
