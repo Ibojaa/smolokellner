@@ -50,7 +50,8 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
         // Abrechnung
         
-        
+        var SplitMenge = [String: Int]()
+
         var TischnummerIDs = [String: [String]]()
         
         var BestellungenBezahlen = [BestellungFertig]()
@@ -584,9 +585,6 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.BestellungenFertig.append(BestellungFertig(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, Kategorie: Kategorie, items: items, preis: preis, menge: menge, bezahltMenge: bezahltMenge, expanded: expanded))
            }
     
-    func setSectionsSplit(BestellungID: [String], tischnummer: String, fromUserID: String, TimeStamp: [Double], Kategorie: [String], items: [String], preis: [Double], menge: [Int], bezahltMenge: [Int], expanded: Bool){
-    self.SplitRechnung.append(BestellungFertig(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, Kategorie: Kategorie, items: items, preis: preis, menge: menge, bezahltMenge: bezahltMenge, expanded: expanded))
-       }
         
         //
         //        func removeBestellung(KellnerID: String, BestellungID: String){
@@ -605,7 +603,6 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             if tableView == AbrechnenTV {
                 numberOfSection = 1
-                print(numberOfSection, 2134)
 
             }
             return numberOfSection!
@@ -705,16 +702,12 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         BestellungenBezahlen.removeAll()
         print(BestellungenBezahlen, "bestellungenbezahlen")
+        BestellungenFertig[FooterSection!].bezahltMenge = BestellungenFertig[FooterSection!].menge
         BestellungenBezahlen.append(BestellungenFertig[FooterSection!])
         print(BestellungenBezahlen, "bestellungenbezahlen")
         AbrechnenTV.reloadData()
     }
     
-    func ok(){
-           AbrechnenTV.reloadData()
-           
-           SplitRechnung.removeAll()
-    }
         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
             
             
@@ -743,34 +736,44 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             case fertigeBestellungenTV:
                 cell.itemLBl.text = BestellungenFertig[indexPath.section].items[indexPath.row]
                 cell.mengeLbl.text = "\(BestellungenFertig[indexPath.section].bezahltMenge[indexPath.row])/\(BestellungenFertig[indexPath.section].menge[indexPath.row])"
+                for item in BestellungenFertig[indexPath.section].items {
+                    SplitMenge.updateValue(0, forKey: item)
+                
+                }
             case AbrechnenTV:
-                print(BestellungenBezahlen, "erwer")
                            if  BestellungenBezahlen.count > 0{
                            cell.itemLBl.text = BestellungenBezahlen[0].items[indexPath.row]
-                           cell.mengeLbl.text = "\(BestellungenBezahlen[0].menge[indexPath.row])"
-                               print("giu24kjewds")
+                           cell.mengeLbl.text = "\(BestellungenBezahlen[0].bezahltMenge[indexPath.row])"
                 }
             default:
                print("sorrry")
                 
             }
+            print(SplitMenge, "CellforRow")
             return cell
 
         }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == fertigeBestellungenTV {
-        let id = BestellungenFertig[indexPath.section].BestellungID
-        let tischnummer = BestellungenFertig[indexPath.section].Tischnummer
-        let fromuserid = BestellungenFertig[indexPath.section].fromUserID
-        let kategorie = BestellungenFertig[indexPath.section].Kategorie
-        let items = BestellungenFertig[indexPath.section].items
-        let preis = BestellungenFertig[indexPath.section].preis
-        let menge = BestellungenFertig[indexPath.section].menge
+//        if tableView == fertigeBestellungenTV {
+//
+//        let id = BestellungenFertig[indexPath.section].BestellungID
+//        let tischnummer = BestellungenFertig[indexPath.section].Tischnummer
+//        let fromuserid = BestellungenFertig[indexPath.section].fromUserID
+//        let kategorie = BestellungenFertig[indexPath.section].Kategorie
+//        let items = BestellungenFertig[indexPath.section].items[indexPath.row]
+//        let preis = BestellungenFertig[indexPath.section].preis[indexPath.row]
+//        let menge = BestellungenFertig[indexPath.section].menge[indexPath.row]
 
-        setSectionsSplit(BestellungID: id, tischnummer: tischnummer, fromUserID: fromuserid, TimeStamp: [0,0], Kategorie: kategorie, items: items, preis: preis, menge: menge, bezahltMenge: [0], expanded: true)
-        ok()
-        }
+        self.BestellungenBezahlen.removeAll()
+            self.BestellungenBezahlen = [self.BestellungenFertig[indexPath.section]]
+        AbrechnenTV.reloadData()
+
+//            if SplitMenge[items]! < menge {
+//            self.SplitMenge[items]! = (self.SplitMenge[items]!)+1
+//                print("reloaddidselect")
+//            }
+//        }
     }
         
         
@@ -890,7 +893,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             // Call sizeToFit() on the search bar so it fits nicely in the UIView
             self.searchController.searchBar.sizeToFit()
             // For some reason, the search bar will extend outside the view to the left after calling sizeToFit. This next line corrects this.
-           // self.searchController.searchBar.frame.size.width = self.view.frame.size.width
+            self.searchController.searchBar.frame.size.width = self.view.frame.size.width
             BestellungenSpeicher = Bestellungen
             
         }

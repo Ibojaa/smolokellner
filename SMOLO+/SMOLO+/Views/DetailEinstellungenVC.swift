@@ -106,12 +106,12 @@ class DetailEinstellungenVC: UIViewController, UITextFieldDelegate {
         if rottxt2.text != nil && rottxt2.text != "" {
             let rotmin2 = Double(rottxt2.text!)
             let rotsekunden2 = rotmin2! * 60.0
-        datref.child("BarInfo").child(self.Barname).child("Ampelregel").updateChildValues(["rot2": rotsekunden2])
+        datref.child("BarInfo").child(self.Barname).child("Ampelregel").updateChildValues(["rot": rotsekunden2])
         }
         if gelbtxt2.text != nil && gelbtxt2.text != "" {
             let gelbmin2 = Double(gelbtxt2.text!)
             let gelbsekunden2 = gelbmin2! * 60.0
-        datref.child("BarInfo").child(self.Barname).child("Ampelregel").updateChildValues(["gelb2": gelbsekunden2])
+        datref.child("BarInfo").child(self.Barname).child("Ampelregel").updateChildValues(["rot": gelbsekunden2])
         }
        }
 

@@ -50,9 +50,17 @@ class ExpandableHeaderView2: UITableViewHeaderFooterView {
         self.textLabel?.font = UIFont(name: "Verdana-Bold", size: 20.0)
         self.textLabel?.textAlignment = .left
         self.textLabel?.backgroundColor = UIColor.clear
-        self.layer.backgroundColor = UIColor.blue.cgColor
-        
-        
+        self.contentView.backgroundColor = UIColor.red
+        self.tableView.headerView(forSection: self.section)?.backgroundView?.backgroundColor = UIColor.clear
+        self.tableView.headerView(forSection: self.section)?.layer.backgroundColor = UIColor.clear.cgColor
+
+
+
+
+                self.backgroundColor = UIColor.clear
+                tableView.backgroundColor = UIColor.clear
+                self.contentView.backgroundColor = UIColor.clear
+
         
 //        self.textLabel?.backgroundColor = UIColor.clear
 //        self.layer.backgroundColor = UIColor.clear.cgColor
