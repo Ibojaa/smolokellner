@@ -20,8 +20,9 @@ class ExpandableHeaderView3: UITableViewHeaderFooterView {
     var tableView = UITableView()
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectHeaderAction)))
-    }
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(selectHeaderAction))
+        gesture.cancelsTouchesInView = false
+        self.addGestureRecognizer(gesture)    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

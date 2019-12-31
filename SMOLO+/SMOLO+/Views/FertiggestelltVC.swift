@@ -27,6 +27,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         var BestellungUnterkategorien = [String: [[String]]]()
         var BestellungExpanded2 = [String: [[Bool]]]()
         var BestellungItemsNamen = [String: [[[String]]]]()
+        var BestellungItemsID = [String: [[[String]]]]()
         var BestellungItemsPreise = [String: [[[Double]]]]()
         var BestellungItemsKommentar = [String: [[[String]]]]()
         var BestellungItemsLiter = [String: [[[String]]]]()
@@ -50,26 +51,32 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
         // Abrechnung
         
-        var SplitMenge = [String: Int]()
+        var BezahltMenge = [Int]()
 
         var TischnummerIDs = [String: [String]]()
         
         var BestellungenBezahlen = [BestellungFertig]()
         
         @IBOutlet weak var aBezahlenBtn: UIButton!
-
+    
+    
         
         @IBOutlet weak var AbrechnenTV: UITableView!
     
     
 
+        @IBAction func auswahlBezahlenTapped(_ sender: Any) {
+            print(BestellungenBezahlen, "zahlen")
+        }
     
         // OUTLETS
         
 
         @IBOutlet weak var fertigeBestellungenTV: UITableView!
         
-    @IBOutlet weak var topView: UIView!
+        @IBOutlet weak var topView: UIView!
+    
+        
     
     //Searchfuncs
     func updateSearchResults(for searchController: UISearchController) {
@@ -178,39 +185,47 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                                             var newMengen = self.BestellungItemsMengen[BestellungID]
                                             var newKommentare = self.BestellungItemsKommentar[BestellungID]
                                             var newLiters = self.BestellungItemsLiter[BestellungID]
+                                            var newItemsID = self.BestellungItemsID[BestellungID]
                                             if (newItems?.count)! < (self.BestellungKategorien[BestellungID]?.count)! {
                                                 newItems?.append([[iteminfodic.itemName!]])
                                                 newPreise?.append([[Double(iteminfodic.itemPreis!)]])
                                                 newMengen?.append([[Int(iteminfodic.itemMenge!)]])
                                                 newKommentare?.append([[iteminfodic.itemKommentar!]])
                                                 newLiters?.append([[iteminfodic.itemLiter!]])
+                                                newItemsID?.append([[iteminfodic.bestellungItemId!]])
                                                 self.BestellungItemsNamen[BestellungID] = newItems
                                                 self.BestellungItemsPreise[BestellungID] = newPreise
                                                 self.BestellungItemsMengen[BestellungID] = newMengen
                                                 self.BestellungItemsKommentar[BestellungID] = newKommentare
                                                 self.BestellungItemsLiter[BestellungID] = newLiters
+                                                self.BestellungItemsID[BestellungID] = newItemsID
                                                 } else {
                                                 var newnewItem = newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewPreise = newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewMengen = newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewKommentare = newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewLiters = newLiters![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
+                                                var newnewItemsID = newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 let newx = x![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 newnewItem[newx.index(of: children.key)!].append(iteminfodic.itemName!)
                                                 newnewPreise[newx.index(of: children.key)!].append(Double(iteminfodic.itemPreis!))
                                                 newnewMengen[newx.index(of: children.key)!].append(iteminfodic.itemMenge!)
                                                 newnewKommentare[newx.index(of: children.key)!].append(iteminfodic.itemKommentar!)
                                                 newnewLiters[newx.index(of: children.key)!].append(iteminfodic.itemLiter!)
+                                                newnewItemsID[newx.index(of: children.key)!].append(iteminfodic.bestellungItemId!)
                                                 newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItem
                                                 newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewPreise
                                                 newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewMengen
                                                 newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewKommentare
                                                 newLiters![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewLiters
+                                                newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItemsID
+
                                                 self.BestellungItemsNamen[BestellungID] = newItems
                                                 self.BestellungItemsPreise[BestellungID] = newPreise
                                                 self.BestellungItemsMengen[BestellungID] = newMengen
                                                 self.BestellungItemsKommentar[BestellungID] = newKommentare
                                                 self.BestellungItemsLiter[BestellungID] = newLiters
+                                                self.BestellungItemsID[BestellungID] = newItemsID
                                             }} }
                                     for Itemssnap in (childsnapshotItem.children.allObjects as? [DataSnapshot])! {
                                         let childsnapshotExtras = childsnapshotItem.childSnapshot(forPath: Itemssnap.key)
@@ -261,11 +276,13 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                                             var newMengen = self.BestellungItemsMengen[BestellungID]
                                             var newKommentare = self.BestellungItemsKommentar[BestellungID]
                                             var newLiter = self.BestellungItemsLiter[BestellungID]
+                                            var newItemsID = self.BestellungItemsID[BestellungID]
                                             var newnewItem = newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                             var newnewPreise = newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                             var newnewMengen = newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                             var newnewKommentare = newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                             var newnewLiters = newLiter![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
+                                            var newnewItemsID = newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                             let newx = x![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                             if newnewItem.count < newx.count {
                                                 newnewItem.append([iteminfodic.itemName!])
@@ -273,32 +290,38 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                                                 newnewMengen.append([iteminfodic.itemMenge!])
                                                 newnewKommentare.append([iteminfodic.itemKommentar!])
                                                 newnewLiters.append([iteminfodic.itemLiter!])
+                                                newnewItemsID.append([iteminfodic.bestellungItemId!])
                                                 newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItem
                                                 newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewPreise
                                                 newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewMengen
                                                 newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewKommentare
                                                 newLiter![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewLiters
+                                                newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItemsID
                                                 self.BestellungItemsNamen[BestellungID] = newItems
                                                 self.BestellungItemsPreise[BestellungID] = newPreise
                                                 self.BestellungItemsMengen[BestellungID] = newMengen
                                                 self.BestellungItemsKommentar[BestellungID] = newKommentare
                                                 self.BestellungItemsLiter[BestellungID] = newLiter
+                                                self.BestellungItemsID[BestellungID] = newItemsID
                                             } else {
                                                 newnewItem[newx.index(of: children.key)!].append(iteminfodic.itemName!)
                                                 newnewPreise[newx.index(of: children.key)!].append(Double(iteminfodic.itemPreis!))
                                                 newnewMengen[newx.index(of: children.key)!].append(iteminfodic.itemMenge!)
                                                 newnewKommentare[newx.index(of: children.key)!].append(iteminfodic.itemKommentar!)
                                                 newnewLiters[newx.index(of: children.key)!].append(iteminfodic.itemLiter!)
+                                                newnewItemsID[newx.index(of: children.key)!].append(iteminfodic.bestellungItemId!)
                                                 newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItem
                                                 newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewPreise
                                                 newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewMengen
                                                 newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewKommentare
                                                 newLiter![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewLiters
+                                                newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItemsID
                                                 self.BestellungItemsNamen[BestellungID] = newItems
                                                 self.BestellungItemsPreise[BestellungID] = newPreise
                                                 self.BestellungItemsMengen[BestellungID] = newMengen
                                                 self.BestellungItemsKommentar[BestellungID] = newKommentare
                                                 self.BestellungItemsLiter[BestellungID] = newLiter
+                                                self.BestellungItemsID[BestellungID] = newItemsID
                                             }}}
                                     for Itemssnap in (childsnapshotItem.children.allObjects as? [DataSnapshot])! {
                                         let childsnapshotExtras = childsnapshotItem.childSnapshot(forPath: Itemssnap.key)
@@ -359,11 +382,13 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                                                 var newMengen = self.BestellungItemsMengen[BestellungID]
                                                 var newKommentare = self.BestellungItemsKommentar[BestellungID]
                                                 var newLiters = self.BestellungItemsLiter[BestellungID]
+                                                var newItemsID = self.BestellungItemsID[BestellungID]
                                                 var newnewItems = newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewPreise = newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewMengen = newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewKommentare = newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewLiters = newLiters![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
+                                                var newnewItemsID = newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 let newx = x![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 if newnewItems.count < newx.count {
                                                     newnewItems.append([iteminfodic.itemName!])
@@ -371,33 +396,39 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                                                     newnewMengen.append([iteminfodic.itemMenge!])
                                                     newnewKommentare.append([iteminfodic.itemKommentar!])
                                                     newnewLiters.append([iteminfodic.itemLiter!])
+                                                    newnewItemsID.append([iteminfodic.bestellungItemId!])
                                                     newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItems
                                                     newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewPreise
                                                     newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewMengen
                                                     newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewKommentare
                                                     newLiters![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewLiters
+                                                    newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItemsID
                                                     self.BestellungItemsNamen[BestellungID] = newItems
                                                     self.BestellungItemsPreise[BestellungID] = newPreise
                                                     self.BestellungItemsMengen[BestellungID] = newMengen
                                                     self.BestellungItemsKommentar[BestellungID] = newKommentare
                                                     self.BestellungItemsLiter[BestellungID] = newLiters
+                                                    self.BestellungItemsID[BestellungID] = newItemsID
                                                     } else {
                                                     newnewItems[newx.index(of: children.key)!].append(iteminfodic.itemName!)
                                                     newnewPreise[newx.index(of: children.key)!].append(Double(iteminfodic.itemPreis!))
                                                     newnewMengen[newx.index(of: children.key)!].append(iteminfodic.itemMenge!)
                                                     newnewKommentare[newx.index(of: children.key)!].append(iteminfodic.itemKommentar!)
                                                     newnewLiters[newx.index(of: children.key)!].append(iteminfodic.itemLiter!)
+                                                    newnewItemsID[newx.index(of: children.key)!].append(iteminfodic.bestellungItemId!)
                                                     newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItems
                                                     newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewPreise
                                                     newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewMengen
                                                     newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewKommentare
                                                     newLiters![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewLiters
+                                                    newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItemsID
+
                                                     self.BestellungItemsNamen[BestellungID] = newItems
                                                     self.BestellungItemsPreise[BestellungID] = newPreise
                                                     self.BestellungItemsMengen[BestellungID] = newMengen
                                                     self.BestellungItemsKommentar[BestellungID] = newKommentare
                                                     self.BestellungItemsLiter[BestellungID] = newLiters
-                                                }}}}
+                                                    self.BestellungItemsID[BestellungID] = newItemsID                                           }}}}
                                     for Itemssnap in (childsnapshotItem.children.allObjects as? [DataSnapshot])! {
                                         let childsnapshotExtras = childsnapshotItem.childSnapshot(forPath: Itemssnap.key)
                                         for extras in (childsnapshotExtras.children.allObjects as? [DataSnapshot])! {
@@ -414,7 +445,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                                                         self.extrasString.append(extraInfo.itemName!)
                                                         self.extrasPreis.append(extraInfo.itemPreis!)
                                                         if self.extrasString.count == extrasSnap.childrenCount && self.extrasPreis.count == extrasSnap.childrenCount {
-                                                            var a = self.BestellungUnterkategorien[BestellungID]!
+                                                            let a = self.BestellungUnterkategorien[BestellungID]!
                                                             let b = a[(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                             let c = b.index(of: children.key)
                                                             if newnewExtras.count < c!+1 {
@@ -442,32 +473,39 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                                                 var newMengen = self.BestellungItemsMengen[BestellungID]
                                                 var newKommentare = self.BestellungItemsKommentar[BestellungID]
                                                 var newLiters = self.BestellungItemsLiter[BestellungID]
+                                                var newItemsID = self.BestellungItemsID[BestellungID]
                                                 var newnewItems = newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewPreise = newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewMengen = newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewKommentare = newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 var newnewLiters = newLiters![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
+                                                var newnewItemsID = newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!]
                                                 newnewItems[(self.BestellungUnterkategorien[BestellungID]?.index(of: [children.key]))!].append(iteminfodic.itemName!)
                                                 newnewPreise[(self.BestellungUnterkategorien[BestellungID]?.index(of: [children.key]))!].append(Double(iteminfodic.itemPreis!))
                                                 newnewMengen[(self.BestellungUnterkategorien[BestellungID]?.index(of: [children.key]))!].append(iteminfodic.itemMenge!)
                                                 newnewKommentare[(self.BestellungUnterkategorien[BestellungID]?.index(of: [children.key]))!].append(iteminfodic.itemKommentar!)
                                                 newnewLiters[(self.BestellungUnterkategorien[BestellungID]?.index(of: [children.key]))!].append(iteminfodic.itemLiter!)
+                                                newnewItemsID[(self.BestellungUnterkategorien[BestellungID]?.index(of: [children.key]))!].append(iteminfodic.bestellungItemId!)
                                                 newItems![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItems
                                                 newPreise![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewPreise
                                                 newMengen![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewMengen
                                                 newKommentare![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewKommentare
                                                 newLiters![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewLiters
+                                                newItemsID![(self.BestellungKategorien[BestellungID]?.index(of: key.key))!] = newnewItemsID
                                                 self.BestellungItemsNamen[BestellungID] = newItems
                                                 self.BestellungItemsPreise[BestellungID] = newPreise
                                                 self.BestellungItemsMengen[BestellungID] = newMengen
                                                 self.BestellungItemsKommentar[BestellungID] = newKommentare
                                                 self.BestellungItemsLiter[BestellungID] = newLiters
+                                                self.BestellungItemsID[BestellungID] = newItemsID
                                                 } else {
                                                 self.BestellungItemsNamen.updateValue([[[iteminfodic.itemName!]]], forKey: BestellungID)
                                                 self.BestellungItemsPreise.updateValue([[[Double(iteminfodic.itemPreis!)]]], forKey: BestellungID)
                                                 self.BestellungItemsMengen.updateValue([[[iteminfodic.itemMenge!]]], forKey: BestellungID)
                                                 self.BestellungItemsKommentar.updateValue([[[iteminfodic.itemKommentar!]]], forKey: BestellungID)
                                                 self.BestellungItemsLiter.updateValue([[[iteminfodic.itemLiter!]]], forKey: BestellungID)
+                                                self.BestellungItemsID.updateValue([[[iteminfodic.bestellungItemId!]]], forKey: BestellungID)
+
                                             }}
                                     }
                                     for Itemssnap in (childsnapshotItem.children.allObjects as? [DataSnapshot])! {
@@ -506,7 +544,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                                 } }  }} }
                 if self.bestellungIDs.count == self.BestellungKategorien.count {
                     for i in 0..<self.bestellungIDs.count {
-                        self.setSectionsKellnerBestellung(BestellungID: self.bestellungIDs[i], tischnummer: self.Tischnummer[self.bestellungIDs[i]]!, fromUserID: self.FromUserID[self.bestellungIDs[i]]!, TimeStamp: self.TimeStamp[self.bestellungIDs[i]]!, Kategorie: self.BestellungKategorien[self.bestellungIDs[i]]!, Unterkategorie: self.BestellungUnterkategorien[self.bestellungIDs[i]]!, items: self.BestellungItemsNamen[self.bestellungIDs[i]]!, preis: self.BestellungItemsPreise[self.bestellungIDs[i]]!, liter: self.BestellungItemsLiter[self.bestellungIDs[i]]!, extras: self.BestellungenItemsExtrasNamen[self.bestellungIDs[i]]!, extrasPreis: self.BestellungenItemsExtrasPreise[self.bestellungIDs[i]]!, kommentar: self.BestellungItemsKommentar[self.bestellungIDs[i]]!, menge: self.BestellungItemsMengen[self.bestellungIDs[i]]!, expanded2: self.BestellungExpanded2[self.bestellungIDs[i]]!, expanded: false)
+                        self.setSectionsKellnerBestellung(BestellungID: self.bestellungIDs[i], tischnummer: self.Tischnummer[self.bestellungIDs[i]]!, fromUserID: self.FromUserID[self.bestellungIDs[i]]!, TimeStamp: self.TimeStamp[self.bestellungIDs[i]]!, Kategorie: self.BestellungKategorien[self.bestellungIDs[i]]!, Unterkategorie: self.BestellungUnterkategorien[self.bestellungIDs[i]]!, items: self.BestellungItemsNamen[self.bestellungIDs[i]]!, preis: self.BestellungItemsPreise[self.bestellungIDs[i]]!, liter: self.BestellungItemsLiter[self.bestellungIDs[i]]!, extras: self.BestellungenItemsExtrasNamen[self.bestellungIDs[i]]!, extrasPreis: self.BestellungenItemsExtrasPreise[self.bestellungIDs[i]]!, kommentar: self.BestellungItemsKommentar[self.bestellungIDs[i]]!, menge: self.BestellungItemsMengen[self.bestellungIDs[i]]!, itemsID: self.BestellungItemsID[self.bestellungIDs[i]]!, expanded2: self.BestellungExpanded2[self.bestellungIDs[i]]!, expanded: false)
                         
                         if self.Bestellungen.count == self.bestellungIDs.count{
                             self.BestellungenZusammenführen()
@@ -524,15 +562,15 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         var AllePreise = [Double]()
         var AlleMengen = [Int]()
         var BezahltMengen = [Int]()
-        var Kategorien = [String]()
+        var AlleKategorien = [String]()
+        var AlleUnterkategorien = [String]()
         
         
         for tisch in TischnummerIDs.keys {
             for bestellung in Bestellungen{
                 if bestellung.Tischnummer == tisch {
-                    print(tisch, bestellung.BestellungID, "print dies das")
-                    ids.append(bestellung.BestellungID)
                     
+                    ids.append(bestellung.BestellungID)
                     for items in bestellung.items{
                         for item in items{
                             AlleItems.append(contentsOf: item)
@@ -542,34 +580,36 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     for preise in bestellung.preis{
                     for preis in preise{
                         AllePreise.append(contentsOf: preis)
-                        BezahltMengen.append(0)
                         }
                     }
                     
                     for mengen in bestellung.menge{
                     for menge in mengen{
                         AlleMengen.append(contentsOf: menge)
+                        BezahltMengen.append(0)
+
                         }
                     }
                     
-                    for kategorie in bestellung.Kategorie {
-                        if !Kategorien.contains(kategorie) {
-                            Kategorien.append(kategorie)
-                            }
-                        }
+//                    for kategorie in bestellung.Kategorie {
+//                        if !Kategorien.contains(kategorie) {
+//                            Kategorien.append(kategorie)
+//                            }
+//                        }
                 }
             
             }
             print(ids, "ids gleiche nummer")
             print(AlleItems, "alle Items")
-            setSectionsBestellungenFertig(BestellungID: ids, tischnummer: tisch, fromUserID: "kommt noch", TimeStamp: [0, 0], Kategorie: Kategorien, items: AlleItems, preis: AllePreise, menge: AlleMengen, bezahltMenge: BezahltMengen, expanded: false)
+            setSectionsBestellungenFertig(BestellungID: ids, tischnummer: tisch, fromUserID: "kommt noch", TimeStamp: [0, 0], Kategorie: AlleKategorien, items: AlleItems, preis: AllePreise, menge: AlleMengen, bezahltMenge: BezahltMengen, expanded: false)
             
             ids.removeAll()
             AlleItems.removeAll()
             AllePreise.removeAll()
             AlleMengen.removeAll()
-            Kategorien.removeAll()
+            AlleKategorien.removeAll()
             BezahltMengen.removeAll()
+            
             fertigeBestellungenTV.reloadData()
             
             print(self.BestellungenFertig, "Fertige BEstellungen")
@@ -577,8 +617,9 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         
     }
-        func setSectionsKellnerBestellung(BestellungID: String, tischnummer: String, fromUserID: String, TimeStamp: Double, Kategorie: [String], Unterkategorie: [[String]], items: [[[String]]], preis: [[[Double]]], liter: [[[String]]], extras: [[[[String]]]], extrasPreis: [[[[Double]]]], kommentar: [[[String]]], menge: [[[Int]]], expanded2: [[Bool]], expanded: Bool){
-            self.Bestellungen.append(KellnerTVSection(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, timeStamp: TimeStamp, Kategorie: Kategorie, Unterkategorie: Unterkategorie, items: items, preis: preis, liter: liter, extras: extras, extrasPreis: extrasPreis, kommentar: kommentar, menge: menge, expanded2: expanded2, expanded: expanded))
+    func setSectionsKellnerBestellung(BestellungID: String, tischnummer: String, fromUserID: String, TimeStamp: Double, Kategorie: [String], Unterkategorie: [[String]], items: [[[String]]], preis: [[[Double]]], liter: [[[String]]], extras: [[[[String]]]], extrasPreis: [[[[Double]]]], kommentar: [[[String]]], menge: [[[Int]]], itemsID: [[[String]]],expanded2: [[Bool]], expanded: Bool){
+        self.Bestellungen.append(KellnerTVSection(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, timeStamp: TimeStamp, Kategorie: Kategorie, Unterkategorie: Unterkategorie, items: items, preis: preis, liter: liter, extras: extras, extrasPreis: extrasPreis, kommentar: kommentar, menge: menge, itemsID: itemsID, expanded2: expanded2, expanded: expanded))
+        print(Bestellungen, "bestellungennnnnn")
         }
     
     func setSectionsBestellungenFertig(BestellungID: [String], tischnummer: String, fromUserID: String, TimeStamp: [Double], Kategorie: [String], items: [String], preis: [Double], menge: [Int], bezahltMenge: [Int], expanded: Bool){
@@ -685,10 +726,14 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                 print(section, "3456zhvcdrtzhbvftzuj")
                 allesBezahlenBtn.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
                 allesBezahlenBtn.customObject = section
-                allesBezahlenBtn.setTitle("Alles bezahlen", for: .normal)
+                allesBezahlenBtn.setTitle("Alles auswählen", for: .normal)
                 allesBezahlenBtn.center.x = tableView.center.x
                 allesBezahlenBtn.addTarget(self, action: #selector(self.allesBezahlen(_:)), for: .touchUpInside)
                 view.addSubview(allesBezahlenBtn)
+                if BestellungenFertig[section].expanded == false {
+                    allesBezahlenBtn.isHidden = true
+                }
+                
             default: break
                 }
 
@@ -701,10 +746,11 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let FooterSection = sender.customObject
 
         BestellungenBezahlen.removeAll()
-        print(BestellungenBezahlen, "bestellungenbezahlen")
         BestellungenFertig[FooterSection!].bezahltMenge = BestellungenFertig[FooterSection!].menge
         BestellungenBezahlen.append(BestellungenFertig[FooterSection!])
-        print(BestellungenBezahlen, "bestellungenbezahlen")
+        for i in 0..<BezahltMenge.count{
+            BezahltMenge[i] = 0
+        }
         AbrechnenTV.reloadData()
     }
     
@@ -712,10 +758,15 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             
             let header = ExpandableHeaderView()
+            header.contentView.backgroundColor = UIColor(red: 185.0/255.0, green: 170.0/255.0, blue: 140.0/255.0, alpha: 1.0)
             header.contentView.layer.cornerRadius = 10
-            header.contentView.layer.backgroundColor = UIColor.clear.cgColor
             header.layer.cornerRadius = 10
-            header.layer.backgroundColor = UIColor.clear.cgColor
+//            header.layer.backgroundColor = UIColor.red.cgColor
+//            tableView.headerView(forSection: section)?.backgroundView?.backgroundColor = UIColor.red
+//            tableView.headerView(forSection: section)?.layer.backgroundColor = UIColor.red.cgColor
+//            tableView.headerView(forSection: section)?.contentView.backgroundColor = UIColor.red
+//            header.tableView.tableHeaderView?.backgroundColor = UIColor.red
+
             if tableView == fertigeBestellungenTV {
             header.customInit(tableView: tableView, title: BestellungenFertig[section].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
                 
@@ -723,6 +774,8 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             if tableView == AbrechnenTV {
                 if BestellungenBezahlen.count > 0 {
                     header.customInit(tableView: tableView, title: BestellungenBezahlen[0].Tischnummer, section: section, delegate: self as ExpandableHeaderViewDelegate)
+                } else {
+                    header.customInit(tableView: tableView, title: "Tisch auswählen", section: section, delegate: self as ExpandableHeaderViewDelegate)
                 }
                 
             }
@@ -732,49 +785,66 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = Bundle.main.loadNibNamed("BestellungFertigCell", owner: self, options: nil)?.first as! BestellungFertigCell
+            
             switch tableView {
             case fertigeBestellungenTV:
                 cell.itemLBl.text = BestellungenFertig[indexPath.section].items[indexPath.row]
                 cell.mengeLbl.text = "\(BestellungenFertig[indexPath.section].bezahltMenge[indexPath.row])/\(BestellungenFertig[indexPath.section].menge[indexPath.row])"
-                for item in BestellungenFertig[indexPath.section].items {
-                    SplitMenge.updateValue(0, forKey: item)
-                
+                for _ in BestellungenFertig[indexPath.section].items {
+                    BezahltMenge.append(0)
                 }
+                
             case AbrechnenTV:
                            if  BestellungenBezahlen.count > 0{
                            cell.itemLBl.text = BestellungenBezahlen[0].items[indexPath.row]
                            cell.mengeLbl.text = "\(BestellungenBezahlen[0].bezahltMenge[indexPath.row])"
+                            
                 }
             default:
                print("sorrry")
                 
             }
-            print(SplitMenge, "CellforRow")
-            return cell
+            tableView.layoutSubviews()
 
+            return cell
         }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if tableView == fertigeBestellungenTV {
-//
-//        let id = BestellungenFertig[indexPath.section].BestellungID
-//        let tischnummer = BestellungenFertig[indexPath.section].Tischnummer
-//        let fromuserid = BestellungenFertig[indexPath.section].fromUserID
-//        let kategorie = BestellungenFertig[indexPath.section].Kategorie
-//        let items = BestellungenFertig[indexPath.section].items[indexPath.row]
-//        let preis = BestellungenFertig[indexPath.section].preis[indexPath.row]
-//        let menge = BestellungenFertig[indexPath.section].menge[indexPath.row]
 
-        self.BestellungenBezahlen.removeAll()
+        AbrechnenTV.delegate = self
+        
+        print(tableView)
+        switch tableView {
+        case fertigeBestellungenTV:
+            self.BestellungenBezahlen.removeAll()
             self.BestellungenBezahlen = [self.BestellungenFertig[indexPath.section]]
-        AbrechnenTV.reloadData()
+           if BezahltMenge[indexPath.row] < self.BestellungenBezahlen[0].menge[indexPath.row]{
+            BezahltMenge[indexPath.row] = BezahltMenge[indexPath.row]+1
+            }
+            self.BestellungenBezahlen[0].bezahltMenge = BezahltMenge
+            AbrechnenTV.reloadData()
+            
+        case AbrechnenTV:
+            print(23443443)
+            if BezahltMenge[indexPath.row] > 0 {
+            BezahltMenge[indexPath.row] = BezahltMenge[indexPath.row]-1
+            }
+            print(self.BestellungenBezahlen, "bestellung bezahlen")
+            self.BestellungenBezahlen[0].bezahltMenge = BezahltMenge
+            AbrechnenTV.reloadData()
+        default: break
+            }
+        
+        
+        
 
 //            if SplitMenge[items]! < menge {
 //            self.SplitMenge[items]! = (self.SplitMenge[items]!)+1
 //                print("reloaddidselect")
 //            }
 //        }
-    }
+
+        }
         
         
         func gesamtpreisBerechnen(section: Int, row: Int) {
@@ -827,23 +897,45 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         func toggleSection(tableView: UITableView, header: ExpandableHeaderView, section: Int) {
-            if tableView == fertigeBestellungenTV {
-                 BestellungenFertig[section].expanded = !BestellungenFertig[section].expanded
-//            for i in 0..<Bestellungen.count{
-//                if i == section {
-//                    Bestellungen[section].expanded = !Bestellungen[section].expanded
-//                } else {
-//                    Bestellungen[i].expanded = false
-//
-//                }
-//            }
+            print("okokkokok")
+            switch tableView {
+            case fertigeBestellungenTV:
+                        for i in 0..<BestellungenFertig.count{
+                            if i == section {
+                                BestellungenFertig[section].expanded = !BestellungenFertig[section].expanded
+                            } else {
+                                BestellungenFertig[i].expanded = false
 
-            fertigeBestellungenTV.beginUpdates()
-            fertigeBestellungenTV.reloadRows(at: [IndexPath(row: 0, section: section)], with: .automatic)
+                            }
+                        }
 
-            fertigeBestellungenTV.endUpdates()
-            
-        }
+                            var sectionsArray = [Int]()
+                            var sectionsCount = -1
+                            for _ in BestellungenFertig{
+                                sectionsCount = sectionsCount+1
+                                sectionsArray.append(sectionsCount)
+                            }
+                            let indexSet = NSMutableIndexSet()
+                            sectionsArray.forEach(indexSet.add(_:))
+                        fertigeBestellungenTV.beginUpdates()
+                            fertigeBestellungenTV.reloadSections(indexSet as IndexSet, with: .automatic)
+            //            fertigeBestellungenTV.reloadRows(at: [IndexPath(row: 0, section: section)], with: .automatic)
+
+                        fertigeBestellungenTV.endUpdates()
+                            sectionsCount = -1
+                            sectionsArray.removeAll()
+                        
+                            for i in 0..<BezahltMenge.count{
+                                BezahltMenge[i] = 0
+                            }
+            case AbrechnenTV:
+                print("Toggle")
+                
+            default:
+                break
+            }
+
+        
     }
         
         // OTHERS
@@ -852,7 +944,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         override func viewDidLoad() {
 
             super.viewDidLoad()
-       
+        
             
             let background = UIImage(named: "hintergrund")
 
@@ -907,6 +999,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             BestellungItemsNamen.removeAll()
             BestellungItemsPreise.removeAll()
             BestellungItemsMengen.removeAll()
+            BestellungItemsID.removeAll()
             BestellungenItemsExtrasNamen.removeAll()
             BestellungenItemsExtrasPreise.removeAll()
             BestellungenFertig.removeAll()
