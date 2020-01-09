@@ -68,8 +68,8 @@ class KellnerCell2: UITableViewCell, UITableViewDelegate, UITableViewDataSource,
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ExpandableHeaderView3()
-        var Unterkategorien = Bestellungen[Cell1Section].Unterkategorie[Cell2Section]
-        header.contentView.backgroundColor = UIColor(red: 146.0/255.0, green: 144.0/255.0, blue: 0.0/255.0, alpha: 0.0)
+        let Unterkategorien = Bestellungen[Cell1Section].Unterkategorie[Cell2Section]
+//        header.contentView.backgroundColor = UIColor(red: 146.0/255.0, green: 144.0/255.0, blue: 0.0/255.0, alpha: 0.0)
         header.customInit(tableView: tableView, title: Unterkategorien[Cell2Row], section: section, delegate: self as ExpandableHeaderViewDelegate3)
         return header
         
