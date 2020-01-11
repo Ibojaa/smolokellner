@@ -105,7 +105,12 @@ class KellnerCell2: UITableViewCell, UITableViewDelegate, UITableViewDataSource,
         let preisFormat = String(format: "%.2f", arguments: [newPreise[indexPath.row]])
         cell.itemPreis.text = "\(preisFormat) €"
         cell.itemMenge.text = String(newMengen[indexPath.row])
+        if newKommentare[indexPath.row] == "kein Kommentar"{
+            cell.kommentarTextView.text = "hi"
+            cell.kommentarTextView.frame.size.height = 3.0
+        }else{
         cell.kommentarTextView.text = newKommentare[indexPath.row]
+        }
         return cell
     }
     
