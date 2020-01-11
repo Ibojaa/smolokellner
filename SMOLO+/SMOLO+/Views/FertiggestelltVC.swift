@@ -50,12 +50,14 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         var gesamtpreislabel = 0.0
     
         // Abrechnung
-        
-        var BezahltMenge = [Int]()
+        var trueSection = 0
+    
+        var BezahltMenge = [Int: [Int]]()
 
         var TischnummerIDs = [String: [String]]()
         
         var BestellungenBezahlen = [BestellungFertig]()
+
         
         @IBOutlet weak var aBezahlenBtn: UIButton!
     
@@ -66,7 +68,12 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
 
         @IBAction func auswahlBezahlenTapped(_ sender: Any) {
-            print(BestellungenBezahlen, "zahlen")
+            print(trueSection)
+            print(BestellungenBezahlen, "auswahlBezahlenTapped")
+            var datref: DatabaseReference!
+            datref = Database.database().reference()
+//            datref.child("Bestellungen").child(self.Barname).child(BestellungID).child("Information").updateChildValues(["Status": "abrechnen"])
+            
         }
     
         // OUTLETS
@@ -77,7 +84,6 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         @IBOutlet weak var topView: UIView!
     
         
-    
     //Searchfuncs
     func updateSearchResults(for searchController: UISearchController) {
           if searchController.isActive == true && searchController.searchBar.text != ""{
@@ -558,57 +564,70 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     func BestellungenZusammenführen(){
         var ids = [String]()
+        var BestellungItemsIDs = [String: [String]]()
         var AlleItems = [String]()
         var AllePreise = [Double]()
         var AlleMengen = [Int]()
-        var BezahltMengen = [Int]()
+        var BezahltMengen = [Int: [Int]]()
         var AlleKategorien = [String]()
         var AlleUnterkategorien = [String]()
-        
+        var AlleItemsID = [String]()
+        var Section = 0
+        var Mengebezahlt = [Int]()
+
         
         for tisch in TischnummerIDs.keys {
             for bestellung in Bestellungen{
                 if bestellung.Tischnummer == tisch {
                     
-                    ids.append(bestellung.BestellungID)
                     for items in bestellung.items{
+                        let UKats = bestellung.Unterkategorie[bestellung.items.index(of: items)!]
                         for item in items{
                             AlleItems.append(contentsOf: item)
+                            
+                            for _ in item {
+                                AlleUnterkategorien.append(UKats[items.index(of: item)!])
+                                AlleKategorien.append(bestellung.Kategorie[bestellung.items.index(of: items)!])
+                            }
                             }
                         }
-                    
                     for preise in bestellung.preis{
                     for preis in preise{
                         AllePreise.append(contentsOf: preis)
                         }
                     }
-                    
                     for mengen in bestellung.menge{
                     for menge in mengen{
                         AlleMengen.append(contentsOf: menge)
-                        BezahltMengen.append(0)
-
+                        for _ in 0..<menge.count {
+                            Mengebezahlt.append(0)
+                        }
                         }
                     }
-                    
-//                    for kategorie in bestellung.Kategorie {
-//                        if !Kategorien.contains(kategorie) {
-//                            Kategorien.append(kategorie)
-//                            }
-//                        }
+                    ids.append(bestellung.BestellungID)
+                    for itemsID in bestellung.ItemsID{
+                    for itemID in itemsID{
+                        AlleItemsID.append(contentsOf: itemID)
+                        }
+                    }
+                    BestellungItemsIDs.updateValue(AlleItemsID, forKey: bestellung.BestellungID)
+                    AlleItemsID.removeAll()
+
+                    BezahltMengen[Section] = Mengebezahlt
                 }
-            
             }
-            print(ids, "ids gleiche nummer")
-            print(AlleItems, "alle Items")
-            setSectionsBestellungenFertig(BestellungID: ids, tischnummer: tisch, fromUserID: "kommt noch", TimeStamp: [0, 0], Kategorie: AlleKategorien, items: AlleItems, preis: AllePreise, menge: AlleMengen, bezahltMenge: BezahltMengen, expanded: false)
-            
+            setSectionsBestellungenFertig(BestellungID: BestellungItemsIDs, tischnummer: tisch, fromUserID: "kommt noch", TimeStamp: [0, 0], Kategorie: AlleKategorien, Unterkategorie: AlleUnterkategorien, items: AlleItems, preis: AllePreise, menge: AlleMengen, itemsID: AlleItemsID, bezahltMenge: BezahltMengen, expanded: false)
+            Section = Section+1
             ids.removeAll()
+            BestellungItemsIDs.removeAll()
             AlleItems.removeAll()
             AllePreise.removeAll()
             AlleMengen.removeAll()
             AlleKategorien.removeAll()
+            AlleUnterkategorien.removeAll()
+            AlleItemsID.removeAll()
             BezahltMengen.removeAll()
+            Mengebezahlt.removeAll()
             
             fertigeBestellungenTV.reloadData()
             
@@ -622,8 +641,8 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         print(Bestellungen, "bestellungennnnnn")
         }
     
-    func setSectionsBestellungenFertig(BestellungID: [String], tischnummer: String, fromUserID: String, TimeStamp: [Double], Kategorie: [String], items: [String], preis: [Double], menge: [Int], bezahltMenge: [Int], expanded: Bool){
-        self.BestellungenFertig.append(BestellungFertig(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, Kategorie: Kategorie, items: items, preis: preis, menge: menge, bezahltMenge: bezahltMenge, expanded: expanded))
+    func setSectionsBestellungenFertig(BestellungID: [String: [String]], tischnummer: String, fromUserID: String, TimeStamp: [Double], Kategorie: [String], Unterkategorie: [String], items: [String], preis: [Double], menge: [Int], itemsID: [String], bezahltMenge: [Int: [Int]], expanded: Bool){
+        self.BestellungenFertig.append(BestellungFertig(BestellungID: BestellungID, tischnummer: tischnummer, fromUserID: fromUserID, Kategorie: Kategorie, Unterkategorie: Unterkategorie, items: items, preis: preis, menge: menge, itemsID: itemsID, bezahltMenge: bezahltMenge, expanded: expanded))
            }
     
         
@@ -743,15 +762,21 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     @objc public func allesBezahlen(_ sender: CustomButton) {
         
+    
         let FooterSection = sender.customObject
 
         BestellungenBezahlen.removeAll()
-        BestellungenFertig[FooterSection!].bezahltMenge = BestellungenFertig[FooterSection!].menge
+        print(BestellungenFertig[FooterSection!].menge, "allesBezahlenbtn")
+        
+        BestellungenFertig[FooterSection!].bezahltMenge[FooterSection!] = BestellungenFertig[FooterSection!].menge
         BestellungenBezahlen.append(BestellungenFertig[FooterSection!])
-        for i in 0..<BezahltMenge.count{
-            BezahltMenge[i] = 0
-        }
+//        for i in 0..<BezahltMenge.count{
+//            BezahltMenge[i] = 0
+//        }
+        tischnummerBezahlen = BestellungenFertig[FooterSection!].Tischnummer
+
         AbrechnenTV.reloadData()
+        
     }
     
         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -782,22 +807,37 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             return header
         }
         
-        
+    var tischnummerBezahlen = String()
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = Bundle.main.loadNibNamed("BestellungFertigCell", owner: self, options: nil)?.first as! BestellungFertigCell
             
             switch tableView {
             case fertigeBestellungenTV:
                 cell.itemLBl.text = BestellungenFertig[indexPath.section].items[indexPath.row]
-                cell.mengeLbl.text = "\(BestellungenFertig[indexPath.section].bezahltMenge[indexPath.row])/\(BestellungenFertig[indexPath.section].menge[indexPath.row])"
-                for _ in BestellungenFertig[indexPath.section].items {
-                    BezahltMenge.append(0)
+                print(BestellungenFertig[indexPath.section].bezahltMenge, BestellungenFertig[indexPath.section].menge, "cellforrow", indexPath)
+                let mengenbezahlt = BestellungenFertig[indexPath.section].bezahltMenge[indexPath.section]
+                cell.mengeLbl.text = "\(mengenbezahlt![indexPath.row])/\(BestellungenFertig[indexPath.section].menge[indexPath.row])"
+                if BezahltMenge.count == 0 {
+                for _ in BestellungenFertig{
+                    for _ in BestellungenFertig[indexPath.section].items {
+                        BezahltMenge[indexPath.section]?.append(0)
+                        
+                    }
+                }
                 }
                 
             case AbrechnenTV:
-                           if  BestellungenBezahlen.count > 0{
+                for i in 0..<BestellungenFertig.count{
+                    if BestellungenFertig[i].Tischnummer == tischnummerBezahlen{
+                        trueSection = i
+                    }
+                }
+                if  BestellungenBezahlen.count > 0 {
                            cell.itemLBl.text = BestellungenBezahlen[0].items[indexPath.row]
-                           cell.mengeLbl.text = "\(BestellungenBezahlen[0].bezahltMenge[indexPath.row])"
+                            
+                    let mengenbezahlt = BestellungenBezahlen[0].bezahltMenge[trueSection]
+                            print(BestellungenBezahlen, indexPath, trueSection, "mengenbezahlt0")
+                            cell.mengeLbl.text = "\(mengenbezahlt![indexPath.row])"
                             
                 }
             default:
@@ -816,23 +856,31 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         print(tableView)
         switch tableView {
         case fertigeBestellungenTV:
+            if self.BestellungenFertig[indexPath.section].Tischnummer != tischnummerBezahlen {
+            
             self.BestellungenBezahlen.removeAll()
             self.BestellungenBezahlen = [self.BestellungenFertig[indexPath.section]]
-           if BezahltMenge[indexPath.row] < self.BestellungenBezahlen[0].menge[indexPath.row]{
-            BezahltMenge[indexPath.row] = BezahltMenge[indexPath.row]+1
             }
-            self.BestellungenBezahlen[0].bezahltMenge = BezahltMenge
+            print(BezahltMenge, indexPath.row, "DIDSelect")
+            var bm = BestellungenBezahlen[0].bezahltMenge[indexPath.section]
+            if bm![indexPath.row] < self.BestellungenBezahlen[0].menge[indexPath.row]{
+            bm![indexPath.row] = bm![indexPath.row]+1
+            }
+                        
+            BestellungenBezahlen[0].bezahltMenge[indexPath.section] = bm!
+            tischnummerBezahlen = BestellungenBezahlen[0].Tischnummer
+
             AbrechnenTV.reloadData()
             
         case AbrechnenTV:
-            print(23443443)
-            if BezahltMenge[indexPath.row] > 0 {
-            BezahltMenge[indexPath.row] = BezahltMenge[indexPath.row]-1
+            var bm = BestellungenBezahlen[0].bezahltMenge[trueSection]
+            if bm![indexPath.row] > 0 {
+            bm![indexPath.row] = bm![indexPath.row]-1
             }
-            print(self.BestellungenBezahlen, "bestellung bezahlen")
-            self.BestellungenBezahlen[0].bezahltMenge = BezahltMenge
+            BestellungenBezahlen[0].bezahltMenge[trueSection] = bm!
             AbrechnenTV.reloadData()
         default: break
+            
             }
         
         
@@ -925,9 +973,12 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                             sectionsCount = -1
                             sectionsArray.removeAll()
                         
-                            for i in 0..<BezahltMenge.count{
-                                BezahltMenge[i] = 0
+                            for _ in BestellungenFertig{
+                                for _ in BestellungenFertig[section].items {
+                                    BezahltMenge[section]?.append(0)
+                                }
                             }
+                            
             case AbrechnenTV:
                 print("Toggle")
                 
@@ -1000,9 +1051,11 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             BestellungItemsPreise.removeAll()
             BestellungItemsMengen.removeAll()
             BestellungItemsID.removeAll()
+            
             BestellungenItemsExtrasNamen.removeAll()
             BestellungenItemsExtrasPreise.removeAll()
             BestellungenFertig.removeAll()
+            BezahltMenge.removeAll()
             Tischnummer.removeAll()
             Angenommen.removeAll()
             FromUserID.removeAll()
