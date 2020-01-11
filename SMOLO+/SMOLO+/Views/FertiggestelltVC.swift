@@ -760,7 +760,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             let header = ExpandableHeaderView()
             header.contentView.backgroundColor = UIColor(red: 185.0/255.0, green: 170.0/255.0, blue: 140.0/255.0, alpha: 1.0)
             header.contentView.layer.cornerRadius = 10
-            header.layer.cornerRadius = 10
+            header.layer.cornerRadius = 0
 //            header.layer.backgroundColor = UIColor.red.cgColor
 //            tableView.headerView(forSection: section)?.backgroundView?.backgroundColor = UIColor.red
 //            tableView.headerView(forSection: section)?.layer.backgroundColor = UIColor.red.cgColor
@@ -964,8 +964,8 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             refreshControl.attributedTitle = NSAttributedString(string: title)
             refreshControl.addTarget(self, action: #selector(refreshOptions(sender:)), for: .valueChanged)
             fertigeBestellungenTV.refreshControl = refreshControl
-            
-            searchController.searchBar.placeholder = "Finde deine SMOLO"
+            self.topView.backgroundColor = .clear
+            searchController.searchBar.placeholder = "Tischnummer suchen"
             searchController.searchBar.barTintColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0)
             searchController.searchBar.searchBarStyle = .prominent
             searchController.searchBar.tintColor = .white
@@ -973,10 +973,10 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             if let txfSearchField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
                 txfSearchField.textColor = .white
                 txfSearchField.borderStyle = .roundedRect
-                txfSearchField.backgroundColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 1.0)
+                txfSearchField.backgroundColor = UIColor(red: 90.0/255.0, green: 90.0/255.0, blue: 90.0/255.0, alpha: 0.7)
             }
             searchController.searchResultsUpdater = self
-            searchController.dimsBackgroundDuringPresentation  = false
+            searchController.obscuresBackgroundDuringPresentation  = false
             definesPresentationContext = true
             //BarTV.tableHeaderView = searchController.searchBar
             searchController.searchBar.delegate = self
@@ -985,7 +985,7 @@ class FertiggestelltVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             // Call sizeToFit() on the search bar so it fits nicely in the UIView
             self.searchController.searchBar.sizeToFit()
             // For some reason, the search bar will extend outside the view to the left after calling sizeToFit. This next line corrects this.
-            self.searchController.searchBar.frame.size.width = self.view.frame.size.width
+            self.searchController.searchBar.frame.size.width = self.topView.frame.size.width
             BestellungenSpeicher = Bestellungen
             
         }
