@@ -53,6 +53,11 @@ class KellnerCell3: UITableViewCell, UITableViewDelegate, UITableViewDataSource 
     override func awakeFromNib() {
         super.awakeFromNib()
         kommentarTextView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
+        if kommentarTextView.text == nil || kommentarTextView.text == "kein Kommentar" {
+            kommentarTextView.frame.size.height = 2.0
+        }else {
+            
+        }
         // Initialization code
     }
     
