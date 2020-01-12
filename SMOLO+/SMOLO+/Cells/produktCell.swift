@@ -93,8 +93,8 @@ class produktCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate, 
         //        cell.itemLbl.text = "cell.itemLbl.text"
         if unterkategorien[cellIndexPathSection].expanded2[indexPath.section] != false {
             
-            var item = unterkategorien[cellIndexPathSection].items[indexPath.section]
-            var verfuegbarkeit = unterkategorien[cellIndexPathSection].verfuegbarkeit[indexPath.section]
+            let item = unterkategorien[cellIndexPathSection].items[indexPath.section]
+            let verfuegbarkeit = unterkategorien[cellIndexPathSection].verfuegbarkeit[indexPath.section]
             section2 = indexPath.section
             row2 = indexPath.row
             cell.section2 = indexPath.section

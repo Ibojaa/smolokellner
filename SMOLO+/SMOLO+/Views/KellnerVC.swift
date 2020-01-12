@@ -575,14 +575,14 @@ class KellnerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
                 
                 for Unterkategorie in Unterkategorien {
                     let UnterkategorieSection = Unterkategorien.index(of: Unterkategorie)
-                    var items = Bestellung.items[i]
-                    var item = items[UnterkategorieSection!]
-                    var mengen = Bestellung.menge[i]
-                    var menge = mengen[UnterkategorieSection!]
-                    var preise = Bestellung.preis[i]
-                    var preis = preise[UnterkategorieSection!]
-                    var kommentare = Bestellung.kommentar[i]
-                    var kommentar = kommentare[UnterkategorieSection!]
+                    let items = Bestellung.items[i]
+                    let item = items[UnterkategorieSection!]
+                    let mengen = Bestellung.menge[i]
+                    let menge = mengen[UnterkategorieSection!]
+                    let preise = Bestellung.preis[i]
+                    let preis = preise[UnterkategorieSection!]
+                    let kommentare = Bestellung.kommentar[i]
+                    let kommentar = kommentare[UnterkategorieSection!]
                     for x in 0 ..< items.count {
                         
                         let bestellungName = ["Name": item[x]]

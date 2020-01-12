@@ -57,7 +57,7 @@ class KellnerCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource, 
         if Bestellungen[Cell1Section].expanded != false {
             var extrasCount = 0
             let items = Bestellungen[Cell1Section].items[indexPath.section]
-            var extras = Bestellungen[Cell1Section].extras[indexPath.section]
+            let extras = Bestellungen[Cell1Section].extras[indexPath.section]
             let newextras = extras[indexPath.row]
             for extras in newextras {
                 extrasCount = extrasCount + extras.count

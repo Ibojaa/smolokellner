@@ -42,10 +42,10 @@ class KellnerCell2: UITableViewCell, UITableViewDelegate, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        var expanded2 = Bestellungen[Cell1Section].expanded2[Cell2Section]
+        let expanded2 = Bestellungen[Cell1Section].expanded2[Cell2Section]
         if expanded2[indexPath.section] != false {
-            var extra = Bestellungen[Cell1Section].extras[Cell2Section]
-            var newextra = extra[Cell2Row]
+            let extra = Bestellungen[Cell1Section].extras[Cell2Section]
+            let newextra = extra[Cell2Row]
             return (CGFloat(118 + newextra[indexPath.row].count*44))
         }
         else {
